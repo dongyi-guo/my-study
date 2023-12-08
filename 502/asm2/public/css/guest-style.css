@@ -1,0 +1,14 @@
+.body-content {
+	font-family: "Hind Siliguri", sans-serif;
+	font-size: 1.25rem;
+    background-color: #fdfdfd;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.justify-text {
+    text-align: justify;
+    text-justify: inter-word;
+}
