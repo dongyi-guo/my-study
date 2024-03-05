@@ -1,6 +1,12 @@
-# CompTIA Linux+
+# CompTIA Linux+ (XK0-005)
 
-## VirtualBox Host
+> Dongyi Guo
+>
+> This is my note learning CompTIA Linux+ with Grant McWilliams on LinkedIn Learning
+
+## 1. VirtualBox Setup
+
+### Host
 
 In order to use VirtualBox, the user on the host machine must be included in `vboxusers` user group:
 
@@ -16,7 +22,7 @@ sudo setsebool -P use_virtualbox 1
 
 and reboot. Make sure you install Extension Pack later.
 
-## VBox Guest
+### Guest
 
 In order to install VBox Guest ISO as Kernel Module, for Red Hat:
 
@@ -43,7 +49,9 @@ Locale can be checked and set with `localectl` .
 
 Time and date can be checked and set with `timedatectl` .
 
-## Man Page
+## 2. Prior to Know
+
+### Man Page
 
 Man pages have different sections for different aspects of the command ( `man-pages` ). However, you will need a search database:
 
@@ -58,7 +66,7 @@ man -f <command> # with exact command
 man -k <command> # with keywords
 ```
 
-## File Hierarchy Structure
+### File Hierarchy Structure
 
 * `/bin` : Basic binaries for system use.
 * `/sbin` : Binaries essential for system booting, recovery or repairing.
@@ -90,7 +98,7 @@ man -k <command> # with keywords
     * `/var/mail` : User Mailbox files.
     * `/var/lib` : Holds state information pretaining to an app or the system.
 
-## Files and Directories 
+## 3. Files and Directories 
 
 `tree` command better with `-f` to show full path and `-i` to negate the branch. 
 
@@ -192,7 +200,7 @@ Use `locate` command to find all the files for a command, can be combined with r
 * Database is updated by system services per 24 hours.
 * `sudo updatedb` to do this manually.
 
-## Data Processing
+### Data Processing
 
 When using multiple commands in one line, we can use parentheses `( )` and curly braces `{ }` to group them.
 
@@ -232,9 +240,9 @@ sed -E 's/:([0-9][0-9]{0,2}):/:uid:/' /etc/passwd
 # and replace it with :uid:
 ```
 
-## Boot-up
+## 4. Boot-up
 
-4 Stages (In booting order):
+4 Stages of Kernel Booting (In Order):
 
 * Firmware (UEFI/BIOS)
 * Bootloader (GRUB2/LILO/ISOLINUX/SYSLINUX/PXELINUX)
@@ -242,15 +250,16 @@ sed -E 's/:([0-9][0-9]{0,2}):/:uid:/' /etc/passwd
 * Init (OpenRC/Systemd)
     * Systemd -> targes (Start-up groups)
     
-
-Kernel Panic
+Cause of Kernel Panic:
 
 * Missing drivers
 * Bad drivers
 * Use old Kernel
+
 ```bash
 sudo grub-set-default 1
 ```
+
 * Use other systemd target
     * Needs root access.
     * Does not:
@@ -258,6 +267,7 @@ sudo grub-set-default 1
         * Start Services
         * GUI
         * Mount/Read/Write
+
 ```bash
 # On GRUB2 kernel selection, get in with "e", and added after the
 # linux line.
@@ -296,7 +306,7 @@ touch /.autorelabel
 /usr/sbin/reboot -f
 ```
 
-## Processes and System Services
+## 5. Processes and System Services
 
 SysVinit Runlevels:
 * System services start at 3.
@@ -445,7 +455,7 @@ Format:
 * unit.service
 * unit.sh (not required)
 
-## Network
+## 6. Network
 
 Components:
 
@@ -600,7 +610,7 @@ To find the DNS resolution to certain domain, go with:
 ```bash
 dig @<DNSIP> <DomainName>
 ```
-### Troubleshooting
+### Network Troubleshooting
 
 Dynamic Rules:
 
@@ -656,7 +666,7 @@ Network Adapters
 * ip
 * ifconfig
 
-## Users & Groups
+## 7. Users & Groups
 
 User Type:
 
@@ -836,7 +846,7 @@ To config, use ```visudo```
 * Cmnd_Alias: Groups commands
 * Host_Alias: Groups hosts
 
-## Storage
+## 8. Storage
 
 Types:
 
@@ -1244,8 +1254,12 @@ sudo cryptsetup -v luksClose <VolumeDevPath>
   * Deadline
   * NOOP (FIFO)
 4. Drive Check
-  * fstrim
-  * fsck
-  * xfs_check
-  * xfs_repair
-  * btrs check
+  * ```fstrim```
+  * ```fsck```
+  * ```xfs_check```
+  * ```xfs_repair```
+  * ```btrs check```
+
+## 9. Backup, Restore and Compression
+
+
