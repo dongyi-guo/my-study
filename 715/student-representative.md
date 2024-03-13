@@ -8,7 +8,7 @@
 
 **Disclaimer**
 
-This feedback was conducted within the Week 9 tutorial (Tuesday), with little help from WhatsApp and WeChat. To engage our peers to provide feedback, 5 questions were pulled up targeting different aspects of this unit. Other open-ended questions such as likes/dislikes/suggestion of improvements/other are also pulled up, and the feedback of them landed as the answer for these 5 questions as well. Hence, all the feedback collected are presented as these 5 question's answers.
+This collection of feedback was conducted at the Week 3 tutorial. To engage our peers to provide feedback, 5 questions were pulled up targeting different aspects of this unit. Other open-ended questions such as likes/dislikes/suggestion of improvements/other are also pulled up, and the feedback of them landed as the answer for these 5 questions as well. Hence, all the feedback collected are presented as these 5 question's answers.
 
 **TL;DR**
 

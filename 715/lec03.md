@@ -5,6 +5,7 @@ Commonly organised as teams:
 * **Red Team**: Actual Pen-Testers, attacking side, trying to break through defences by exploiting vulnerabilities, often external to client
 * **Blue Team**: Internal Security Team, hardening system and networks even there is no attack, and active as well during attacks
 * **Purple Team**: New, do both attacking and defencing, work along both sides as well, can be outsiders, can fulfil Red Team or Blue Team if one is not present
+* All teams still work together to produce audit of each test and success of failure
 
 Where test is happening:
 
@@ -33,8 +34,14 @@ Where test is happening:
 * Servers
   * Web Server
   * Database Server
+    * Insecure Permissions
+    * Remote Access
   * File and Print Server
   * Enterprise Systems
+    * Admin
+    * Finance
+    * HR
+    * Student
   * VPN
 * Web Applications
   * Patches for known vulnerabilities
@@ -42,10 +49,12 @@ Where test is happening:
   * SQL Injection
   * User Data Upload
 * Staff / Users, via Social Engineering
+  * 90% of cyberattacks start with a phishing campaign
   * Gullible Staff
   * Remote and Local
   * Impersonation
     * Physical, Phone, Email
+  
 * Physical
   * Access to Servers, USB and network ports, cables, switches, racks, infrastructure
   * Dumpster Diving
@@ -105,14 +114,14 @@ Where test is happening:
 ### OpenVAS
 
 * Vulnerability Scanner 
-  * Over 50000 vulnerability tests, daily updates
+  * Over 130000 vulnerability tests, daily updates
   * Scriptable
   * Scanning large networks
   * Authenticated and Unauthenticated Testing
 
 ### Kali Linux
 
-* Debian-based Security focused Linux Distribution
+* Debian-based Security focused Linux Distribution maintained by Offensive Security
 
 ### Parrot OS
 
