@@ -2,67 +2,60 @@
 
 > Representative: Dongyi Guo
 >
-> Tutorial 06, Tuesday 3-5pm, with Luke at Centenary 372
+> Tutorial: Tutorial 06, Tuesday 3-5pm, with Luke at Centenary 372
 >
 > Number of students: 14
+>
+> Date of Collection: 19/03/2024
 
 **Disclaimer**
 
-This collection of feedback was conducted at the Week 3 tutorial. To engage our peers to provide feedback, 5 questions were pulled up targeting different aspects of this unit. Other open-ended questions such as likes/dislikes/suggestion of improvements/other are also pulled up, and the feedback of them landed as the answer for these 5 questions as well. Hence, all the feedback collected are presented as these 5 question's answers.
+This collection of feedback was conducted at the Week 4 tutorial. To engage our peers to provide feedback, 5 questions were pulled up targeting different aspects of this unit. Open-ended questions such as likes/dislikes/suggestions are also pulled up, but as students poured out their thoughts during the closed questions, there is not anything new in the open question section. Hence, all the feedback collected are presented as these 5 question's answers.
+
+Students didn't point any suggestions or improvements for this unit as they generally are very satisfied for the current state of KIT715, but there are some yikes students explicitly mentioned it is definitely better if there could be any chances this requirements are accommodated.
 
 **TL;DR**
 
 Likes:
 
-* The teaching team is golden, tutor for sure and especially the unit coordinator.
+* The teaching team is the best, love for our tutor and especially the unit coordinator.
 * The unit is well-structured and well-paved.
-* Distribution of study load for most students is great.
-* The materials are legend.
-* Some students are intrigued by the content of this unit.
-* Students feel involved and supported by the teaching team, materials, and peers.
+* The content load and progressing are right on the spot.
+* The schedule is well-organised, as information of content / assessment is given early, lots of overloading and rushing situations are avoided.
+* Students are generally intrigued by the topic / content of the unit, they find this unit fun, and they are certain this unit is going to assist their future career.
+* The more standard and theoretical contents are much more welcomed for general students.
 
-Dislikes:
+Yikes:
 
-* Tests are short-timed.
-* Practical tests and quizzes are stuffed together, Hard to prepare.
-* Comparing to 501 and 715, there is less guiding and helping from the teaching team.
-
-Suggestion of improvements
-
-* Test's time should be increased.
-* Practical tests and quizzes should be separated.
-* Quizzes should provide more flexibility.
-* Distributed Modules with even portion.
-* Break down the unit into 2 parts: OS and others.
+* There is limited chance to Dr. David Herbert's teaching session.
+* There are students hoping there could be more focus on practical exercises for this unit.
 
 ---
 
-**1. How do you feel about the outline of this unit? Do you feel rushed? Do you feel teared up? How compatible do you think this unit's outline are with your other units?**
+**1. How do you feel about learning in this unit so far? Do you feel overloaded? Comparing to KIT501/726 there are more theoretical contents / assessments in KIT715, are you liking this change or you expect more practical exercise? **
 
-Students in our tutorial are generally okay about the unit outline. Overall-progress-wise they don't feel rushed and students feel lectorial and tutorial are connected. There are some students showed interests and supports about making practical exercises the main parts of our assessments, but there are also students thinking having 4 practical exams is too many, and they prefer the 2 practical exams outline like in 501/715. Students think the unit actually collaborates with our units plan well as all other units just won't stop being torturous the week after the mid-break, students are grateful this unit does not do that.
+Students in our tutorial are feeling quite fine about the content load and plan, all students in our tutorial have a clear view of what is ahead in this unit's study and assessment. For the theoreticality and practicality, most of the students are more happy about and welcoming the more theory-based studies compared to KIT501/726, while there are some students would miss the practicality in KIT501/726 and wish there could be more contents / assessments on practical activities, such as CTFs or Red Team Blue Team.
 
-**2. How do you feel about the workload about this unit? How often do you feel like "Ah, this is it, I tried my best"?**
+Some students promote the idea making the pre-tutorial quiz into an in-tutorial quiz (given password in the tutorial, and finish it anytime during the tutorial) or post-tutorial quiz like KIT501. This will be discussed more in ***Question 3***.
 
-Students in our tutorial are okay with the workload of the unit. Overall-task-wise they think it's fair amount of the work. However, I did collect one student's idea outside our tutorial think Module 3 (Tutorial 9 - 15) is too massive, and one student thinks the unit should be split into two: one teaching OS and another teaching applications and security.
+**2. How do you feel about the timeline of this unit? Lots of things are going to happen for KIT715 from week 5 to week 9, do you feel this is going to be a bit rushed on the schedule?**
 
-The problem that did rise, is the exam time. Majority of our students think the exam is extremely rushed, stuffed and lack of flexibility. Students feel current practical exam loads should deserve 45-60 minutes for time, and the quiz exam should not be put together with practical exams and for quiz exam they want some flexibility, like available for a whole day and they can do this regardless where they are.
+Students in our tutorial are quite happy about the schedule of the unit as lots of information, materials and specifications about the contents / assessments are released long time before the deadline, which gives enough room for students to work and plan ahead, hence helps students to mitigate the effect of overload and rush. For the lecture / tutorial, students agreed the progress of content push are exactly the right amount and fit into the time, they suggested keeping the momentum.
 
-**3. How do you feel about being supported? This is in terms of teaching stuffs (Unit Coordinator and Tutor) and materials (Lectorial, Tutorial, LabShare or Network Labs)?**
+**3. How do you feel about being supported? This is in terms of teaching stuffs (Unit Coordinator and Tutor), materials (Lecture, Tutorial, and Additional Readings), and infrastructure (LabShare and Network Labs). If you feel there is lacking support what could be improved to better support you?**
 
-Students feel really supported during their study for these units, as we are the only 376 tutorial on Tuesday, most of us come into the tutorial 1-2 hours early, and we will stay or come into the labs for extra practices. It is observable that this is the case for students in other tutorials as well. Students generally think LabShare is okay, Student thinks the lectorial and tutorial material are really great and detailed.
+Students in our tutorial do feel every staff and every hardware / software equipments are supporting their study with solid quality. Most of the students are familiarised and prepared with the lecture contents before the pre-tutorial quiz, though some students still feel it would be better to make the quiz time more flexible - such as giving the password at start, so they can finish the quiz after finishing the tutorial (Majority of us finish our tutorial content - whether fully or reach assessment point - within 1 hour and 30 minutes), then do some more preparation on slides, and finish it during the tutorial or even post-tutorial like KIT501.
 
-Students in our tutorial speak highly for the teaching team, especially the unit coordinator (All the love for David), they think this unit is so well-structured and well-paved with loads of contents, and the reason is because of our unit coordinator. It is well known that students enrol in this unit, or Cybersecurity specialization because of our unit coordinator and students will lure students from other specializations to our unit coordinator's units. Students also speak very highly about our tutor (The Legendary Luke), there are 3 students in our classes having working arrangement difficulties, but stayed for attempt to work through this semester with our tutor.
+Another matter a student pulled up, and all students agree is it could be way better if we could have more tutorial sessions with Dr. David Herbert, or have a chance to peak into the study of it. Students in our tutorial have intention to study with Dr. Herbert but because of various reasons such as time / class allocation or not realising which tutorial to choose, we lost the chance.
 
-I did collect one student from another tutorial mentioning there is less help received from our teaching teams for tutorial content.
+**4. How much do you think you are involved in this unit's study? Does the topic in this unit intrigue you? Do you have motivations such as "This is fun!", "I am going to learn this to find a job" other than "OK I need to graduate". Do you feel engaged by the teaching? If not, what do you think could be there to engage you more in the study? **
 
-**4. How much do you think you are involved in this unit's study? Does the topic in this unit intrigue you? Do you have motivations other than "OK I need to graduate"? Do you feel engaged by the teaching?**
+All students in our tutorial agree KIT715 is a fun unit, and the content will be ultimately helpful for our cybersecurity career path, it is the truth that majority of us chose cybersecurity as our specialisation because of KIT715 and KIT726.
 
-Although I personally get highly intrigued by this unit's content and material, and I have friends in another tutorial favored the content so much as well, in this tutorial students are averagely not heated up for the content and have other motivations. However, they do feel well-supported by our teaching teams and peers and their study is highly involved with others.
+**5. How do you think this unit's experience can benefit you in your planned future? Whether in terms of the knowledge or study habits.**
 
-**5. How do you think this unit's experience can benefit you in your planned future? Study-wise or work-wise?"**
-
-Most students in our tutorial don't know as they think they will need to find this out in the future. 3 students in this tutorial (me included) and around 5 students outside this tutorial, especially who have already determined their System Admin/ Network Admin/ Cybersecurity career pathway think this unit is going be very beneficial for our future career or study.
+All students in our tutorial are confident the content of this unit will help in our future career, it will start us getting familiar with the learning for a cybersecurity position, and we will be able to apply this learnability in future studies and works.
 
 ---
 
-After finishing these 5 pulled-up questions, open-ended questions are asked, students repeat the need and desire of increasing the test time, separating practical and quiz tests, reducing the number of practical tests (715 style), and provide some flexibility on tests.
+After finishing these 5 pulled-up questions, open-ended questions are asked. As students poured their thoughts during the closed question section, we simply conclude what we have discussed and welcomed our tutor back.
