@@ -12,7 +12,7 @@
 
 This collection of feedback was conducted at the Week 4 tutorial. To engage our peers to provide feedback, 5 questions were pulled up targeting different aspects of this unit. Open-ended questions such as likes/dislikes/suggestions are also pulled up, but as students poured out their thoughts during the closed questions, there is not anything new in the open question section. Hence, all the feedback collected are presented as these 5 question's answers.
 
-Students didn't point any suggestions or improvements for this unit as they generally are very satisfied for the current state of KIT715, but there are some yikes students explicitly mentioned it is definitely better if there could be any chances this requirements are accommodated.
+Students didn't point any major suggestions or improvements besides the pre-tutorial quiz as they generally are very satisfied for the current state of this unit, but there are some yikes students explicitly mentioned it is definitely better if there could be any chances this requirements are accommodated.
 
 **TL;DR**
 
@@ -28,11 +28,12 @@ Likes:
 Yikes:
 
 * There is limited chance to Dr. David Herbert's teaching session.
+* Pre-tutorial Quiz makes it a bit intense (even for last week's tutorial), students are looking forward to have more flexibility to prepare for the quiz more.
 * There are students hoping there could be more focus on practical exercises for this unit.
 
 ---
 
-**1. How do you feel about learning in this unit so far? Do you feel overloaded? Comparing to KIT501/726 there are more theoretical contents / assessments in KIT715, are you liking this change or you expect more practical exercise? **
+**1. How do you feel about learning in this unit so far? Do you feel overloaded? Comparing to KIT501/726 there are more theoretical contents / assessments in KIT715, are you liking this change or you expect more practical exercise?**
 
 Students in our tutorial are feeling quite fine about the content load and plan, all students in our tutorial have a clear view of what is ahead in this unit's study and assessment. For the theoreticality and practicality, most of the students are more happy about and welcoming the more theory-based studies compared to KIT501/726, while there are some students would miss the practicality in KIT501/726 and wish there could be more contents / assessments on practical activities, such as CTFs or Red Team Blue Team.
 
@@ -48,7 +49,7 @@ Students in our tutorial do feel every staff and every hardware / software equip
 
 Another matter a student pulled up, and all students agree is it could be way better if we could have more tutorial sessions with Dr. David Herbert, or have a chance to peak into the study of it. Students in our tutorial have intention to study with Dr. Herbert but because of various reasons such as time / class allocation or not realising which tutorial to choose, we lost the chance.
 
-**4. How much do you think you are involved in this unit's study? Does the topic in this unit intrigue you? Do you have motivations such as "This is fun!", "I am going to learn this to find a job" other than "OK I need to graduate". Do you feel engaged by the teaching? If not, what do you think could be there to engage you more in the study? **
+**4. How much do you think you are involved in this unit's study? Does the topic in this unit intrigue you? Do you have motivations such as "This is fun!", "I am going to learn this to find a job" other than "OK I need to graduate". Do you feel engaged by the teaching? If not, what do you think could be there to engage you more in the study?**
 
 All students in our tutorial agree KIT715 is a fun unit, and the content will be ultimately helpful for our cybersecurity career path, it is the truth that majority of us chose cybersecurity as our specialisation because of KIT715 and KIT726.
 
