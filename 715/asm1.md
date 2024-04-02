@@ -14,14 +14,14 @@ it has 170,000 customers, such as 7-11, Samsung, MIT, NVIDIA and United Nations.
 
 * Firstly detected indications of incident on production servers on January 26th, 2024.
 * After **Security Audit**, they determined their system is compromised, then they started a
-response plan with CrowdStrike, a cybersecurity company.
+  response plan with CrowdStrike, a cybersecurity company.
 * No ransomware involved.
 * Claimed no authentication can be taken by design.
 * No indication of session hijacking.
 * New certificate from V8.0.8 on January 29th, 2024.
 * Born reports AnyDesk had a 4-day outage from January 29th, while they disabled login to the client.
 * Status AnyDesk reports major outage on Customer Portal on January 28th, with multiple minor
-Customer Portal outage from January 22nd to 24th.
+  Customer Portal outage from January 22nd to 24th.
 * Either one, AnyDesk confirms this is for this incident.
 
 ## Damages
@@ -35,9 +35,9 @@ Customer Portal outage from January 22nd to 24th.
 * Activate a response plan with CrowdStrike, an cybersecurity firm.
 * Revoked security-related certificates, remediated and replaced systems as necessary.
 * Assure users safety to use and claim no end-user device affected, ask them to update the latest
-version with new code signing certificate.
+  version with new code signing certificate.
 * Revoke all passwords on web portal and suggests a change on password if used on another site, 
-although claimed no authentication token was stolen, and cannot be because of system design.
+  although claimed no authentication token was stolen, and cannot be because of system design.
 * No end-user device has been affected.
 * No evidence that any customer data has been exfiltrated.
 
@@ -76,20 +76,20 @@ although claimed no authentication token was stolen, and cannot be because of sy
 
 ## Scripts
 
-Greetings everyone! This is Dongy from KIT715: Cybersecurity and Ethical Hacking! In today's video I am going to introduce a recent security incident from AnyDesk, the remote control software solution company, they had a production server breach at the end of January this year, and I am going to introduce more.
+Greetings everyone! This is Dongyi from KIT715! In today's video I am going to introduce a recent production system breach from AnyDesk.
 
-I will firstly introduce AnyDesk and their customers as entities involved, I will give an overview about the incidents, provide some causes about this incident, then I will reveal the attacker and the motivation. At last I will introduce what impact is eventually there, and how AnyDesk is responding and mitigating the damage.
+I will firstly introduce AnyDesk and their customers as entities involved, give an incident overview, provide possible causes for the incident, then reveal the attacker and the motivation. At last I will introduce what impact is eventually there, and how AnyDesk is responding and mitigating the damage.
 
-So AnyDesk as mentioned before is a remote access solution company, it unlocks users' potential to access computers over networks. It is popular between enterprises that have huge demand on remote support or accessing co-located servers. They have over 170,000 customers and large customers like 7-11, Samsung, MIT, and NVIDIA.
+AnyDesk is a remote access solution company, they enable users to access computers over networks. It is popular between enterprises demanding remote support or co-located server applications. They have over 170,000 customers and big companies like 7-11, Samsung, MIT, and NVIDIA.
 
-So, on Jan 29th, AnyDesk noticed a sign indicating their production system could be compromised. Together with CrowdStrike, a cybersecurity solution company, a security audit was conducted and they confirmed there was indeed a breach, resulting in possibilities that the source code and private keys that used to sign the code could be exposed, which unfortunately was the case. Later that day, they released a new version of client with the only new thing is a new certificate, and soon after AnyDesk client login portal was pulled out for maintenance, logged-in clients were still able to use everything but no new login was allowed across the board. After the login portal was back to service, they made the offical statement and all users were required to reset password in order to proceed with AnyDesk service.
+So, on Jan 29th, AnyDesk noticed a indication that their production system could be compromised. Together with CrowdStrike, a cybersecurity solution company, a security audit was conducted and they confirmed there was indeed a breach resulting the source code and private keys that used to sign the code were exposed. Later that day, they released a new version of client with a new certificate, and soon after the client login portal was pulled for a 4-day maintenance. After it was back to service, they made the offical statement and all users were pushed to reset password if they want to proceed using AnyDesk.
 
-AnyDesk does not give any many details on the factors of this incident besides mentioning there was no ransomware, no session hijacking. However, as this is a production system breach, the top reasons we can assume are definitely server misconfiguration and supply chain attack, which means some of the software AnyDesk was using led to vulnerabilities. Other possibilities remain as well such as there could be unused and unrevoked account from previous employee in the production system, some unpatched or even zero-day vulnerability, and there could even be imposters.
+AnyDesk does not give details on the factors of this incident besides mentioning there was no ransomware, no session hijacking. However, as this is a production system breach, the top reasons there could definitely be misconfiguration and supply chain attack. There could also be unused and unrevoked account from previous employee in the production system, some unpatched or even zero-day vulnerability, and there could even be imposters.
 
-Now let's introduce the last entity involved, the attackers and why they were doing that. So although AnyDesk didn't give any information about the intruders and they kept saying there is no evidence that any customer data has been exfiltrated. However, not long after, over 18,000 AnyDesk Credentials were put on sale for $15,000, by the user "Jobaaaa" at exploit.in. So it turns out it's all about money.
+Now let's introduce the last entity involved, the attackers and why they were doing that. So although AnyDesk didn't give any information about the intruders and they kept saying there is no evidence that any customer data has been exfiltrated. However, not long after, over 18,000 AnyDesk Credentials were put on sale for 15,000 US dollars. So it turns out it's all about money.
 
-So together with the password exposure, the stolen source code and code signing private key, the impact of this incident also includes the 4-day service disruption, and more importantly, reputation. AnyDesk already suffers from reputation of having users with malicious intent such as scam, and they themselves does not really care anything else other that making money, when this incident popped up the comments and criticises were not giving them peace.
+So together with the password exposure, the stolen source code and code signing private key, the impact of this incident also includes the 4-day service disruption, and more importantly, reputation. AnyDesk suffers from having users with malicious intent such as scamming, and they themselves does nothing, when this incident came the criticism were not giving them peace.
 
-Although one thing should be given to them is their mitigation measurements were there and solid, the security audit they did with CrowdStrike was very thorough, they replaced the certificates, remediated and replace systems necessary quite fast to avoid further consequences of stolen private keys, and they requested user to update password upon recommendation of Multi Factor Authentication, which is comprehensive enough.
+Although one thing should be given to them is their mitigation measurements were solid, the security audit they did with CrowdStrike was thorough, they replaced the certificates, remediated and replace systems necessary quite fast, and they requested user to update password upon recommendation of Multi Factor Authentication, which is comprehensive enough.
 
 And that's all from me today, some references here, thank you so much!
