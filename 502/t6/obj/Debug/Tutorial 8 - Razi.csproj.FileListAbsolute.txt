@@ -1,0 +1,10 @@
+C:\Users\aall\source\repos\Tutorial 8 - Razi\Tutorial 8 - Razi\bin\Debug\Tutorial 8 - Razi.exe.config
+C:\Users\aall\source\repos\Tutorial 8 - Razi\Tutorial 8 - Razi\bin\Debug\Tutorial 8 - Razi.exe
+C:\Users\aall\source\repos\Tutorial 8 - Razi\Tutorial 8 - Razi\bin\Debug\Tutorial 8 - Razi.pdb
+C:\Users\aall\source\repos\Tutorial 8 - Razi\Tutorial 8 - Razi\obj\Debug\Tutorial 8 - Razi.csprojAssemblyReference.cache
+C:\Users\aall\source\repos\Tutorial 8 - Razi\Tutorial 8 - Razi\obj\Debug\Tutorial_8___Razi.Form1.resources
+C:\Users\aall\source\repos\Tutorial 8 - Razi\Tutorial 8 - Razi\obj\Debug\Tutorial_8___Razi.Properties.Resources.resources
+C:\Users\aall\source\repos\Tutorial 8 - Razi\Tutorial 8 - Razi\obj\Debug\Tutorial 8 - Razi.csproj.GenerateResource.cache
+C:\Users\aall\source\repos\Tutorial 8 - Razi\Tutorial 8 - Razi\obj\Debug\Tutorial 8 - Razi.csproj.CoreCompileInputs.cache
+C:\Users\aall\source\repos\Tutorial 8 - Razi\Tutorial 8 - Razi\obj\Debug\Tutorial 8 - Razi.exe
+C:\Users\aall\source\repos\Tutorial 8 - Razi\Tutorial 8 - Razi\obj\Debug\Tutorial 8 - Razi.pdb
