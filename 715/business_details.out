@@ -1,0 +1,26 @@
+=========================================================================================
+CyberSecurity Assignment Parameters for your SME - username: dongyig  studentid: 662970
+=========================================================================================
+Employees:                                                  400                 
+Office locations:                                           1                   
+Operating scale:                                            city                
+Intrusion detection system installed?                       no                  
+Firewall type:                                              statefull inspection
+Extranet used?                                              yes                 
+Network DMZ used?                                           no                  
+Wireless network (in addition to wired LANs)?               no                  
+Cloud provider:                                             none                
+Web site hosting server location:                           internal network    
+Other business servers location:                            internal network    
+Type of web presence:                                       standard web site   
+Customers (approximate):                                    1,000               
+Customer type:                                              other businesses    
+Has the SME used vulnerability assessment (VA) before?      yes                 
+Has the SME used full pen-testing (PT) before?              yes                 
+Did past full PT recommend significant changes?             no                  
+Does SME have security policies in place?                   no                  
+Does SME deal with PII?                                     yes                 
+Does SME deal with PHI?                                     no                  
+Does SME have incident response team?                       yes                 
+Does SME have dedicated network security staff?             no                  
+=================================================================================
