@@ -2,7 +2,7 @@
 
 > Author: Dongyi Guo
 >
-> Doc Version : 1.2
+> Doc Version : 1.2.1
 
 * 在正式的考试中，您将只使用Kali Linux，其他设备的配置仅为个人练习使用。
 * 在本文件中，所有 ```<...>``` 的位置要求您自行寻找到相关的信息来填入。
@@ -39,7 +39,7 @@ ifconfig
 
 * 去到 Network and Sharing Center，点击 Connections 后面的网络接口。
 * 点击 Properties。
-* 高亮选择 "Internet Protocol Version 4 (TCP/IPv4)", 点击 Properties。
+* 高亮选择 "Internet Protocol Version 4 (TCP/IPv4)"，点击 Properties。
 * 在新窗口中设置IP和子网掩码。
 
 对于 Windows XP：
@@ -48,7 +48,7 @@ ifconfig
 * 双击 Network Connection。
 * 双击存在的网络接口。
 * 选择 Properties。
-* 高亮选择 "Internet Protocol [TCP/IP]", 点击 Properties。
+* 高亮选择 "Internet Protocol [TCP/IP]"，点击 Properties。
 * 在新窗口中设置IP和子网掩码。
 
 ## Question 2
@@ -68,7 +68,7 @@ nmap <主机地址>
 如需获取目标主机系统信息：
 
 ```bash
-nmap -O -v <HostAddress>
+nmap -O -v <主机地址>
 ```
 
 如果在自主练习时需要关闭防火墙：
@@ -130,7 +130,7 @@ pwd # 显示当前文件目录
 sysinfo # 显示系统信息
 ipconfig # 显示网络配置
 screenshot # 截图屏幕
-hasdump # 打印设备用户和其加密过的密码
+hashdump # 打印设备用户和其加密过的密码
 search -f <文件名> # 从当前文件目录开始搜寻文件
 download <远程路径> <本地路径> # 下载远程文件到本地位置
 # download 只识别Unix系统中反斜杠('/')来表示文件层级，对于Windows的正斜杠('\'),

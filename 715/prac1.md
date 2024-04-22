@@ -2,7 +2,7 @@
 
 >Author: Dongyi Guo
 >
->Doc Version: 1.2
+>Doc Version: 1.2.1
 
 * During the formal test, you are only using Kali Linux, steps for setting up other machines are here for your own practice.
 * Everything that is inside ```<...>``` requires you to find proper answer to fill in.
@@ -39,7 +39,7 @@ To setup network on Windows 7 and higher:
 
 * Go to Network and Sharing Center, click on the connection.
 * Then select Properties.
-* Then highlight the "Internet Protocol..." with IPv4, select Properties.
+* Then highlight the "Internet Protocol Version 4 (TCP/IPv4)", select Properties.
 * Assign IP accordingly.
 
 For Windows XP:
@@ -130,7 +130,7 @@ pwd # Current directory
 sysinfo # System information
 ipconfig # Network information
 screenshot # Take a screenshot from target host
-hasdump # Dump all user's hashes on the screen
+hashdump # Dump all user's hashes on the screen
 search -f <filename> # Search file based on name in current directory
 download <RemotePath> <LocalPath> # Remote download file from target host to local
 # Remember the path for download command has to be Unix type, for Windows '\',
@@ -179,7 +179,7 @@ After that, if XP gets rebooted, it will send back the connection and Kali will 
 
 ## MSF Essentials
 
-During MSF prompts, several things:
+In MSF prompts, several things:
 
 ```bash
 search <Keyword> # Search exploits via keyword
