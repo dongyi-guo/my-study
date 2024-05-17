@@ -48,7 +48,7 @@ ifconfig
 * 双击 Network Connection。
 * 双击存在的网络接口。
 * 选择 Properties。
-* 高亮选择 "Internet Protocol [TCP/IP]"，点击 Properties。
+* 高亮选择 "Internet Protocol [TCP/IP]", 点击 Properties。
 * 在新窗口中设置IP和子网掩码。
 
 ## Question 2
