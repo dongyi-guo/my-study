@@ -1,4 +1,4 @@
-# Week 11 - Monitor and Review
+# Monitor and Review
 
 What is Policy Review Process in cybersecurity?
 

@@ -11,6 +11,3 @@ Cybersecurity Frameworks (CSF):
 General Data Protection Generation (GDPR)
 
 * Introduced by EU
-
-## Cybersecurity Frameworks (CSF)
-

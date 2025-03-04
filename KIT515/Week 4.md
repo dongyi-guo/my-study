@@ -1,4 +1,4 @@
-# Week 4 - Asset Definition and Classification
+# Asset Definition and Classification
 
 ## Policy, Standard and Practice
 

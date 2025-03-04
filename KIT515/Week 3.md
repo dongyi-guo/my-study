@@ -1,4 +1,4 @@
-# Week 3 - Cybersecurity II
+# Cybersecurity II
 
 ## Policy
 

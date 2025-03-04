@@ -1,8 +1,4 @@
-# CompTIA Linux+ (XK0-005)
-
-> Dongyi Guo
->
-> This is my note learning CompTIA Linux+ with Grant McWilliams on LinkedIn Learning
+# With Grant McWilliams
 
 ## 1. VirtualBox Setup
 

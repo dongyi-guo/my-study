@@ -1,4 +1,4 @@
-# Week 2 - Cybersecurity I
+# Cybersecurity I
 
 Cybersecurity: the collection of tools, policies, security concepts, security safeguards, guidelines, risk management approaches, actions, training, best practices, assurance and technologies that can be used to protect the cyber environment and organization and user’s assets.
 

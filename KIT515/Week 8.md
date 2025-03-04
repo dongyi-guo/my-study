@@ -1,4 +1,4 @@
-# Week 8 - Policy
+# Policy
 
 ## Writing Style and Technique
 

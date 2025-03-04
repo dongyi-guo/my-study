@@ -1,7 +1,3 @@
-# Supplementary Preparation 
-
->Amanjeet Kaur
-
 ## Module 2
 
 * Anytime you are asked to use a PowerShell, just use ISE instead.

@@ -1,4 +1,4 @@
-# Week 10 - Implementation and Training
+# Implementation and Training
 
 ## Implementation
 

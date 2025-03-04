@@ -1,11 +1,6 @@
-# Supplementary Preparation 
-
-> For Amanjeet Kaur
-
 ## Module 4
 
 * For Kali, always login as root.
-
 ### Question 1
 
 For all Windows, go to Network and Sharing Centre, then Properties, then IPV4, then Properties, and change accordingly.

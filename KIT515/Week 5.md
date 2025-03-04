@@ -1,4 +1,4 @@
-# Week 5 - Risk Analysis, Risk and Threat Assessment
+# Risk Analysis, Risk and Threat Assessment
 
 ## Vulnerabilities, Threats, and Controls
 

@@ -1,4 +1,4 @@
-# Week 9 - Business Contingency
+# Business Contingency
 
 > The lecture this week is very important, it has lots of diagrams. Go back for details.
 

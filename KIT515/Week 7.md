@@ -1,4 +1,4 @@
-# Week 7 - IRP
+# IRP
 
 Incident: any malicious or suspicious event that could result in loss of CIA for an information assets.
 

@@ -1,4 +1,4 @@
-# Week 12 - Legal, Ethic and Professional Issues
+# Legal, Ethic and Professional Issues
 
 ## Law v.s. Policy
 

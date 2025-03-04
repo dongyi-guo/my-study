@@ -1,4 +1,4 @@
-# Week 6 - Risk Analysis, Risk and Threat Assessment
+# Risk Analysis, Risk and Threat Assessment
 
 ## Qualitative Risk Assessment
 
