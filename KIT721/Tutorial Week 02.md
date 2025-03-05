@@ -1,4 +1,4 @@
-## Success Requirements
+## Success Requirements (The Rs)
 1. Can create a new match with team names, team players with their name and number.
 2. Can log all required actions when a match is live for any players in either team.
 	1. Kick
@@ -7,13 +7,13 @@
 	4. Score Behind
 	5. Mark
 	6. Tackle
-3. Can view any player's personal data during the match
-4. Can view team data during the match
-5. Can obtain highlighted information for outstanding players
-6. Can obtain highlighted information for team performance
-7. Can control the match process, such as necessarily pause or end the match
-## Usability Test Tasks
-
+3. Can view any player's personal data during the match or after the match.
+4. Can view team data during the match or after the match.
+5. Can obtain highlighted information for outstanding players.
+6. Can obtain highlighted information for team performance.
+7. Can control the match process, such as necessarily pause or end the match.
+8. Can view and share past match stats.
+## Usability Test Tasks (The Ts)
 In order to celebrate the new Stadium coming to Macquarie Point, you and your friends decide to play footy to get yourself hyped up before it comes, you guys made some bets on how you guys will perform during the match besides only the final disposal but on other stats so some cash can flow. After couple of matches, it is your turn to collect or this records to see who is carrying a huge chunk of cash back home.
 **Tasks:**
 1. Create a new match that Team Dongyi will be versus Team Sachin. They are bad at naming, it's not your fault.
@@ -28,7 +28,7 @@ In order to celebrate the new Stadium coming to Macquarie Point, you and your fr
 	2. Rohith, number 13
 	3. Ahmed, number 17
 	4. Jithin, number 24
-	Add them to the team.
+	Add them to the team, but Oops! You made an extra player slot, remove that slot.
 4. After making sure all the blokes recorded in, start the Match.
 5. Team Dongyi is doing well at first, after some hard tackle and many kick attempts, they scored the first goal (Dongyi)! Put it down!
 6. Another Goal from Team Dongyi (Jiayi this time) after a mark, tackle and kick, put this down.
@@ -43,22 +43,25 @@ In order to celebrate the new Stadium coming to Macquarie Point, you and your fr
 15. After the match, you want share this match to the Messenger Group so everyone can laugh at Dongyi, share the match via system-built sharing function.
 ## Usability Matrix
 
-| Usability Matrix | R1  | R2  | R3  | R4  | R5  | R6  |
-| ---------------- | --- | --- | --- | --- | --- | --- |
-| T1               |     |     |     |     |     |     |
-| T2               |     |     |     |     |     |     |
-| T3               |     |     |     |     |     |     |
-| T4               |     |     |     |     |     |     |
-| T5               |     |     |     |     |     |     |
-| T6               |     |     |     |     |     |     |
-| T7               |     |     |     |     |     |     |
-| T8               |     |     |     |     |     |     |
-| T9               |     |     |     |     |     |     |
-| T10              |     |     |     |     |     |     |
-| T11              |     |     |     |     |     |     |
-| T12              |     |     |     |     |     |     |
-| T13              |     |     |     |     |     |     |
-| T14              |     |     |     |     |     |     |
-| T15              |     |     |     |     |     |     |
+| Usability Matrix | R1  | R2  | R3  | R4  | R5  | R6  | R7  |
+| ---------------- | --- | --- | --- | --- | --- | --- | --- |
+| T1               | X   |     |     |     |     |     |     |
+| T2               | X   |     |     |     |     |     |     |
+| T3               | X   |     |     |     |     |     |     |
+| T4               |     | X   |     |     |     |     |     |
+| T5               |     | X   |     |     |     |     |     |
+| T6               |     | X   |     |     |     |     |     |
+| T7               |     | X   |     |     |     |     |     |
+| T8               |     |     | X   |     | X   |     |     |
+| T9               |     |     | X   |     | X   |     |     |
+| T10              |     |     |     |     |     |     | X   |
+| T11              |     |     |     |     |     |     | X   |
+| T12              |     |     |     | X   |     | X   |     |
+| T13              |     |     |     |     | X   |     |     |
+| T14              |     |     | X   | X   |     |     | X   |
+| T15              |     |     |     |     |     |     | X   |
 ## To Improve
-1. Change Players on the fly for interchange players.
+
+1. Add the feature to change players on the fly during the match for interchange players.
+2. When entering recording page, a Cover Flow of team player's number is really confusing, user can misunderstand it as scores for teams, it's not intuitive.
+3. While trying to show highlights in the player data or the team data, simply marking the best performed stat in red is an insanely bad idea. Red also represents negativity, this makes people think there is something wrong with data, or this could be a negative stat on this user.
