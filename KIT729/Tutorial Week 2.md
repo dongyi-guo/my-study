@@ -1,3 +1,26 @@
+# Project or Not?
+## Yay
+- Developing a new mobile app
+- Designing and launching a new website
+- Developing a new product prototype
+- Constructing a new office building
+- Organising a corporate annual meeting
+- Implementing a new customer relationship management (CRM) system
+- Writing and publishing a book
+- Planning and executing a marketing campaign
+## Nay
+- Performing routine IT tasks
+- Selling retail products
+- Conducting weekly meetings
+- Managing social media accounts
+- Daily customer service operations
+- Monitoring the security network
+- Running a restaurant's kitchen
+- Handling payroll processing
+- Responding to emails and inquiries
+# Why Food delivery
+- Breakfast and lunch 
+- Conv
 # Task 1
 Based on my research, ACS could mainly use this app to supply their services:
 - Supplying Information
