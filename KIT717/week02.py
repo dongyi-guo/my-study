@@ -93,4 +93,5 @@ while True:
     else:
         s.set_pixels(cross)
     time.sleep(1)
-    s.set_pixels(empty)
+    # s.set_pixels(empty)
+    s.clear()
