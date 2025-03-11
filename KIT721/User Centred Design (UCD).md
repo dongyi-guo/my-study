@@ -5,9 +5,9 @@ A successful application:
 
 Four basic UCD activities:
 - Identifying needs and establishing requirements.
-- Developing alternative designs
-- Interactive versions (Hi-Fi Prototype) to communicate and assess
-- Evaluation
+- Developing alternative designs.
+- Interactive versions (Hi-Fi Prototype) to communicate and assess.
+- Evaluation user feedback and constantly update / improve.
 And it's a loop, every activity needs to connect with users.
 
 Three characters of UCD:
@@ -25,9 +25,9 @@ Three characters of UCD:
 
 **Design Principles**
 (Don Norman's Design Principles)
-- Visibility: State, possible actions
-- Feedback: Ongoing tasks
-- Affordance: Clues
+- Visibility: Can the state of the application and its possible actions be seen?
+- Feedback: What is it doing now? What action has been performed?
+- Affordance: The perceived and actual properties of an object that gives clues to its operation.
 - Mapping: Position and Relation
 - Constraints: Limits
 - Consistency: Similar operations and elements

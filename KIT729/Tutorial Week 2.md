@@ -1,6 +1,5 @@
 # Task 5: Executive Summary
 In this week, we clarified what is a project and what could motivate stakeholders to approve and encourage a project in class. For the rest of the tutorial work, we successfully identified the purpose of the ACS mobile app based on the scenario and requirement given by Dr. Meredith Castles, we then identified scopes, stakeholders, feasibility, possible governance and control measurements, and we came up a typical 6-month project plan. We finally cleared the hardware and software required for ACS to develop such app, and we pursue our recommendations for future updates that will best the value out of this app.
-
 # Class Activities: Project or Not?
 ## Yay
 - Developing a new mobile app
