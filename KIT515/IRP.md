@@ -1,5 +1,3 @@
-# IRP
-
 Incident: any malicious or suspicious event that could result in loss of CIA for an information assets.
 
 Incident Response: detect, react to, recover from attacks, employee errors, service outages and small-scale of natural disasters. The plan ot be engaged after an incident has been detected, is called Incident Response Plan (IRP). The event represents possible loss is called Adverse Event(s), the manifestation of an Adverse Event is an Incident.

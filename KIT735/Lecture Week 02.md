@@ -44,7 +44,7 @@ TAM 2 includes external social factors that effect on behavioral intention to us
     * Result Demonstrability
 
 * Perceived Ease of Use:
-    *  Computer Self Efficiency
+    * Computer Self Efficiency
     * Perception of External Control
     * Computer Anxiety
     * Computer Playfulness

@@ -1,5 +1,3 @@
-# Cybersecurity I
-
 Cybersecurity: the collection of tools, policies, security concepts, security safeguards, guidelines, risk management approaches, actions, training, best practices, assurance and technologies that can be used to protect the cyber environment and organization and user’s assets.
 
 * Threats take advantages of weaknesses (vulnerabilities) in technology, people, processes to harm information.

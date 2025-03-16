@@ -1,5 +1,3 @@
-# Policy
-
 ## Writing Style and Technique
 
 * Sets the first impression.

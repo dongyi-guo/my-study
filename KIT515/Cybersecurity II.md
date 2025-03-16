@@ -1,5 +1,3 @@
-# Cybersecurity II
-
 ## Policy
 
 * Document that states how an organization plans to protect its information assets and information systems and ensure legal and regulatory compliance.

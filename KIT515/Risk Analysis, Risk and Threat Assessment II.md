@@ -1,5 +1,3 @@
-# Risk Analysis, Risk and Threat Assessment
-
 ## Qualitative Risk Assessment
 
 * Defines subjectively, using High or Low

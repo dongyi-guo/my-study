@@ -1,5 +1,3 @@
-# Monitor and Review
-
 What is Policy Review Process in cybersecurity?
 
 * In addition to allowing the company to build a formal security program, Information Security Policy ensures better control over its information security assets.

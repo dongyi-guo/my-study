@@ -1,5 +1,3 @@
-# Asset Definition and Classification
-
 ## Policy, Standard and Practice
 
 Policy: High level organisational rules.

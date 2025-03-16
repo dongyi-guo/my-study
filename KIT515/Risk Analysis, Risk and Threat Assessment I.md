@@ -1,5 +1,3 @@
-# Risk Analysis, Risk and Threat Assessment
-
 ## Vulnerabilities, Threats, and Controls
 
 * Vulnerability: Weakness in a security system.
