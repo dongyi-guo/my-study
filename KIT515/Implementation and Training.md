@@ -1,5 +1,3 @@
-# Implementation and Training
-
 ## Implementation
 
 Implementation: Put new procedures into place and being following the new controls.

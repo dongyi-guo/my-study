@@ -1,5 +1,3 @@
-# Legal, Ethic and Professional Issues
-
 ## Law v.s. Policy
 
 * Policies are guidelines and principles established by organizations for internal purposes,

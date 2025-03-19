@@ -1,7 +1,4 @@
-# Business Contingency
-
 > The lecture this week is very important, it has lots of diagrams. Go back for details.
-
 ## Disaster
 
 * Any event resulting damages, destruction, loss of life or drastic change to the environment

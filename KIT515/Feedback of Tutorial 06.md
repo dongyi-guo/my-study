@@ -1,5 +1,3 @@
-# Feedback of Tutorial 06
-
 > Representative: Dongyi Guo
 >
 > Tutorial: Tutorial 06, Wednesday 1-3pm, with Yanyu at Centenary 272
