@@ -68,4 +68,4 @@ The communication of this project should include:
 - IM Chat: Utilise tools like Slack or Discord, for public information share, Zoom or Phone Call for distant connection. Use as required.
 # Task 3: WBS
 The Work Breakdown Structure is put below:
-![[Wk03-Task3.png]]This WBS can also be viewed at: https://www.canva.com/design/DAGhjen_cAA/IhzGm39H6P2rguCLa_GIuQ/view?utm_content=DAGhjen_cAA&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=ha27c0bb4be
+![[res/Week03-Task3.png]]This WBS can also be viewed at: https://www.canva.com/design/DAGhjen_cAA/IhzGm39H6P2rguCLa_GIuQ/view?utm_content=DAGhjen_cAA&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=ha27c0bb4be
