@@ -1,17 +1,3 @@
-# Assignment 2
-Compared to Assignment 1:
-- More Planning
-- More Structured
-- More Graphical
-## Structure
-- Participatory/Citizen Science
-- Requirements
-	- Technical Requirements
-	- Non-Technical Requirements
-- App Components
-- The actual Plan
-	- Set your own budget
-- Constraints
 # Task 1: Paper
 ## Question 1: Objectives
 1. To identify and synthesize the characteristic challenges that developing nations face in the successful implementation of ICT projects in government.

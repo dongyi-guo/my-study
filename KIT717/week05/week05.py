@@ -40,6 +40,8 @@ while True:
         base_time = time.time()
         
     for event in s.stick.get_events():
+        
+        # Button Press, Set Threshold, 
         if event.action == "pressed":
             if event.direction == "up":
                 temp_threshold += 1
@@ -49,9 +51,9 @@ while True:
                 temp_number = s.get_temperature()
                 payload_temp = {'temp' : str(temp_number), 'threshold' : str(temp_threshold)}
                 payload_recordtemp = {'t' : str(temp_number)}
-                r = requests.get(temp_link, params = payload_temp)
-                r = requests.get(recordtemp_link, params = payload_recordtemp)
-                print('Current Status: ' + r.text)
+                r1 = requests.get(temp_link, params = payload_temp)
+                r2 = requests.get(recordtemp_link, params = payload_recordtemp)
+                print('Current Status: ' + r1.text)
             print('Current Threshold: ' + str(temp_threshold))
 
 
