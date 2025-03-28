@@ -135,10 +135,92 @@ window.onload = function () {
 			}
 		]
 	});
+	
+	var chart_all = new CanvasJS.Chart("chartContainerAll", {
+		title: {
+			text: "Pitch, Yaw, Roll Over Time"
+		},
+		axisX: {
+			valueFormatString: "DD-MM-YY HH:mm:ss"
+		},
+		axisY: [
+		{
+			title: "Pitch",
+			prefix: "",
+			suffix: "",
+
+				tickLength: 5,
+				tickColor: "DarkSlateBlue" ,
+				tickThickness: 1
+		},
+		{
+			title: "Yaw",
+			prefix: "",
+			suffix: "",
+
+				tickLength: 5,
+				tickColor: "Red" ,
+				tickThickness: 1
+		},
+		{
+			title: "Roll",
+			prefix: "",
+			suffix: "",
+
+				tickLength: 5,
+				tickColor: "#4c566a" ,
+				tickThickness: 1
+		}],
+		
+		toolTip: {
+			shared: true
+		},
+		legend: {
+			cursor: "pointer",
+			verticalAlign: "top",
+			horizontalAlign: "center",
+			dockInsidePlotArea: true,
+			itemclick: toogleDataSeries_all
+		},
+
+		data: [
+			{
+				type:"line",
+				axisYType: "secondary",
+				axisYIndex: 0,
+				name: "Pitch",
+				showInLegend: true,
+				markerSize: 0,
+				yValueFormatString: "#",
+				dataPoints: pitchData
+			},
+			{
+				type:"line",
+				axisYType: "secondary",
+				axisYIndex: 1,
+				name: "Yaw",
+				showInLegend: true,
+				markerSize: 0,
+				yValueFormatString: "#",
+				dataPoints: yawData
+			},
+			{
+				type:"line",
+				axisYType: "secondary",
+				axisYIndex: 2,
+				name: "Roll",
+				showInLegend: true,
+				markerSize: 0,
+				yValueFormatString: "#",
+				dataPoints: rollData
+			}
+		]
+	});
 
 	chart_pitch.render();
 	chart_yaw.render();
 	chart_roll.render();
+	chart_all.render();
 
 	function toogleDataSeries_pitch(e){
 
@@ -168,6 +250,16 @@ window.onload = function () {
 			e.dataSeries.visible = true;
 		}
 		chart_roll.render();
+	}
+	
+	function toogleDataSeries_all(e){
+
+		if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+			e.dataSeries.visible = false;
+		} else{
+			e.dataSeries.visible = true;
+		}
+		chart_all.render();
 	}
 
 
@@ -203,10 +295,14 @@ window.onload = function () {
 			chart_pitch.options.data[0].dataPoints = pitchData;
 			chart_yaw.options.data[0].dataPoints = yawData;
 			chart_roll.options.data[0].dataPoints = rollData;
+			chart_all.options.data[0].dataPoints = pitchData;
+			chart_all.options.data[1].dataPoints = yawData;
+			chart_all.options.data[2].dataPoints = rollData;
 			
 			chart_pitch.render();
 			chart_yaw.render();
 			chart_roll.render();
+			chart_all.render();
 			setTimeout(updateData, 2000);
 	}
 
@@ -222,8 +318,8 @@ window.onload = function () {
 <div id="chartContainerPitch" style="height: 370px; max-width: 1520px; margin: 0px auto;"></div>
 <div id="chartContainerYaw" style="height: 370px; max-width: 1520px; margin: 0px auto;"></div>
 <div id="chartContainerRoll" style="height: 370px; max-width: 1520px; margin: 0px auto;"></div>
+<div id="chartContainerAll" style="height: 370px; max-width: 1520px; margin: 0px auto;"></div>
 
 <script src="../../canvasjs.min.js"></script>
 </body>
 </html>
-
