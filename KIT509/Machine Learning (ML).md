@@ -1,22 +1,20 @@
-Definition: A computer program said to learn from **Past Experience E** with respect to:
+**Definition**: A computer program said to learn from **Past Experience E** with respect to:
 * some class of **Tasks / Goals T** of the learning knowledge
 * **Measured Performance P** of the learned knowledge,
-If the computer program's **performance at T, measured by P, improves with E**, then, it is a ML program. Because it is **Learning Knowledge from Past Experience Data in order to accomplish the specific goal**.
-## ML Techniques
-### Supervised Learning
+- If the computer program's **performance at T, measured by P, improves with E**, then, it is a ML program. Because it is **Learning Knowledge from Past Experience Data in order to accomplish the specific goal**.
+**Supervised Learning**:
 - Problems where the available data consists of **labelled** examples.
 - Classification and Forecasting
 - Regression
-### Unsupervised Learning
+**Unsupervised Learning**:
 * Learns pattern from **unlabelled** data, exhibiting self organisation that captures patterns.
 * Clustering
 * Association
-### Classification
-A model for class attribute as a function of the values of other (predictor) attributes, such that **previously unseen** records can be assigned a class as accurately as possible.
-### Clustering
+**Classification**: A model for class attribute as a function of the values of other (predictor) attributes, such that **previously unseen** records can be assigned a class as accurately as possible.
+**Clustering**:
 - Cluster is a subset of objects which are similar.
 - Objects in a cluster should be closer to those who aren't
-## Knowledge Discovery
+# Knowledge Discovery (KD)
 * Setting the Goal
 * Decision Making with learned knowledge
 * Machine Learning will use Past Experience Data (Training Data) to find Knowledge (Pattern)
@@ -26,8 +24,8 @@ A model for class attribute as a function of the values of other (predictor) att
 	* Stock Prediction
 	* Face Recognition
 	* Speech Recognition
-### Process
-**Raw Data -- Data Selection -> Target Data -- Data Pre-processing -> Preprocessed Data -- Data Transformation -> Transformed Data -- Data Mining -> Pattern -- Pattern Evaluation -> Knowledge**
+## KD Process
+>**Raw Data -- Data Selection -> Target Data -- Data Pre-processing -> Preprocessed Data -- Data Transformation -> Transformed Data -- Data Mining -> Pattern -- Pattern Evaluation -> Knowledge**
 1. Data Selection: Only select the useful data
 2. Data Pre-processing: 
 	1. Cleaning of incorrect data
@@ -41,7 +39,7 @@ A model for class attribute as a function of the values of other (predictor) att
 	1. For Supervised, Classification and Forecasting
 	2. For Unsupervised, Clustering
 5. Pattern Evaluation: Are patterns and knowledge from previous step useful?
-## Data Processing
+# Data Processing
 Big data itself does not have any special values, it is our job to find which data is important so it becomes useful.
 - Data Observation
 - Survey
@@ -58,11 +56,11 @@ To achieve this, we need clean the data, essentially avoid:
 - Noisy Data
 Often you want to avoid filling the missing data, just ignore them, or use mean / median or deduced value. Then the data needs to be transferred into forms suitable for the algorithms.
 Finally, after that, ML happens.
-## Evaluation
-### Model Selection
+# Evaluation
+## Model Selection
 - Parameters: Change during the learning process to improve the model.
 - Hyper-parameters: What need to be provided in advance so the model can be set up.
-### Train-Test Partition
+## Train-Test Partition
 - Hold-out: two independent data set split in a percentage.
 	- Can be biased
 - Resampling: Randomly resampling, need to test with multiple tests.
