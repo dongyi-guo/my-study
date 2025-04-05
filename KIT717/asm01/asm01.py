@@ -1,10 +1,35 @@
-import requests
+import requests, time, math
 from sense_emu import SenseHat
-import time
 
-s = SenseHat()
+s = SenseHat() # EMU
+BLINK_INTERVAL = 0.3 # LED blinking interval
+REPORT_INTERVAL = 60 # Regular report interval
+RED = (255,0,0) # Color red
+WHITE = (255,255,255) # Color white
 
-test_link = 'http://iotserver.com/test.php'
+COLLISION_STATUS = False # Default no collision
+RED_LIGHT_ON = False
+BROWNOUT = False
+SURGE = False
+SETUP = False
+LIGHT_LVL_THRESHOLD = -1
+
+# Set start xyz
+last_x = 0.0
+last_y = 0.0
+last_z = 1.0
+
+# Get movement distance
+def get_distance(x, y ,z):
+    x_dist = x - last_x
+    y_dist = y - last_y
+    z_dist = z - last_z
+    return math.sqrt(x_dist**2 + y_dist**2 + z_dist**2)
+
+last_blink_time = 0
+last_report_time = 0
+
+stub1_link = 'http://iotserver.com/stub1.php'
 temp_link = 'http://iotserver.com/temperature.php'
 log_link = 'http://iotserver.com/logger.php'
 recordtemp_link = 'http://iotserver.com/recordtemp.php'
@@ -16,89 +41,91 @@ print('Default Temperature Threshold is ' + str(temp_threshold))
 print('Use Up and Down button to change the threshold.\nUse Middle Button to Get Status')
 payload_test = {'num' : str(test_number)}
 
-# Start location
-current_x = 0.0
-current_y = 0.0
-current_z = 1.0
-
-base_time = time.time() # Set base time
-last_time = [base_time, base_time]
-flash_interval = 0.3 # Set flash interval for collision state
-red = (255,0,0)
-red_up = False
-
-test = True
-test_int = 2
-collision_state = False # Start without collision state
-# Check if there is a collision based on xyz
-def is_collision(x, y ,z):
-    return True if abs(x-current_x) > 0.2 or abs(y-current_y) > 0.2 or abs(z-current_z) > 0.2 else False
-
-
+# The Main Loop
 while True:
+    
+    # Get current location (xyz)
     accele_raw = s.get_accelerometer_raw()
     x = round(accele_raw['x'], 2)
     y = round(accele_raw['y'], 2)
     z = round(accele_raw['z'], 2)
-    if test:
-        print("X: {}, Y: {}, Z: {}".format(x,y,z))
-        test = False
-    if is_collision(x,y,z):
-        collision_state = True
-        # Report Immediately
-        
-    # Record current location
-    current_x = x
-    current_y = y
-    current_z = z
-    curr_time = time.time()
-    if (curr_time - last_time[0] > test_int):
-        print("X: {}, Y: {}, Z: {}".format(x,y,z))
-        last_time[0] = time.time()
-    if collision_state:
-        if (curr_time - last_time[1] > flash_interval):
-            if not red_up:
-                s.clear(red)
-                red_up = True
-            else:
-                s.clear()
-                red_up = False
-            last_time[1] = time.time()
-        
     
-#             # Record Timestamp, Temperature, Humidity in CSV
-#             temp_number = s.get_temperature()
-#             humid_number = s.get_humidity()
-#             payload_csv = {'temp' : str(temp_number), 'time' : str(curr_time), 'humid' :  str(humid_number)}
-#             r = requests.get(log_link, params = payload_csv)
-#             print("Logged Time, Temperature, and Humidity.")
-#             
-#             # Record Pitch, Yaw, and Roll in XML
-#             ori = s.get_orientation()
-#             pitch = round(ori['pitch'], 2)
-#             yaw = round(ori['yaw'], 2)
-#             roll = round(ori['roll'], 2)
-#             payload_xyzxml = {'pitch' : str(pitch), 'yaw' : str(yaw), 'roll' : str(roll)}
-#             r = requests.get(recordorientation_link, params = payload_xyzxml)
-#             print("Logged Pitch, Raw, Roll with Time.")
-#             base_time = time.time()
-#         
-    for event in s.stick.get_events():
+    if 0.2 < get_distance(x,y,z):
+        COLLISION_STATUS = True
         
-        # Button Press, Set Threshold, 
-        if event.action == "pressed":
-#             if event.direction == "up":
-#                 temp_threshold += 1
-#             if event.direction == "down":
-#                 temp_threshold -= 1
-            if event.direction == "middle":
-                collision_state = False
+    # Update last location
+    last_x = x
+    last_y = y
+    last_z = z
+    
+    # Light Level
+    light_lvl = s.get_humidity()
+    if LIGHT_LVL_THRESHOLD < light_lvl:
+        s.clear(WHITE)
+    else:
+        s.clear()
+    
+    # Power Level
+    power_lvl = s.get_temperature()
+    if 0 > power_lvl:
+        BROWNOUT = True
+        SURGE = False
+        s.clear()
+    else if 100 < power_lvl:
+        SURGE = True
+        BROWNOUT = False
+        s.clear()
+    else:
+        BROWNOUT = False
+        SURGE = False
+        
+    # Get current time
+    curr_time = time.time()
+    
+    # Collision state blinking
+    if collision_state:
+        if curr_time - last_blink_time > BLINK_INTERVAL:
+            if RED_LIGHT_ON:
                 s.clear()
-#                 temp_number = s.get_temperature()
-#                 payload_temp = {'temp' : str(temp_number), 'threshold' : str(temp_threshold)}
-#                 payload_recordtemp = {'t' : str(temp_number)}
-#                 r1 = requests.get(temp_link, params = payload_temp)
-#                 r2 = requests.get(recordtemp_link, params = payload_recordtemp)
-#                 print('Current Status: ' + r1.text)
-#             print('Current Threshold: ' + str(temp_threshold))
-
+                RED_LIGHT_ON = False
+            else:
+                s.clear(RED)
+                RED_LIGHT_ON = True
+            last_blink_time = time.time()
+    
+    # Timed Report
+    if curr_time - last_report_time > REPORT_INTERVAL:
+        payload_report = {'ts' : str(curr_time),
+                        'll' : str(light_lvl),
+                        'pl' : str(power_lvl),
+                        'cs' : str(COLLISION_STATUS)
+                        }
+        try:
+            r = requests.get(stub1_link, params = payload_report)
+            if 200 != r.status_code:
+                print(f"Error while Connecting to the Server: {r.status_code}")
+            else:
+                print("Report to the Server Successfully!")
+        except requests.exceptions.ConnectionError:
+            print("Server Offline")
+        except requests.exceptions.Timeout:
+            print("Request timed out")
+        except requests.exceptions.RequestException as e:
+            print(f"Unexpected error: {e}")
+        last_report_time = time.time()
+    
+    # Button Actions
+    for event in s.stick.get_events():
+        if event.action == "pressed":
+            if event.direction == "up":
+                temp_threshold += 1
+            if event.direction == "down":
+                temp_threshold -= 1
+            if event.direction == "middle":
+                if True == COLLISION_STATUS:
+                    COLLISION_STATUS = False
+                    s.clear()
+                else:
+                    SETUP = True
+                    print("Entering Set-up Mode...")
+                    print("Use Up and Down to adjust Light Level")
