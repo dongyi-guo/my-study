@@ -14,7 +14,7 @@ What is in the "Thing" (End Node)?
 - How accurate
 - What's the cost?
 For example, for electronic sensors:
-- Sensor packaing
+- Sensor packaging
 	- Raw
 	- Breakout
 - PCB placement requirements
