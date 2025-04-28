@@ -36,7 +36,25 @@ window.onload = function () {
 
 function fetchClusteredData() {
     // Fetch cluster data from your server (index.php output in JSON)
-    $.getJSON("http://iotserver.com/dbscan/index.php?data=t1.json&eps=7&mp=3", function(clusterData) {
+    $.getJSON(
+        // "http://iotserver.com/dbscan/index.php?data=t1.json&eps=7&mp=3"
+        <?php 
+            $data = "t1.json";
+            $eps = "7";
+            $mp = "3";
+            if (isset($_GET['data'])) { $data = $_GET['data']; }
+            if (isset($_GET['eps'])) { $eps = $_GET['eps']; }
+            if (isset($_GET['mp'])) { $mp = $_GET['mp']; }
+            echo "\"http://iotserver.com/dbscan/index.php?data=" .
+            $data .
+            "&eps=" .
+            $eps .
+            "&mp=" .
+            $mp .
+            "\"";
+        ?>, 
+        function(clusterData
+        ) {
         if (clusterData.error) {
             console.error(clusterData.error);
             return;
