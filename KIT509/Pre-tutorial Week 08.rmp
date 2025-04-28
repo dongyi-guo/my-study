@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8"?><process version="11.0.000">
+  <context>
+    <input/>
+    <output/>
+    <macros/>
+  </context>
+  <operator activated="true" class="process" compatibility="11.0.000" expanded="true" name="Process">
+    <parameter key="logverbosity" value="init"/>
+    <parameter key="random_seed" value="2001"/>
+    <parameter key="send_mail" value="never"/>
+    <parameter key="notification_email" value=""/>
+    <parameter key="process_duration_for_mail" value="30"/>
+    <parameter key="encoding" value="SYSTEM"/>
+    <process expanded="true">
+      <operator activated="true" class="read_csv" compatibility="11.0.000" expanded="true" height="68" name="data" width="90" x="45" y="34">
+        <parameter key="csv_file" value="/Users/dongyi-guo/my-study/KIT509/data/week08/abalone-data.csv"/>
+        <parameter key="column_separators" value=","/>
+        <parameter key="trim_lines" value="false"/>
+        <parameter key="multiline_text" value="false"/>
+        <parameter key="use_quotes" value="true"/>
+        <parameter key="quotes_character" value="&quot;"/>
+        <parameter key="escape_character" value="\"/>
+        <parameter key="skip_comments" value="true"/>
+        <parameter key="comment_characters" value="#"/>
+        <parameter key="starting_row" value="1"/>
+        <parameter key="parse_numbers" value="true"/>
+        <parameter key="decimal_character" value="."/>
+        <parameter key="grouped_digits" value="false"/>
+        <parameter key="grouping_character" value=","/>
+        <parameter key="infinity_representation" value=""/>
+        <parameter key="date_format" value=""/>
+        <parameter key="use_header_row" value="true"/>
+        <parameter key="header_row" value="1"/>
+        <parameter key="first_row_as_names" value="true"/>
+        <list key="annotations"/>
+        <parameter key="time_zone" value="Australia/Hobart"/>
+        <parameter key="locale" value="English (United States)"/>
+        <parameter key="encoding" value="UTF-8"/>
+        <parameter key="read_all_values_as_polynominal" value="false"/>
+        <list key="data_set_meta_data_information">
+          <parameter key="0" value="abalone-id.true.polynominal.attribute"/>
+          <parameter key="1" value="length.true.real.attribute"/>
+          <parameter key="2" value="diameter.true.real.attribute"/>
+          <parameter key="3" value="height.true.real.attribute"/>
+          <parameter key="4" value="whole_weight.true.real.attribute"/>
+          <parameter key="5" value="viscera_weight.true.real.attribute"/>
+          <parameter key="6" value="shell_weight.true.real.attribute"/>
+        </list>
+        <parameter key="read_not_matching_values_as_missings" value="false"/>
+      </operator>
+      <operator activated="true" class="read_csv" compatibility="11.0.000" expanded="true" height="68" name="shucked" width="90" x="45" y="136">
+        <parameter key="csv_file" value="/Users/dongyi-guo/my-study/KIT509/data/week08/abalone-shucked.csv"/>
+        <parameter key="column_separators" value=","/>
+        <parameter key="trim_lines" value="false"/>
+        <parameter key="multiline_text" value="false"/>
+        <parameter key="use_quotes" value="true"/>
+        <parameter key="quotes_character" value="&quot;"/>
+        <parameter key="escape_character" value="\"/>
+        <parameter key="skip_comments" value="true"/>
+        <parameter key="comment_characters" value="#"/>
+        <parameter key="starting_row" value="1"/>
+        <parameter key="parse_numbers" value="true"/>
+        <parameter key="decimal_character" value="."/>
+        <parameter key="grouped_digits" value="false"/>
+        <parameter key="grouping_character" value=","/>
+        <parameter key="infinity_representation" value=""/>
+        <parameter key="date_format" value=""/>
+        <parameter key="use_header_row" value="true"/>
+        <parameter key="header_row" value="1"/>
+        <parameter key="first_row_as_names" value="true"/>
+        <list key="annotations"/>
+        <parameter key="time_zone" value="Australia/Hobart"/>
+        <parameter key="locale" value="English (United States)"/>
+        <parameter key="encoding" value="UTF-8"/>
+        <parameter key="read_all_values_as_polynominal" value="false"/>
+        <list key="data_set_meta_data_information">
+          <parameter key="0" value="abalone-id.true.polynominal.attribute"/>
+          <parameter key="1" value="shucked_weight.true.real.attribute"/>
+        </list>
+        <parameter key="read_not_matching_values_as_missings" value="false"/>
+      </operator>
+      <operator activated="true" class="concurrency:join" compatibility="11.0.000" expanded="true" height="82" name="Join" width="90" x="179" y="85">
+        <parameter key="remove_double_attributes" value="true"/>
+        <parameter key="join_type" value="inner"/>
+        <parameter key="use_id_attribute_as_key" value="false"/>
+        <list key="key_attributes">
+          <parameter key="abalone-id" value="abalone-id"/>
+        </list>
+        <parameter key="keep_both_join_attributes" value="false"/>
+      </operator>
+      <operator activated="true" class="blending:select_attributes" compatibility="11.0.000" expanded="true" height="82" name="Select Attributes" width="90" x="313" y="85">
+        <parameter key="type" value="exclude attributes"/>
+        <parameter key="attribute_filter_type" value="one attribute"/>
+        <parameter key="select_attribute" value="abalone-id"/>
+        <parameter key="select_subset" value=""/>
+        <parameter key="also_apply_to_special_attributes_(id,_label..)" value="false"/>
+      </operator>
+      <operator activated="true" class="blending:set_role" compatibility="11.0.000" expanded="true" height="82" name="Set Role" width="90" x="447" y="85">
+        <list key="set_roles">
+          <parameter key="shucked_weight" value="label"/>
+        </list>
+      </operator>
+      <operator activated="true" class="blending:split_data" compatibility="11.0.000" expanded="true" height="103" name="Split Data" width="90" x="581" y="85">
+        <enumeration key="partitions">
+          <parameter key="ratio" value="0.7"/>
+          <parameter key="ratio" value="0.3"/>
+        </enumeration>
+        <parameter key="sampling_type" value="automatic"/>
+        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="local_random_seed" value="1992"/>
+      </operator>
+      <operator activated="true" class="neural_net" compatibility="11.0.000" expanded="true" height="82" name="Neural Net" width="90" x="715" y="85">
+        <list key="hidden_layers">
+          <parameter key="first" value="5"/>
+          <parameter key="second" value="3"/>
+        </list>
+        <parameter key="training_cycles" value="200"/>
+        <parameter key="learning_rate" value="0.01"/>
+        <parameter key="momentum" value="0.9"/>
+        <parameter key="decay" value="false"/>
+        <parameter key="shuffle" value="true"/>
+        <parameter key="normalize" value="true"/>
+        <parameter key="error_epsilon" value="1.0E-4"/>
+        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="local_random_seed" value="1992"/>
+      </operator>
+      <operator activated="true" class="apply_model" compatibility="11.0.000" expanded="true" height="82" name="Apply Model" width="90" x="849" y="85">
+        <list key="application_parameters"/>
+      </operator>
+      <operator activated="true" class="performance_regression" compatibility="11.0.000" expanded="true" height="82" name="Performance" width="90" x="983" y="85">
+        <parameter key="main_criterion" value="first"/>
+        <parameter key="root_mean_squared_error" value="true"/>
+        <parameter key="absolute_error" value="true"/>
+        <parameter key="relative_error" value="true"/>
+        <parameter key="relative_error_lenient" value="false"/>
+        <parameter key="relative_error_strict" value="false"/>
+        <parameter key="normalized_absolute_error" value="false"/>
+        <parameter key="root_relative_squared_error" value="false"/>
+        <parameter key="squared_error" value="false"/>
+        <parameter key="correlation" value="false"/>
+        <parameter key="squared_correlation" value="false"/>
+        <parameter key="prediction_average" value="false"/>
+        <parameter key="spearman_rho" value="false"/>
+        <parameter key="kendall_tau" value="false"/>
+        <parameter key="skip_undefined_labels" value="true"/>
+        <parameter key="use_example_weights" value="true"/>
+      </operator>
+      <operator activated="true" class="read_csv" compatibility="11.0.000" expanded="true" height="68" name="Sonar" width="90" x="45" y="289">
+        <parameter key="csv_file" value="/Users/dongyi-guo/my-study/KIT509/data/week08/sonar.csv"/>
+        <parameter key="column_separators" value=","/>
+        <parameter key="trim_lines" value="false"/>
+        <parameter key="multiline_text" value="false"/>
+        <parameter key="use_quotes" value="true"/>
+        <parameter key="quotes_character" value="&quot;"/>
+        <parameter key="escape_character" value="\"/>
+        <parameter key="skip_comments" value="true"/>
+        <parameter key="comment_characters" value="#"/>
+        <parameter key="starting_row" value="1"/>
+        <parameter key="parse_numbers" value="true"/>
+        <parameter key="decimal_character" value="."/>
+        <parameter key="grouped_digits" value="false"/>
+        <parameter key="grouping_character" value=","/>
+        <parameter key="infinity_representation" value=""/>
+        <parameter key="date_format" value=""/>
+        <parameter key="use_header_row" value="true"/>
+        <parameter key="header_row" value="1"/>
+        <parameter key="first_row_as_names" value="true"/>
+        <list key="annotations"/>
+        <parameter key="time_zone" value="Australia/Hobart"/>
+        <parameter key="locale" value="English (United States)"/>
+        <parameter key="encoding" value="UTF-8"/>
+        <parameter key="read_all_values_as_polynominal" value="false"/>
+        <list key="data_set_meta_data_information">
+          <parameter key="0" value="class.true.polynominal.attribute"/>
+          <parameter key="1" value="a1.true.real.attribute"/>
+          <parameter key="2" value="a2.true.real.attribute"/>
+          <parameter key="3" value="a3.true.real.attribute"/>
+          <parameter key="4" value="a4.true.real.attribute"/>
+          <parameter key="5" value="a5.true.real.attribute"/>
+          <parameter key="6" value="a6.true.real.attribute"/>
+          <parameter key="7" value="a7.true.real.attribute"/>
+          <parameter key="8" value="a8.true.real.attribute"/>
+          <parameter key="9" value="a9.true.real.attribute"/>
+          <parameter key="10" value="a10.true.real.attribute"/>
+          <parameter key="11" value="a11.true.real.attribute"/>
+          <parameter key="12" value="a12.true.real.attribute"/>
+          <parameter key="13" value="a13.true.real.attribute"/>
+          <parameter key="14" value="a14.true.real.attribute"/>
+          <parameter key="15" value="a15.true.real.attribute"/>
+          <parameter key="16" value="a16.true.real.attribute"/>
+          <parameter key="17" value="a17.true.real.attribute"/>
+          <parameter key="18" value="a18.true.real.attribute"/>
+          <parameter key="19" value="a19.true.real.attribute"/>
+          <parameter key="20" value="a20.true.real.attribute"/>
+          <parameter key="21" value="a21.true.real.attribute"/>
+          <parameter key="22" value="a22.true.real.attribute"/>
+          <parameter key="23" value="a23.true.real.attribute"/>
+          <parameter key="24" value="a24.true.real.attribute"/>
+          <parameter key="25" value="a25.true.real.attribute"/>
+          <parameter key="26" value="a26.true.real.attribute"/>
+          <parameter key="27" value="a27.true.real.attribute"/>
+          <parameter key="28" value="a28.true.real.attribute"/>
+          <parameter key="29" value="a29.true.real.attribute"/>
+          <parameter key="30" value="a30.true.real.attribute"/>
+          <parameter key="31" value="a31.true.real.attribute"/>
+          <parameter key="32" value="a32.true.real.attribute"/>
+          <parameter key="33" value="a33.true.real.attribute"/>
+          <parameter key="34" value="a34.true.real.attribute"/>
+          <parameter key="35" value="a35.true.real.attribute"/>
+          <parameter key="36" value="a36.true.real.attribute"/>
+          <parameter key="37" value="a37.true.real.attribute"/>
+          <parameter key="38" value="a38.true.real.attribute"/>
+          <parameter key="39" value="a39.true.real.attribute"/>
+          <parameter key="40" value="a40.true.real.attribute"/>
+          <parameter key="41" value="a41.true.real.attribute"/>
+          <parameter key="42" value="a42.true.real.attribute"/>
+          <parameter key="43" value="a43.true.real.attribute"/>
+          <parameter key="44" value="a44.true.real.attribute"/>
+          <parameter key="45" value="a45.true.real.attribute"/>
+          <parameter key="46" value="a46.true.real.attribute"/>
+          <parameter key="47" value="a47.true.real.attribute"/>
+          <parameter key="48" value="a48.true.real.attribute"/>
+          <parameter key="49" value="a49.true.real.attribute"/>
+          <parameter key="50" value="a50.true.real.attribute"/>
+          <parameter key="51" value="a51.true.real.attribute"/>
+          <parameter key="52" value="a52.true.real.attribute"/>
+          <parameter key="53" value="a53.true.real.attribute"/>
+          <parameter key="54" value="a54.true.real.attribute"/>
+          <parameter key="55" value="a55.true.real.attribute"/>
+          <parameter key="56" value="a56.true.real.attribute"/>
+          <parameter key="57" value="a57.true.real.attribute"/>
+          <parameter key="58" value="a58.true.real.attribute"/>
+          <parameter key="59" value="a59.true.real.attribute"/>
+          <parameter key="60" value="a60.true.real.attribute"/>
+        </list>
+        <parameter key="read_not_matching_values_as_missings" value="false"/>
+      </operator>
+      <operator activated="true" class="blending:set_role" compatibility="11.0.000" expanded="true" height="82" name="Set Role (2)" width="90" x="179" y="289">
+        <list key="set_roles">
+          <parameter key="class" value="label"/>
+        </list>
+      </operator>
+      <operator activated="true" class="multiply" compatibility="11.0.000" expanded="true" height="103" name="Multiply" width="90" x="313" y="289"/>
+      <operator activated="true" class="concurrency:loop_parameters" compatibility="11.0.000" expanded="true" height="82" name="Loop Parameters" width="90" x="447" y="340">
+        <list key="parameters">
+          <parameter key="Select Subprocess.select_which" value="[1.0;3.0;3;linear]"/>
+        </list>
+        <parameter key="error_handling" value="fail on error"/>
+        <parameter key="log_performance" value="true"/>
+        <parameter key="log_all_criteria" value="false"/>
+        <parameter key="synchronize" value="false"/>
+        <parameter key="enable_parallel_execution" value="true"/>
+        <process expanded="true">
+          <operator activated="true" class="select_subprocess" compatibility="11.0.000" expanded="true" height="82" name="Select Subprocess" width="90" x="45" y="34">
+            <parameter key="select_which" value="1"/>
+            <process expanded="true">
+              <operator activated="true" class="naive_bayes" compatibility="11.0.000" expanded="true" height="82" name="Naive Bayes" width="90" x="45" y="34">
+                <parameter key="laplace_correction" value="true"/>
+              </operator>
+              <connect from_port="input 1" to_op="Naive Bayes" to_port="training set"/>
+              <connect from_op="Naive Bayes" from_port="model" to_port="output 1"/>
+              <portSpacing port="source_input 1" spacing="0"/>
+              <portSpacing port="source_input 2" spacing="0"/>
+              <portSpacing port="sink_output 1" spacing="0"/>
+              <portSpacing port="sink_output 2" spacing="0"/>
+            </process>
+            <process expanded="true">
+              <operator activated="true" class="k_nn" compatibility="11.0.000" expanded="true" height="82" name="k-NN (2)" width="90" x="45" y="34">
+                <parameter key="k" value="5"/>
+                <parameter key="weighted_vote" value="true"/>
+                <parameter key="measure_types" value="MixedMeasures"/>
+                <parameter key="mixed_measure" value="MixedEuclideanDistance"/>
+                <parameter key="nominal_measure" value="NominalDistance"/>
+                <parameter key="numerical_measure" value="EuclideanDistance"/>
+                <parameter key="divergence" value="GeneralizedIDivergence"/>
+                <parameter key="kernel_type" value="radial"/>
+                <parameter key="kernel_gamma" value="1.0"/>
+                <parameter key="kernel_sigma1" value="1.0"/>
+                <parameter key="kernel_sigma2" value="0.0"/>
+                <parameter key="kernel_sigma3" value="2.0"/>
+                <parameter key="kernel_degree" value="3.0"/>
+                <parameter key="kernel_shift" value="1.0"/>
+                <parameter key="kernel_a" value="1.0"/>
+                <parameter key="kernel_b" value="0.0"/>
+              </operator>
+              <connect from_port="input 1" to_op="k-NN (2)" to_port="training set"/>
+              <connect from_op="k-NN (2)" from_port="model" to_port="output 1"/>
+              <portSpacing port="source_input 1" spacing="0"/>
+              <portSpacing port="source_input 2" spacing="0"/>
+              <portSpacing port="sink_output 1" spacing="0"/>
+              <portSpacing port="sink_output 2" spacing="0"/>
+            </process>
+            <process expanded="true">
+              <operator activated="true" class="concurrency:parallel_decision_tree" compatibility="11.0.000" expanded="true" height="103" name="Decision Tree" width="90" x="45" y="34">
+                <parameter key="criterion" value="gain_ratio"/>
+                <parameter key="maximal_depth" value="10"/>
+                <parameter key="apply_pruning" value="true"/>
+                <parameter key="confidence" value="0.1"/>
+                <parameter key="apply_prepruning" value="true"/>
+                <parameter key="minimal_gain" value="0.01"/>
+                <parameter key="minimal_leaf_size" value="2"/>
+                <parameter key="minimal_size_for_split" value="4"/>
+                <parameter key="number_of_prepruning_alternatives" value="3"/>
+              </operator>
+              <connect from_port="input 1" to_op="Decision Tree" to_port="training set"/>
+              <connect from_op="Decision Tree" from_port="model" to_port="output 1"/>
+              <portSpacing port="source_input 1" spacing="0"/>
+              <portSpacing port="source_input 2" spacing="0"/>
+              <portSpacing port="sink_output 1" spacing="0"/>
+              <portSpacing port="sink_output 2" spacing="0"/>
+            </process>
+          </operator>
+          <connect from_port="input 1" to_op="Select Subprocess" to_port="input 1"/>
+          <connect from_op="Select Subprocess" from_port="output 1" to_port="output 1"/>
+          <portSpacing port="source_input 1" spacing="0"/>
+          <portSpacing port="source_input 2" spacing="0"/>
+          <portSpacing port="sink_performance" spacing="0"/>
+          <portSpacing port="sink_output 1" spacing="0"/>
+          <portSpacing port="sink_output 2" spacing="0"/>
+        </process>
+      </operator>
+      <operator activated="true" class="extract_macro" compatibility="11.0.000" expanded="true" height="68" name="Extract Macro" width="90" x="447" y="238">
+        <parameter key="macro" value="num_rows"/>
+        <parameter key="macro_type" value="number_of_examples"/>
+        <parameter key="statistics" value="average"/>
+        <parameter key="attribute_name" value=""/>
+        <list key="additional_macros"/>
+      </operator>
+      <operator activated="true" class="generate_macro" compatibility="11.0.000" expanded="true" height="82" name="Generate Macro" width="90" x="581" y="238">
+        <list key="function_descriptions">
+          <parameter key="k_2p" value="ceil(eval(%{num_rows})*0.02)"/>
+        </list>
+      </operator>
+      <operator activated="true" class="k_nn" compatibility="11.0.000" expanded="true" height="82" name="k-NN" width="90" x="715" y="238">
+        <parameter key="k" value="%{k_2p}"/>
+        <parameter key="weighted_vote" value="true"/>
+        <parameter key="measure_types" value="MixedMeasures"/>
+        <parameter key="mixed_measure" value="MixedEuclideanDistance"/>
+        <parameter key="nominal_measure" value="NominalDistance"/>
+        <parameter key="numerical_measure" value="EuclideanDistance"/>
+        <parameter key="divergence" value="GeneralizedIDivergence"/>
+        <parameter key="kernel_type" value="radial"/>
+        <parameter key="kernel_gamma" value="1.0"/>
+        <parameter key="kernel_sigma1" value="1.0"/>
+        <parameter key="kernel_sigma2" value="0.0"/>
+        <parameter key="kernel_sigma3" value="2.0"/>
+        <parameter key="kernel_degree" value="3.0"/>
+        <parameter key="kernel_shift" value="1.0"/>
+        <parameter key="kernel_a" value="1.0"/>
+        <parameter key="kernel_b" value="0.0"/>
+      </operator>
+      <operator activated="true" class="log" compatibility="11.0.000" expanded="true" height="82" name="Log" width="90" x="849" y="238">
+        <list key="log">
+          <parameter key="k_value" value="operator.k-NN.parameter.k"/>
+        </list>
+        <parameter key="sorting_type" value="none"/>
+        <parameter key="sorting_k" value="100"/>
+        <parameter key="persistent" value="false"/>
+      </operator>
+      <connect from_op="data" from_port="output" to_op="Join" to_port="left"/>
+      <connect from_op="shucked" from_port="output" to_op="Join" to_port="right"/>
+      <connect from_op="Join" from_port="join" to_op="Select Attributes" to_port="example set input"/>
+      <connect from_op="Select Attributes" from_port="example set output" to_op="Set Role" to_port="example set input"/>
+      <connect from_op="Set Role" from_port="example set output" to_op="Split Data" to_port="example set"/>
+      <connect from_op="Split Data" from_port="partition 1" to_op="Neural Net" to_port="training set"/>
+      <connect from_op="Split Data" from_port="partition 2" to_op="Apply Model" to_port="unlabelled data"/>
+      <connect from_op="Neural Net" from_port="model" to_op="Apply Model" to_port="model"/>
+      <connect from_op="Apply Model" from_port="labelled data" to_op="Performance" to_port="labelled data"/>
+      <connect from_op="Apply Model" from_port="model" to_port="result 2"/>
+      <connect from_op="Performance" from_port="performance" to_port="result 1"/>
+      <connect from_op="Sonar" from_port="output" to_op="Set Role (2)" to_port="example set input"/>
+      <connect from_op="Set Role (2)" from_port="example set output" to_op="Multiply" to_port="input"/>
+      <connect from_op="Multiply" from_port="output 1" to_op="Extract Macro" to_port="example set"/>
+      <connect from_op="Multiply" from_port="output 2" to_op="Loop Parameters" to_port="input 1"/>
+      <connect from_op="Loop Parameters" from_port="output 1" to_port="result 4"/>
+      <connect from_op="Extract Macro" from_port="example set" to_op="Generate Macro" to_port="through 1"/>
+      <connect from_op="Generate Macro" from_port="through 1" to_op="k-NN" to_port="training set"/>
+      <connect from_op="k-NN" from_port="model" to_op="Log" to_port="through 1"/>
+      <connect from_op="Log" from_port="through 1" to_port="result 3"/>
+      <portSpacing port="source_input 1" spacing="0"/>
+      <portSpacing port="sink_result 1" spacing="0"/>
+      <portSpacing port="sink_result 2" spacing="0"/>
+      <portSpacing port="sink_result 3" spacing="0"/>
+      <portSpacing port="sink_result 4" spacing="0"/>
+      <portSpacing port="sink_result 5" spacing="0"/>
+    </process>
+  </operator>
+</process>
