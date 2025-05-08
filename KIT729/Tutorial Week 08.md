@@ -1,4 +1,4 @@
-# Task 2
+# Task 2:  Creating a Successful Data and Knowledge Management System
 **What first step must XYZ inc. take to promote collaboration among teams to work together to address the organisation's challenges**
 XYZ needs to put the data management team and the knowledge management team under the same department and create a unified governance structure, enforcing strong communications, unifying goals, priorities, tasks, requirements, schemas, and strategic alignments with collaborative roles in both teams.
 - Define shared goals and priorities
@@ -51,7 +51,7 @@ How could it help:
 - **Innovation** driven by combining structured data with experiential knowledge
 - **Better compliance** and audit readiness by aligning documentation and data governance
 ---
-# Task 3: Selected Data and Knowledge Management Platforms
+# Task 2: Selected Data and Knowledge Management Platforms
 ### 🔹 Knowledge Management Systems
 #### 1. Document Management System (DMS) — e.g. Microsoft SharePoint
 - Centralises file/document storage for ACS staff and stakeholders
@@ -91,3 +91,60 @@ Ensures that shared data (especially from multiple external contributors) is tru
 - Supports real-time data intake from mobile applications and APIs
 🛠 Use Case for ACS:  
 Captures large-scale, diverse user-contributed data from the mobile app and citizen science platform.****
+
+---
+# 📊 Task 3: Data Governance — Concepts & Practice
+
+### 🔹 1. What is Data Governance and Why Is It Necessary?
+**Definition**:  
+Data governance is the set of principles, policies, processes, roles, standards, and technologies that ensure the effective and responsible management of data within an organization. It defines how data is created, collected, stored, accessed, used, and protected.
+**Why It’s Necessary**:
+- To ensure data accuracy, consistency, and integrity across systems
+- To support compliance with legal and regulatory requirements (e.g., GDPR, ISO standards)
+- To enable trusted data-driven decision-making
+- To reduce risks such as data breaches, duplication, and loss of sensitive information
+- To empower staff by improving access to reliable data
+🧠 Relevance to ACS:  
+ACS gathers data from multiple sources (citizen scientists, students, members, partner orgs). Without governance, this data may become inconsistent, redundant, or non-compliant.
+### 🔹 2. Benefits of Data Governance to an Organisation
+
+|Benefit|Description|
+|---|---|
+|✅ Improved Data Quality|Standardizes naming, formatting, validation to ensure clean and accurate datasets|
+|✅ Enhanced Decision-Making|Reliable data enables better strategic and operational decisions|
+|✅ Regulatory Compliance|Helps maintain audit trails and privacy controls to meet legal requirements|
+|✅ Operational Efficiency|Reduces duplicated efforts and time wasted searching for correct data|
+|✅ Risk Management|Identifies and controls data-related risks like breaches or errors|
+|✅ Data Ownership and Accountability|Clear roles and responsibilities build accountability at all levels|
+
+🧠 ACS Example:  
+With effective governance, ACS can trust the data it collects from students and the public and avoid costly errors due to duplication or unverified inputs.
+### 🔹 3. Data Governance Deliverables
+Deliverables refer to tangible outputs produced as part of implementing a data governance framework. These may include:
+- 📘 Data Governance Charter  
+      Defines the purpose, scope, and objectives of data governance at ACS.
+- 🧾 Data Policies and Standards  
+      Rules for data access, classification, privacy, security, retention, and quality.
+- 🗂 Data Dictionary and Business Glossary  
+      Consistent definitions of data elements (e.g. "user", "project", "contribution").
+- 🧑‍💼 Data Stewardship Model  
+      List of roles and responsibilities for managing data assets.
+- 📊 Data Quality Metrics  
+      KPI dashboards to monitor accuracy, completeness, and timeliness.
+- 🔄 Data Lifecycle Procedures  
+      Documentation of how data is captured, stored, transformed, archived, or deleted.
+### 🔹 4. Roles and Responsibilities
+Data governance involves collaboration between people, processes, and technologies. Key roles include:
+
+|Role Type|Example Responsibilities|
+|---|---|
+|👤 Individual (e.g., Data Steward, Analyst)|Ensures accuracy, consistency, and proper use of data within a department. Reports data issues.|
+|🏢 Organisation (e.g., Data Governance Council, KM Committee)|Defines policies, assigns ownership, approves standards, manages compliance, and oversees training.|
+|🛠 Technology (e.g., Data Catalog, Governance Platforms like Collibra)|Automates policy enforcement, tracks data lineage, monitors data quality, manages metadata and access rights.|
+
+🧠 ACS Example:
+- Individuals: Project managers or analysts responsible for entering and verifying user-submitted content.
+- Organisation: ACS Executive Board and KM team define governance policies for the citizen science system.
+- Technology: ACS uses a metadata management tool to control access and tagging across SharePoint and the data warehouse.
+
+**Task 3 Summary**: Data governance is not just a technical requirement — it’s a business capability. In the context of ACS, it ensures that data from diverse stakeholders is reliable, accessible, and secure, allowing knowledge to be curated, trusted, and acted upon.
