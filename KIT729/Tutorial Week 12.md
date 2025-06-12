@@ -29,9 +29,9 @@
 **Risk:** Legacy system bottlenecks; phase out outdated tech incrementally.
 ## Investment Portfolio Roadmap
 
-**Goal:** Prioritize projects that deliver the highest strategic value.  
+**Goal:** Prioritise projects that deliver the highest strategic value.  
 **Actions:**
-- **Portfolio Rationalization** – Use the **BCG Matrix** (Stars, Cash Cows, Question Marks, Dogs) to allocate resources.
+- **Portfolio Rationalisation** – Use the **BCG Matrix** (Stars, Cash Cows, Question Marks, Dogs) to allocate resources.
 - **Agile Funding** – Shift budgets dynamically based on project performance (e.g., kill low-ROI initiatives).
 - **Stage-Gate Reviews** – Evaluate investments at milestones to avoid "sunk cost fallacy."
 - **Scenario Planning** – Model economic shifts (e.g., recession) to adjust priorities.
@@ -47,7 +47,7 @@
 ## Associated Risks
 **Goal:** Proactively mitigate operational disruptions.  
 **Actions:**
-- **Risk Heat Maps** – Visualize high-impact/high-likelihood threats (e.g., cyberattacks, supply chain breaks).
+- **Risk Heat Maps** – Visualise high-impact/high-likelihood threats (e.g., cyberattacks, supply chain breaks).
 - **Contingency Plans** – Develop playbooks for worst-case scenarios (e.g., backup vendors).
 - **Stress Testing** – Simulate crises (e.g., ransomware attack) to assess preparedness.
 - **Risk Ownership** – Assign leaders to monitor and address specific risks.

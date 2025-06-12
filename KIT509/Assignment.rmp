@@ -1,0 +1,1843 @@
+<?xml version="1.0" encoding="UTF-8"?><process version="11.0.000">
+  <context>
+    <input/>
+    <output/>
+    <macros/>
+  </context>
+  <operator activated="true" class="process" compatibility="11.0.000" expanded="true" name="Process">
+    <parameter key="logverbosity" value="init"/>
+    <parameter key="random_seed" value="2001"/>
+    <parameter key="send_mail" value="never"/>
+    <parameter key="notification_email" value=""/>
+    <parameter key="process_duration_for_mail" value="30"/>
+    <parameter key="encoding" value="SYSTEM"/>
+    <process expanded="true">
+      <operator activated="true" class="read_csv" compatibility="11.0.000" expanded="true" height="68" name="labels_record" width="90" x="45" y="85">
+        <parameter key="csv_file" value="/Users/dongyi-guo/Documents/AltairRapidMiner/AI Studio/Local Repository/data/asm/labels_record.csv"/>
+        <parameter key="column_separators" value=","/>
+        <parameter key="trim_lines" value="false"/>
+        <parameter key="multiline_text" value="false"/>
+        <parameter key="use_quotes" value="true"/>
+        <parameter key="quotes_character" value="&quot;"/>
+        <parameter key="escape_character" value="\"/>
+        <parameter key="skip_comments" value="true"/>
+        <parameter key="comment_characters" value="#"/>
+        <parameter key="starting_row" value="1"/>
+        <parameter key="parse_numbers" value="true"/>
+        <parameter key="decimal_character" value="."/>
+        <parameter key="grouped_digits" value="false"/>
+        <parameter key="grouping_character" value=","/>
+        <parameter key="infinity_representation" value=""/>
+        <parameter key="date_format" value=""/>
+        <parameter key="use_header_row" value="true"/>
+        <parameter key="header_row" value="1"/>
+        <parameter key="first_row_as_names" value="true"/>
+        <list key="annotations"/>
+        <parameter key="time_zone" value="Australia/Hobart"/>
+        <parameter key="locale" value="English (United States)"/>
+        <parameter key="encoding" value="UTF-8"/>
+        <parameter key="read_all_values_as_polynominal" value="false"/>
+        <list key="data_set_meta_data_information">
+          <parameter key="0" value="id.true.integer.attribute"/>
+          <parameter key="1" value="Hypertension.true.polynominal.attribute"/>
+        </list>
+        <parameter key="read_not_matching_values_as_missings" value="false"/>
+      </operator>
+      <operator activated="true" class="read_csv" compatibility="11.0.000" expanded="true" height="68" name="PPG-BP_record" width="90" x="45" y="187">
+        <parameter key="csv_file" value="/Users/dongyi-guo/Documents/AltairRapidMiner/AI Studio/Local Repository/data/asm/PPG-BP_record.csv"/>
+        <parameter key="column_separators" value=","/>
+        <parameter key="trim_lines" value="false"/>
+        <parameter key="multiline_text" value="false"/>
+        <parameter key="use_quotes" value="true"/>
+        <parameter key="quotes_character" value="&quot;"/>
+        <parameter key="escape_character" value="\"/>
+        <parameter key="skip_comments" value="true"/>
+        <parameter key="comment_characters" value="#"/>
+        <parameter key="starting_row" value="1"/>
+        <parameter key="parse_numbers" value="true"/>
+        <parameter key="decimal_character" value="."/>
+        <parameter key="grouped_digits" value="false"/>
+        <parameter key="grouping_character" value=","/>
+        <parameter key="infinity_representation" value=""/>
+        <parameter key="date_format" value=""/>
+        <parameter key="use_header_row" value="true"/>
+        <parameter key="header_row" value="1"/>
+        <parameter key="first_row_as_names" value="true"/>
+        <list key="annotations"/>
+        <parameter key="time_zone" value="Australia/Hobart"/>
+        <parameter key="locale" value="English (United States)"/>
+        <parameter key="encoding" value="UTF-8"/>
+        <parameter key="read_all_values_as_polynominal" value="false"/>
+        <list key="data_set_meta_data_information">
+          <parameter key="0" value="id.true.integer.attribute"/>
+          <parameter key="1" value="Sex(M/F).true.polynominal.attribute"/>
+          <parameter key="2" value="Age(year).true.integer.attribute"/>
+          <parameter key="3" value="Height(cm).true.integer.attribute"/>
+          <parameter key="4" value="Weight(kg).true.polynominal.attribute"/>
+          <parameter key="5" value="Diastolic Blood Pressure(mmHg).true.integer.attribute"/>
+          <parameter key="6" value="Heart Rate(b/m).true.integer.attribute"/>
+          <parameter key="7" value="BMI(kg/m^2).true.real.attribute"/>
+        </list>
+        <parameter key="read_not_matching_values_as_missings" value="false"/>
+      </operator>
+      <operator activated="true" class="concurrency:join" compatibility="11.0.000" expanded="true" height="82" name="Inner Join" width="90" x="179" y="136">
+        <parameter key="remove_double_attributes" value="true"/>
+        <parameter key="join_type" value="inner"/>
+        <parameter key="use_id_attribute_as_key" value="false"/>
+        <list key="key_attributes">
+          <parameter key="id" value="id"/>
+        </list>
+        <parameter key="keep_both_join_attributes" value="false"/>
+      </operator>
+      <operator activated="true" class="replace_missing_values" compatibility="11.0.000" expanded="true" height="103" name="Missing Vals" width="90" x="313" y="85">
+        <parameter key="return_preprocessing_model" value="false"/>
+        <parameter key="attribute_filter_type" value="single"/>
+        <parameter key="attribute" value="Height(cm)"/>
+        <parameter key="attributes" value=""/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="attribute_value"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="time"/>
+        <parameter key="block_type" value="attribute_block"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_matrix_row_start"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="false"/>
+        <parameter key="default" value="average"/>
+        <list key="columns"/>
+      </operator>
+      <operator activated="true" class="filter_examples" compatibility="11.0.000" expanded="true" height="103" name="Filter by Boundaries" width="90" x="447" y="85">
+        <parameter key="parameter_expression" value=""/>
+        <parameter key="condition_class" value="custom_filters"/>
+        <parameter key="invert_filter" value="true"/>
+        <list key="filters_list">
+          <parameter key="filters_entry_key" value="Age(year).lt.0"/>
+          <parameter key="filters_entry_key" value="Age(year).gt.160"/>
+          <parameter key="filters_entry_key" value="Weight(kg).equals.JJJJJJ"/>
+          <parameter key="filters_entry_key" value="BMI(kg/m^2).lt.6"/>
+          <parameter key="filters_entry_key" value="BMI(kg/m^2).gt.200"/>
+          <parameter key="filters_entry_key" value="Diastolic Blood Pressure(mmHg).lt.40"/>
+          <parameter key="filters_entry_key" value="Diastolic Blood Pressure(mmHg).gt.150"/>
+          <parameter key="filters_entry_key" value="Heart Rate(b/m).lt.20"/>
+          <parameter key="filters_entry_key" value="Heart Rate(b/m).gt.220"/>
+        </list>
+        <parameter key="filters_logic_and" value="false"/>
+        <parameter key="filters_check_metadata" value="true"/>
+      </operator>
+      <operator activated="true" class="parse_numbers" compatibility="11.0.000" expanded="true" height="82" name="Parse to Num" width="90" x="581" y="136">
+        <parameter key="attribute_filter_type" value="single"/>
+        <parameter key="attribute" value="Weight(kg)"/>
+        <parameter key="attributes" value=""/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="nominal"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="file_path"/>
+        <parameter key="block_type" value="single_value"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="single_value"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="false"/>
+        <parameter key="decimal_character" value="."/>
+        <parameter key="grouped_digits" value="false"/>
+        <parameter key="grouping_character" value=","/>
+        <parameter key="infinity_representation" value=""/>
+        <parameter key="unparsable_value_handling" value="fail"/>
+      </operator>
+      <operator activated="true" class="blending:set_role" compatibility="11.0.000" expanded="true" height="82" name="Set Role" width="90" x="715" y="136">
+        <list key="set_roles">
+          <parameter key="id" value="id"/>
+          <parameter key="Hypertension" value="label"/>
+        </list>
+      </operator>
+      <operator activated="true" class="nominal_to_binominal" compatibility="11.0.000" expanded="true" height="103" name="Nominal to Binominal" width="90" x="916" y="85">
+        <parameter key="return_preprocessing_model" value="false"/>
+        <parameter key="attribute_filter_type" value="single"/>
+        <parameter key="attribute" value="Sex(M/F)"/>
+        <parameter key="attributes" value=""/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="nominal"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="file_path"/>
+        <parameter key="block_type" value="single_value"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="single_value"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="false"/>
+        <parameter key="transform_binominal" value="false"/>
+        <parameter key="use_underscore_in_name" value="false"/>
+      </operator>
+      <operator activated="true" class="multiply" compatibility="11.0.000" expanded="true" height="103" name="Multiply" width="90" x="1050" y="85"/>
+      <operator activated="true" class="concurrency:loop_parameters" compatibility="11.0.000" expanded="true" height="124" name="Loop-Cross_Valid" width="90" x="1184" y="187">
+        <list key="parameters">
+          <parameter key="Select Subprocess (2).select_which" value="[1.0;9;9;linear]"/>
+        </list>
+        <parameter key="error_handling" value="fail on error"/>
+        <parameter key="log_performance" value="true"/>
+        <parameter key="log_all_criteria" value="false"/>
+        <parameter key="synchronize" value="false"/>
+        <parameter key="enable_parallel_execution" value="true"/>
+        <process expanded="true">
+          <operator activated="true" class="select_subprocess" compatibility="11.0.000" expanded="true" height="124" name="Select Subprocess (2)" width="90" x="45" y="34">
+            <parameter key="select_which" value="1"/>
+            <process expanded="true">
+              <operator activated="true" class="concurrency:cross_validation" compatibility="11.0.000" expanded="true" height="145" name="Naive Bayes CV" width="90" x="45" y="34">
+                <parameter key="split_on_batch_attribute" value="false"/>
+                <parameter key="leave_one_out" value="false"/>
+                <parameter key="number_of_folds" value="10"/>
+                <parameter key="sampling_type" value="automatic"/>
+                <parameter key="use_local_random_seed" value="false"/>
+                <parameter key="local_random_seed" value="1992"/>
+                <parameter key="enable_parallel_execution" value="true"/>
+                <process expanded="true">
+                  <operator activated="true" class="naive_bayes" compatibility="11.0.000" expanded="true" height="82" name="Naive Bayes (2)" width="90" x="45" y="34">
+                    <parameter key="laplace_correction" value="true"/>
+                  </operator>
+                  <connect from_port="training set" to_op="Naive Bayes (2)" to_port="training set"/>
+                  <connect from_op="Naive Bayes (2)" from_port="model" to_port="model"/>
+                  <portSpacing port="source_training set" spacing="0"/>
+                  <portSpacing port="sink_model" spacing="0"/>
+                  <portSpacing port="sink_through 1" spacing="0"/>
+                </process>
+                <process expanded="true">
+                  <operator activated="true" class="apply_model" compatibility="11.0.000" expanded="true" height="82" name="Apply Model (11)" width="90" x="45" y="34">
+                    <list key="application_parameters"/>
+                  </operator>
+                  <operator activated="true" class="performance_classification" compatibility="11.0.000" expanded="true" height="82" name="Performance (17)" width="90" x="179" y="34">
+                    <parameter key="main_criterion" value="first"/>
+                    <parameter key="accuracy" value="true"/>
+                    <parameter key="classification_error" value="false"/>
+                    <parameter key="kappa" value="false"/>
+                    <parameter key="weighted_mean_recall" value="false"/>
+                    <parameter key="weighted_mean_precision" value="false"/>
+                    <parameter key="spearman_rho" value="false"/>
+                    <parameter key="kendall_tau" value="false"/>
+                    <parameter key="absolute_error" value="false"/>
+                    <parameter key="relative_error" value="false"/>
+                    <parameter key="relative_error_lenient" value="false"/>
+                    <parameter key="relative_error_strict" value="false"/>
+                    <parameter key="normalized_absolute_error" value="true"/>
+                    <parameter key="root_mean_squared_error" value="true"/>
+                    <parameter key="root_relative_squared_error" value="true"/>
+                    <parameter key="squared_error" value="false"/>
+                    <parameter key="correlation" value="false"/>
+                    <parameter key="squared_correlation" value="false"/>
+                    <parameter key="cross-entropy" value="false"/>
+                    <parameter key="margin" value="false"/>
+                    <parameter key="soft_margin_loss" value="false"/>
+                    <parameter key="logistic_loss" value="false"/>
+                    <parameter key="skip_undefined_labels" value="true"/>
+                    <parameter key="use_example_weights" value="true"/>
+                    <list key="class_weights"/>
+                  </operator>
+                  <connect from_port="model" to_op="Apply Model (11)" to_port="model"/>
+                  <connect from_port="test set" to_op="Apply Model (11)" to_port="unlabelled data"/>
+                  <connect from_op="Apply Model (11)" from_port="labelled data" to_op="Performance (17)" to_port="labelled data"/>
+                  <connect from_op="Performance (17)" from_port="performance" to_port="performance 1"/>
+                  <portSpacing port="source_model" spacing="0"/>
+                  <portSpacing port="source_test set" spacing="0"/>
+                  <portSpacing port="source_through 1" spacing="0"/>
+                  <portSpacing port="sink_test set results" spacing="0"/>
+                  <portSpacing port="sink_performance 1" spacing="0"/>
+                  <portSpacing port="sink_performance 2" spacing="0"/>
+                </process>
+              </operator>
+              <connect from_port="input 1" to_op="Naive Bayes CV" to_port="example set"/>
+              <connect from_op="Naive Bayes CV" from_port="model" to_port="output 1"/>
+              <connect from_op="Naive Bayes CV" from_port="example set" to_port="output 2"/>
+              <connect from_op="Naive Bayes CV" from_port="performance 1" to_port="output 3"/>
+              <portSpacing port="source_input 1" spacing="0"/>
+              <portSpacing port="source_input 2" spacing="0"/>
+              <portSpacing port="source_input 3" spacing="0"/>
+              <portSpacing port="sink_output 1" spacing="0"/>
+              <portSpacing port="sink_output 2" spacing="0"/>
+              <portSpacing port="sink_output 3" spacing="0"/>
+              <portSpacing port="sink_output 4" spacing="0"/>
+            </process>
+            <process expanded="true">
+              <operator activated="true" class="concurrency:cross_validation" compatibility="11.0.000" expanded="true" height="145" name="k-NN CV" width="90" x="45" y="34">
+                <parameter key="split_on_batch_attribute" value="false"/>
+                <parameter key="leave_one_out" value="false"/>
+                <parameter key="number_of_folds" value="10"/>
+                <parameter key="sampling_type" value="automatic"/>
+                <parameter key="use_local_random_seed" value="false"/>
+                <parameter key="local_random_seed" value="1992"/>
+                <parameter key="enable_parallel_execution" value="true"/>
+                <process expanded="true">
+                  <operator activated="true" class="k_nn" compatibility="11.0.000" expanded="true" height="82" name="k-NN" width="90" x="45" y="34">
+                    <parameter key="k" value="5"/>
+                    <parameter key="weighted_vote" value="true"/>
+                    <parameter key="measure_types" value="MixedMeasures"/>
+                    <parameter key="mixed_measure" value="MixedEuclideanDistance"/>
+                    <parameter key="nominal_measure" value="NominalDistance"/>
+                    <parameter key="numerical_measure" value="EuclideanDistance"/>
+                    <parameter key="divergence" value="GeneralizedIDivergence"/>
+                    <parameter key="kernel_type" value="radial"/>
+                    <parameter key="kernel_gamma" value="1.0"/>
+                    <parameter key="kernel_sigma1" value="1.0"/>
+                    <parameter key="kernel_sigma2" value="0.0"/>
+                    <parameter key="kernel_sigma3" value="2.0"/>
+                    <parameter key="kernel_degree" value="3.0"/>
+                    <parameter key="kernel_shift" value="1.0"/>
+                    <parameter key="kernel_a" value="1.0"/>
+                    <parameter key="kernel_b" value="0.0"/>
+                  </operator>
+                  <connect from_port="training set" to_op="k-NN" to_port="training set"/>
+                  <connect from_op="k-NN" from_port="model" to_port="model"/>
+                  <portSpacing port="source_training set" spacing="0"/>
+                  <portSpacing port="sink_model" spacing="0"/>
+                  <portSpacing port="sink_through 1" spacing="0"/>
+                </process>
+                <process expanded="true">
+                  <operator activated="true" class="apply_model" compatibility="11.0.000" expanded="true" height="82" name="Apply Model (12)" width="90" x="45" y="34">
+                    <list key="application_parameters"/>
+                  </operator>
+                  <operator activated="true" class="performance_classification" compatibility="11.0.000" expanded="true" height="82" name="Performance (18)" width="90" x="179" y="34">
+                    <parameter key="main_criterion" value="first"/>
+                    <parameter key="accuracy" value="true"/>
+                    <parameter key="classification_error" value="false"/>
+                    <parameter key="kappa" value="false"/>
+                    <parameter key="weighted_mean_recall" value="false"/>
+                    <parameter key="weighted_mean_precision" value="false"/>
+                    <parameter key="spearman_rho" value="false"/>
+                    <parameter key="kendall_tau" value="false"/>
+                    <parameter key="absolute_error" value="false"/>
+                    <parameter key="relative_error" value="false"/>
+                    <parameter key="relative_error_lenient" value="false"/>
+                    <parameter key="relative_error_strict" value="false"/>
+                    <parameter key="normalized_absolute_error" value="true"/>
+                    <parameter key="root_mean_squared_error" value="true"/>
+                    <parameter key="root_relative_squared_error" value="true"/>
+                    <parameter key="squared_error" value="false"/>
+                    <parameter key="correlation" value="false"/>
+                    <parameter key="squared_correlation" value="false"/>
+                    <parameter key="cross-entropy" value="false"/>
+                    <parameter key="margin" value="false"/>
+                    <parameter key="soft_margin_loss" value="false"/>
+                    <parameter key="logistic_loss" value="false"/>
+                    <parameter key="skip_undefined_labels" value="true"/>
+                    <parameter key="use_example_weights" value="true"/>
+                    <list key="class_weights"/>
+                  </operator>
+                  <connect from_port="model" to_op="Apply Model (12)" to_port="model"/>
+                  <connect from_port="test set" to_op="Apply Model (12)" to_port="unlabelled data"/>
+                  <connect from_op="Apply Model (12)" from_port="labelled data" to_op="Performance (18)" to_port="labelled data"/>
+                  <connect from_op="Performance (18)" from_port="performance" to_port="performance 1"/>
+                  <portSpacing port="source_model" spacing="0"/>
+                  <portSpacing port="source_test set" spacing="0"/>
+                  <portSpacing port="source_through 1" spacing="0"/>
+                  <portSpacing port="sink_test set results" spacing="0"/>
+                  <portSpacing port="sink_performance 1" spacing="0"/>
+                  <portSpacing port="sink_performance 2" spacing="0"/>
+                </process>
+              </operator>
+              <connect from_port="input 1" to_op="k-NN CV" to_port="example set"/>
+              <connect from_op="k-NN CV" from_port="model" to_port="output 1"/>
+              <connect from_op="k-NN CV" from_port="example set" to_port="output 2"/>
+              <connect from_op="k-NN CV" from_port="performance 1" to_port="output 3"/>
+              <portSpacing port="source_input 1" spacing="0"/>
+              <portSpacing port="source_input 2" spacing="0"/>
+              <portSpacing port="source_input 3" spacing="0"/>
+              <portSpacing port="sink_output 1" spacing="0"/>
+              <portSpacing port="sink_output 2" spacing="0"/>
+              <portSpacing port="sink_output 3" spacing="0"/>
+              <portSpacing port="sink_output 4" spacing="0"/>
+            </process>
+            <process expanded="true">
+              <operator activated="true" class="concurrency:cross_validation" compatibility="11.0.000" expanded="true" height="145" name="DT CV" width="90" x="45" y="34">
+                <parameter key="split_on_batch_attribute" value="false"/>
+                <parameter key="leave_one_out" value="false"/>
+                <parameter key="number_of_folds" value="10"/>
+                <parameter key="sampling_type" value="automatic"/>
+                <parameter key="use_local_random_seed" value="false"/>
+                <parameter key="local_random_seed" value="1992"/>
+                <parameter key="enable_parallel_execution" value="true"/>
+                <process expanded="true">
+                  <operator activated="true" class="concurrency:parallel_decision_tree" compatibility="11.0.000" expanded="true" height="103" name="Decision Tree (4)" width="90" x="45" y="34">
+                    <parameter key="criterion" value="gain_ratio"/>
+                    <parameter key="maximal_depth" value="10"/>
+                    <parameter key="apply_pruning" value="true"/>
+                    <parameter key="confidence" value="0.1"/>
+                    <parameter key="apply_prepruning" value="true"/>
+                    <parameter key="minimal_gain" value="0.01"/>
+                    <parameter key="minimal_leaf_size" value="2"/>
+                    <parameter key="minimal_size_for_split" value="4"/>
+                    <parameter key="number_of_prepruning_alternatives" value="3"/>
+                  </operator>
+                  <connect from_port="training set" to_op="Decision Tree (4)" to_port="training set"/>
+                  <connect from_op="Decision Tree (4)" from_port="model" to_port="model"/>
+                  <portSpacing port="source_training set" spacing="0"/>
+                  <portSpacing port="sink_model" spacing="0"/>
+                  <portSpacing port="sink_through 1" spacing="0"/>
+                </process>
+                <process expanded="true">
+                  <operator activated="true" class="apply_model" compatibility="11.0.000" expanded="true" height="82" name="Apply Model (3)" width="90" x="45" y="34">
+                    <list key="application_parameters"/>
+                  </operator>
+                  <operator activated="true" class="performance_classification" compatibility="11.0.000" expanded="true" height="82" name="Performance (15)" width="90" x="179" y="34">
+                    <parameter key="main_criterion" value="first"/>
+                    <parameter key="accuracy" value="true"/>
+                    <parameter key="classification_error" value="false"/>
+                    <parameter key="kappa" value="false"/>
+                    <parameter key="weighted_mean_recall" value="false"/>
+                    <parameter key="weighted_mean_precision" value="false"/>
+                    <parameter key="spearman_rho" value="false"/>
+                    <parameter key="kendall_tau" value="false"/>
+                    <parameter key="absolute_error" value="false"/>
+                    <parameter key="relative_error" value="false"/>
+                    <parameter key="relative_error_lenient" value="false"/>
+                    <parameter key="relative_error_strict" value="false"/>
+                    <parameter key="normalized_absolute_error" value="true"/>
+                    <parameter key="root_mean_squared_error" value="true"/>
+                    <parameter key="root_relative_squared_error" value="true"/>
+                    <parameter key="squared_error" value="false"/>
+                    <parameter key="correlation" value="false"/>
+                    <parameter key="squared_correlation" value="false"/>
+                    <parameter key="cross-entropy" value="false"/>
+                    <parameter key="margin" value="false"/>
+                    <parameter key="soft_margin_loss" value="false"/>
+                    <parameter key="logistic_loss" value="false"/>
+                    <parameter key="skip_undefined_labels" value="true"/>
+                    <parameter key="use_example_weights" value="true"/>
+                    <list key="class_weights"/>
+                  </operator>
+                  <connect from_port="model" to_op="Apply Model (3)" to_port="model"/>
+                  <connect from_port="test set" to_op="Apply Model (3)" to_port="unlabelled data"/>
+                  <connect from_op="Apply Model (3)" from_port="labelled data" to_op="Performance (15)" to_port="labelled data"/>
+                  <connect from_op="Performance (15)" from_port="performance" to_port="performance 1"/>
+                  <portSpacing port="source_model" spacing="0"/>
+                  <portSpacing port="source_test set" spacing="0"/>
+                  <portSpacing port="source_through 1" spacing="0"/>
+                  <portSpacing port="sink_test set results" spacing="0"/>
+                  <portSpacing port="sink_performance 1" spacing="0"/>
+                  <portSpacing port="sink_performance 2" spacing="0"/>
+                </process>
+              </operator>
+              <connect from_port="input 1" to_op="DT CV" to_port="example set"/>
+              <connect from_op="DT CV" from_port="model" to_port="output 1"/>
+              <connect from_op="DT CV" from_port="example set" to_port="output 2"/>
+              <connect from_op="DT CV" from_port="performance 1" to_port="output 3"/>
+              <portSpacing port="source_input 1" spacing="0"/>
+              <portSpacing port="source_input 2" spacing="0"/>
+              <portSpacing port="source_input 3" spacing="0"/>
+              <portSpacing port="sink_output 1" spacing="0"/>
+              <portSpacing port="sink_output 2" spacing="0"/>
+              <portSpacing port="sink_output 3" spacing="0"/>
+              <portSpacing port="sink_output 4" spacing="0"/>
+            </process>
+            <process expanded="true">
+              <operator activated="true" class="concurrency:cross_validation" compatibility="11.0.000" expanded="true" height="145" name="RF CV" width="90" x="45" y="34">
+                <parameter key="split_on_batch_attribute" value="false"/>
+                <parameter key="leave_one_out" value="false"/>
+                <parameter key="number_of_folds" value="10"/>
+                <parameter key="sampling_type" value="automatic"/>
+                <parameter key="use_local_random_seed" value="false"/>
+                <parameter key="local_random_seed" value="1992"/>
+                <parameter key="enable_parallel_execution" value="true"/>
+                <process expanded="true">
+                  <operator activated="true" class="concurrency:parallel_random_forest" compatibility="11.0.000" expanded="true" height="103" name="Random Forest (4)" width="90" x="45" y="34">
+                    <parameter key="number_of_trees" value="100"/>
+                    <parameter key="criterion" value="gain_ratio"/>
+                    <parameter key="maximal_depth" value="10"/>
+                    <parameter key="apply_pruning" value="false"/>
+                    <parameter key="confidence" value="0.1"/>
+                    <parameter key="apply_prepruning" value="false"/>
+                    <parameter key="minimal_gain" value="0.01"/>
+                    <parameter key="minimal_leaf_size" value="2"/>
+                    <parameter key="minimal_size_for_split" value="4"/>
+                    <parameter key="number_of_prepruning_alternatives" value="3"/>
+                    <parameter key="random_splits" value="false"/>
+                    <parameter key="guess_subset_ratio" value="true"/>
+                    <parameter key="subset_ratio" value="0.2"/>
+                    <parameter key="voting_strategy" value="confidence vote"/>
+                    <parameter key="use_local_random_seed" value="false"/>
+                    <parameter key="local_random_seed" value="1992"/>
+                    <parameter key="enable_parallel_execution" value="true"/>
+                  </operator>
+                  <connect from_port="training set" to_op="Random Forest (4)" to_port="training set"/>
+                  <connect from_op="Random Forest (4)" from_port="model" to_port="model"/>
+                  <portSpacing port="source_training set" spacing="0"/>
+                  <portSpacing port="sink_model" spacing="0"/>
+                  <portSpacing port="sink_through 1" spacing="0"/>
+                </process>
+                <process expanded="true">
+                  <operator activated="true" class="apply_model" compatibility="11.0.000" expanded="true" height="82" name="Apply Model (16)" width="90" x="45" y="34">
+                    <list key="application_parameters"/>
+                  </operator>
+                  <operator activated="true" class="performance_classification" compatibility="11.0.000" expanded="true" height="82" name="Performance (16)" width="90" x="179" y="34">
+                    <parameter key="main_criterion" value="first"/>
+                    <parameter key="accuracy" value="true"/>
+                    <parameter key="classification_error" value="false"/>
+                    <parameter key="kappa" value="false"/>
+                    <parameter key="weighted_mean_recall" value="false"/>
+                    <parameter key="weighted_mean_precision" value="false"/>
+                    <parameter key="spearman_rho" value="false"/>
+                    <parameter key="kendall_tau" value="false"/>
+                    <parameter key="absolute_error" value="false"/>
+                    <parameter key="relative_error" value="false"/>
+                    <parameter key="relative_error_lenient" value="false"/>
+                    <parameter key="relative_error_strict" value="false"/>
+                    <parameter key="normalized_absolute_error" value="true"/>
+                    <parameter key="root_mean_squared_error" value="true"/>
+                    <parameter key="root_relative_squared_error" value="true"/>
+                    <parameter key="squared_error" value="false"/>
+                    <parameter key="correlation" value="false"/>
+                    <parameter key="squared_correlation" value="false"/>
+                    <parameter key="cross-entropy" value="false"/>
+                    <parameter key="margin" value="false"/>
+                    <parameter key="soft_margin_loss" value="false"/>
+                    <parameter key="logistic_loss" value="false"/>
+                    <parameter key="skip_undefined_labels" value="true"/>
+                    <parameter key="use_example_weights" value="true"/>
+                    <list key="class_weights"/>
+                  </operator>
+                  <connect from_port="model" to_op="Apply Model (16)" to_port="model"/>
+                  <connect from_port="test set" to_op="Apply Model (16)" to_port="unlabelled data"/>
+                  <connect from_op="Apply Model (16)" from_port="labelled data" to_op="Performance (16)" to_port="labelled data"/>
+                  <connect from_op="Performance (16)" from_port="performance" to_port="performance 1"/>
+                  <portSpacing port="source_model" spacing="0"/>
+                  <portSpacing port="source_test set" spacing="0"/>
+                  <portSpacing port="source_through 1" spacing="0"/>
+                  <portSpacing port="sink_test set results" spacing="0"/>
+                  <portSpacing port="sink_performance 1" spacing="0"/>
+                  <portSpacing port="sink_performance 2" spacing="0"/>
+                </process>
+              </operator>
+              <connect from_port="input 1" to_op="RF CV" to_port="example set"/>
+              <connect from_op="RF CV" from_port="model" to_port="output 1"/>
+              <connect from_op="RF CV" from_port="example set" to_port="output 2"/>
+              <connect from_op="RF CV" from_port="performance 1" to_port="output 3"/>
+              <portSpacing port="source_input 1" spacing="0"/>
+              <portSpacing port="source_input 2" spacing="0"/>
+              <portSpacing port="source_input 3" spacing="0"/>
+              <portSpacing port="sink_output 1" spacing="0"/>
+              <portSpacing port="sink_output 2" spacing="0"/>
+              <portSpacing port="sink_output 3" spacing="0"/>
+              <portSpacing port="sink_output 4" spacing="0"/>
+            </process>
+            <process expanded="true">
+              <operator activated="true" class="concurrency:cross_validation" compatibility="11.0.000" expanded="true" height="145" name="NN CV" width="90" x="45" y="34">
+                <parameter key="split_on_batch_attribute" value="false"/>
+                <parameter key="leave_one_out" value="false"/>
+                <parameter key="number_of_folds" value="10"/>
+                <parameter key="sampling_type" value="automatic"/>
+                <parameter key="use_local_random_seed" value="false"/>
+                <parameter key="local_random_seed" value="1992"/>
+                <parameter key="enable_parallel_execution" value="true"/>
+                <process expanded="true">
+                  <operator activated="true" class="nominal_to_numerical" compatibility="11.0.000" expanded="true" height="103" name="Nominal to Numerical" width="90" x="45" y="34">
+                    <parameter key="return_preprocessing_model" value="false"/>
+                    <parameter key="attribute_filter_type" value="all"/>
+                    <parameter key="attribute" value=""/>
+                    <parameter key="attributes" value=""/>
+                    <parameter key="use_except_expression" value="false"/>
+                    <parameter key="value_type" value="nominal"/>
+                    <parameter key="use_value_type_exception" value="false"/>
+                    <parameter key="except_value_type" value="file_path"/>
+                    <parameter key="block_type" value="single_value"/>
+                    <parameter key="use_block_type_exception" value="false"/>
+                    <parameter key="except_block_type" value="single_value"/>
+                    <parameter key="invert_selection" value="false"/>
+                    <parameter key="include_special_attributes" value="false"/>
+                    <parameter key="coding_type" value="dummy coding"/>
+                    <parameter key="use_comparison_groups" value="false"/>
+                    <list key="comparison_groups"/>
+                    <parameter key="unexpected_value_handling" value="all 0 and warning"/>
+                    <parameter key="use_underscore_in_name" value="false"/>
+                  </operator>
+                  <operator activated="true" class="neural_net" compatibility="11.0.000" expanded="true" height="82" name="Neural Net (2)" width="90" x="179" y="34">
+                    <list key="hidden_layers">
+                      <parameter key="first" value="10"/>
+                    </list>
+                    <parameter key="training_cycles" value="200"/>
+                    <parameter key="learning_rate" value="0.01"/>
+                    <parameter key="momentum" value="0.9"/>
+                    <parameter key="decay" value="false"/>
+                    <parameter key="shuffle" value="true"/>
+                    <parameter key="normalize" value="true"/>
+                    <parameter key="error_epsilon" value="1.0E-4"/>
+                    <parameter key="use_local_random_seed" value="false"/>
+                    <parameter key="local_random_seed" value="1992"/>
+                  </operator>
+                  <connect from_port="training set" to_op="Nominal to Numerical" to_port="example set input"/>
+                  <connect from_op="Nominal to Numerical" from_port="example set output" to_op="Neural Net (2)" to_port="training set"/>
+                  <connect from_op="Neural Net (2)" from_port="model" to_port="model"/>
+                  <portSpacing port="source_training set" spacing="0"/>
+                  <portSpacing port="sink_model" spacing="0"/>
+                  <portSpacing port="sink_through 1" spacing="0"/>
+                </process>
+                <process expanded="true">
+                  <operator activated="true" class="nominal_to_numerical" compatibility="11.0.000" expanded="true" height="103" name="Nominal to Numerical (3)" width="90" x="45" y="34">
+                    <parameter key="return_preprocessing_model" value="false"/>
+                    <parameter key="attribute_filter_type" value="all"/>
+                    <parameter key="attribute" value=""/>
+                    <parameter key="attributes" value=""/>
+                    <parameter key="use_except_expression" value="false"/>
+                    <parameter key="value_type" value="nominal"/>
+                    <parameter key="use_value_type_exception" value="false"/>
+                    <parameter key="except_value_type" value="file_path"/>
+                    <parameter key="block_type" value="single_value"/>
+                    <parameter key="use_block_type_exception" value="false"/>
+                    <parameter key="except_block_type" value="single_value"/>
+                    <parameter key="invert_selection" value="false"/>
+                    <parameter key="include_special_attributes" value="false"/>
+                    <parameter key="coding_type" value="dummy coding"/>
+                    <parameter key="use_comparison_groups" value="false"/>
+                    <list key="comparison_groups"/>
+                    <parameter key="unexpected_value_handling" value="all 0 and warning"/>
+                    <parameter key="use_underscore_in_name" value="false"/>
+                  </operator>
+                  <operator activated="true" class="apply_model" compatibility="11.0.000" expanded="true" height="82" name="Apply Model (17)" width="90" x="246" y="34">
+                    <list key="application_parameters"/>
+                  </operator>
+                  <operator activated="true" class="performance_classification" compatibility="11.0.000" expanded="true" height="82" name="Performance (19)" width="90" x="380" y="34">
+                    <parameter key="main_criterion" value="first"/>
+                    <parameter key="accuracy" value="true"/>
+                    <parameter key="classification_error" value="false"/>
+                    <parameter key="kappa" value="false"/>
+                    <parameter key="weighted_mean_recall" value="false"/>
+                    <parameter key="weighted_mean_precision" value="false"/>
+                    <parameter key="spearman_rho" value="false"/>
+                    <parameter key="kendall_tau" value="false"/>
+                    <parameter key="absolute_error" value="false"/>
+                    <parameter key="relative_error" value="false"/>
+                    <parameter key="relative_error_lenient" value="false"/>
+                    <parameter key="relative_error_strict" value="false"/>
+                    <parameter key="normalized_absolute_error" value="true"/>
+                    <parameter key="root_mean_squared_error" value="true"/>
+                    <parameter key="root_relative_squared_error" value="true"/>
+                    <parameter key="squared_error" value="false"/>
+                    <parameter key="correlation" value="false"/>
+                    <parameter key="squared_correlation" value="false"/>
+                    <parameter key="cross-entropy" value="false"/>
+                    <parameter key="margin" value="false"/>
+                    <parameter key="soft_margin_loss" value="false"/>
+                    <parameter key="logistic_loss" value="false"/>
+                    <parameter key="skip_undefined_labels" value="true"/>
+                    <parameter key="use_example_weights" value="true"/>
+                    <list key="class_weights"/>
+                  </operator>
+                  <connect from_port="model" to_op="Apply Model (17)" to_port="model"/>
+                  <connect from_port="test set" to_op="Nominal to Numerical (3)" to_port="example set input"/>
+                  <connect from_op="Nominal to Numerical (3)" from_port="example set output" to_op="Apply Model (17)" to_port="unlabelled data"/>
+                  <connect from_op="Apply Model (17)" from_port="labelled data" to_op="Performance (19)" to_port="labelled data"/>
+                  <connect from_op="Performance (19)" from_port="performance" to_port="performance 1"/>
+                  <portSpacing port="source_model" spacing="0"/>
+                  <portSpacing port="source_test set" spacing="0"/>
+                  <portSpacing port="source_through 1" spacing="0"/>
+                  <portSpacing port="sink_test set results" spacing="0"/>
+                  <portSpacing port="sink_performance 1" spacing="0"/>
+                  <portSpacing port="sink_performance 2" spacing="0"/>
+                </process>
+              </operator>
+              <operator activated="true" class="multiply" compatibility="11.0.000" expanded="true" height="103" name="Multiply (2)" width="90" x="179" y="34"/>
+              <operator activated="true" class="store" compatibility="11.0.000" expanded="true" height="68" name="Store" width="90" x="313" y="85">
+                <parameter key="repository_entry" value="model/asm_model"/>
+              </operator>
+              <connect from_port="input 1" to_op="NN CV" to_port="example set"/>
+              <connect from_op="NN CV" from_port="model" to_op="Multiply (2)" to_port="input"/>
+              <connect from_op="NN CV" from_port="example set" to_port="output 2"/>
+              <connect from_op="NN CV" from_port="performance 1" to_port="output 3"/>
+              <connect from_op="Multiply (2)" from_port="output 1" to_port="output 1"/>
+              <connect from_op="Multiply (2)" from_port="output 2" to_op="Store" to_port="input"/>
+              <portSpacing port="source_input 1" spacing="0"/>
+              <portSpacing port="source_input 2" spacing="0"/>
+              <portSpacing port="source_input 3" spacing="0"/>
+              <portSpacing port="sink_output 1" spacing="0"/>
+              <portSpacing port="sink_output 2" spacing="0"/>
+              <portSpacing port="sink_output 3" spacing="0"/>
+              <portSpacing port="sink_output 4" spacing="0"/>
+            </process>
+            <process expanded="true">
+              <operator activated="true" class="concurrency:cross_validation" compatibility="11.0.000" expanded="true" height="145" name="GBT CV" width="90" x="45" y="34">
+                <parameter key="split_on_batch_attribute" value="false"/>
+                <parameter key="leave_one_out" value="false"/>
+                <parameter key="number_of_folds" value="10"/>
+                <parameter key="sampling_type" value="automatic"/>
+                <parameter key="use_local_random_seed" value="false"/>
+                <parameter key="local_random_seed" value="1992"/>
+                <parameter key="enable_parallel_execution" value="true"/>
+                <process expanded="true">
+                  <operator activated="true" class="h2o:gradient_boosted_trees" compatibility="11.0.000" expanded="true" height="103" name="Gradient Boosted Trees" width="90" x="45" y="34">
+                    <parameter key="number_of_trees" value="50"/>
+                    <parameter key="reproducible" value="false"/>
+                    <parameter key="maximum_number_of_threads" value="4"/>
+                    <parameter key="use_local_random_seed" value="false"/>
+                    <parameter key="local_random_seed" value="1992"/>
+                    <parameter key="maximal_depth" value="5"/>
+                    <parameter key="min_rows" value="10.0"/>
+                    <parameter key="min_split_improvement" value="1.0E-5"/>
+                    <parameter key="number_of_bins" value="20"/>
+                    <parameter key="learning_rate" value="0.01"/>
+                    <parameter key="sample_rate" value="1.0"/>
+                    <parameter key="distribution" value="AUTO"/>
+                    <parameter key="early_stopping" value="false"/>
+                    <parameter key="stopping_rounds" value="1"/>
+                    <parameter key="stopping_metric" value="AUTO"/>
+                    <parameter key="stopping_tolerance" value="0.001"/>
+                    <list key="monotone_constraints"/>
+                    <parameter key="max_runtime_seconds" value="0"/>
+                    <list key="expert_parameters"/>
+                  </operator>
+                  <connect from_port="training set" to_op="Gradient Boosted Trees" to_port="training set"/>
+                  <connect from_op="Gradient Boosted Trees" from_port="model" to_port="model"/>
+                  <portSpacing port="source_training set" spacing="0"/>
+                  <portSpacing port="sink_model" spacing="0"/>
+                  <portSpacing port="sink_through 1" spacing="0"/>
+                </process>
+                <process expanded="true">
+                  <operator activated="true" class="apply_model" compatibility="11.0.000" expanded="true" height="82" name="Apply Model (18)" width="90" x="45" y="34">
+                    <list key="application_parameters"/>
+                  </operator>
+                  <operator activated="true" class="performance_classification" compatibility="11.0.000" expanded="true" height="82" name="Performance (20)" width="90" x="179" y="34">
+                    <parameter key="main_criterion" value="first"/>
+                    <parameter key="accuracy" value="true"/>
+                    <parameter key="classification_error" value="false"/>
+                    <parameter key="kappa" value="false"/>
+                    <parameter key="weighted_mean_recall" value="false"/>
+                    <parameter key="weighted_mean_precision" value="false"/>
+                    <parameter key="spearman_rho" value="false"/>
+                    <parameter key="kendall_tau" value="false"/>
+                    <parameter key="absolute_error" value="false"/>
+                    <parameter key="relative_error" value="false"/>
+                    <parameter key="relative_error_lenient" value="false"/>
+                    <parameter key="relative_error_strict" value="false"/>
+                    <parameter key="normalized_absolute_error" value="true"/>
+                    <parameter key="root_mean_squared_error" value="true"/>
+                    <parameter key="root_relative_squared_error" value="true"/>
+                    <parameter key="squared_error" value="false"/>
+                    <parameter key="correlation" value="false"/>
+                    <parameter key="squared_correlation" value="false"/>
+                    <parameter key="cross-entropy" value="false"/>
+                    <parameter key="margin" value="false"/>
+                    <parameter key="soft_margin_loss" value="false"/>
+                    <parameter key="logistic_loss" value="false"/>
+                    <parameter key="skip_undefined_labels" value="true"/>
+                    <parameter key="use_example_weights" value="true"/>
+                    <list key="class_weights"/>
+                  </operator>
+                  <connect from_port="model" to_op="Apply Model (18)" to_port="model"/>
+                  <connect from_port="test set" to_op="Apply Model (18)" to_port="unlabelled data"/>
+                  <connect from_op="Apply Model (18)" from_port="labelled data" to_op="Performance (20)" to_port="labelled data"/>
+                  <connect from_op="Performance (20)" from_port="performance" to_port="performance 1"/>
+                  <portSpacing port="source_model" spacing="0"/>
+                  <portSpacing port="source_test set" spacing="0"/>
+                  <portSpacing port="source_through 1" spacing="0"/>
+                  <portSpacing port="sink_test set results" spacing="0"/>
+                  <portSpacing port="sink_performance 1" spacing="0"/>
+                  <portSpacing port="sink_performance 2" spacing="0"/>
+                </process>
+              </operator>
+              <connect from_port="input 1" to_op="GBT CV" to_port="example set"/>
+              <connect from_op="GBT CV" from_port="model" to_port="output 1"/>
+              <connect from_op="GBT CV" from_port="example set" to_port="output 2"/>
+              <connect from_op="GBT CV" from_port="performance 1" to_port="output 3"/>
+              <portSpacing port="source_input 1" spacing="0"/>
+              <portSpacing port="source_input 2" spacing="0"/>
+              <portSpacing port="source_input 3" spacing="0"/>
+              <portSpacing port="sink_output 1" spacing="0"/>
+              <portSpacing port="sink_output 2" spacing="0"/>
+              <portSpacing port="sink_output 3" spacing="0"/>
+              <portSpacing port="sink_output 4" spacing="0"/>
+            </process>
+            <process expanded="true">
+              <operator activated="true" class="concurrency:cross_validation" compatibility="11.0.000" expanded="true" height="145" name="DL CV" width="90" x="45" y="34">
+                <parameter key="split_on_batch_attribute" value="false"/>
+                <parameter key="leave_one_out" value="false"/>
+                <parameter key="number_of_folds" value="10"/>
+                <parameter key="sampling_type" value="automatic"/>
+                <parameter key="use_local_random_seed" value="false"/>
+                <parameter key="local_random_seed" value="1992"/>
+                <parameter key="enable_parallel_execution" value="true"/>
+                <process expanded="true">
+                  <operator activated="true" class="h2o:deep_learning" compatibility="11.0.000" expanded="true" height="103" name="Deep Learning (2)" width="90" x="45" y="34">
+                    <parameter key="activation" value="Rectifier"/>
+                    <enumeration key="hidden_layer_sizes">
+                      <parameter key="hidden_layer_sizes" value="50"/>
+                      <parameter key="hidden_layer_sizes" value="30"/>
+                    </enumeration>
+                    <enumeration key="hidden_dropout_ratios"/>
+                    <parameter key="reproducible_(uses_1_thread)" value="false"/>
+                    <parameter key="use_local_random_seed" value="false"/>
+                    <parameter key="local_random_seed" value="1992"/>
+                    <parameter key="epochs" value="10.0"/>
+                    <parameter key="compute_variable_importances" value="false"/>
+                    <parameter key="train_samples_per_iteration" value="-2"/>
+                    <parameter key="adaptive_rate" value="true"/>
+                    <parameter key="epsilon" value="1.0E-8"/>
+                    <parameter key="rho" value="0.99"/>
+                    <parameter key="learning_rate" value="0.005"/>
+                    <parameter key="learning_rate_annealing" value="1.0E-6"/>
+                    <parameter key="learning_rate_decay" value="1.0"/>
+                    <parameter key="momentum_start" value="0.0"/>
+                    <parameter key="momentum_ramp" value="1000000.0"/>
+                    <parameter key="momentum_stable" value="0.0"/>
+                    <parameter key="nesterov_accelerated_gradient" value="true"/>
+                    <parameter key="standardize" value="true"/>
+                    <parameter key="L1" value="1.0E-5"/>
+                    <parameter key="L2" value="0.0"/>
+                    <parameter key="max_w2" value="10.0"/>
+                    <parameter key="loss_function" value="Automatic"/>
+                    <parameter key="distribution_function" value="AUTO"/>
+                    <parameter key="early_stopping" value="false"/>
+                    <parameter key="stopping_rounds" value="1"/>
+                    <parameter key="stopping_metric" value="AUTO"/>
+                    <parameter key="stopping_tolerance" value="0.001"/>
+                    <parameter key="missing_values_handling" value="MeanImputation"/>
+                    <parameter key="max_runtime_seconds" value="0"/>
+                    <list key="expert_parameters"/>
+                    <list key="expert_parameters_"/>
+                  </operator>
+                  <connect from_port="training set" to_op="Deep Learning (2)" to_port="training set"/>
+                  <connect from_op="Deep Learning (2)" from_port="model" to_port="model"/>
+                  <portSpacing port="source_training set" spacing="0"/>
+                  <portSpacing port="sink_model" spacing="0"/>
+                  <portSpacing port="sink_through 1" spacing="0"/>
+                </process>
+                <process expanded="true">
+                  <operator activated="true" class="apply_model" compatibility="11.0.000" expanded="true" height="82" name="Apply Model (19)" width="90" x="45" y="34">
+                    <list key="application_parameters"/>
+                  </operator>
+                  <operator activated="true" class="performance_classification" compatibility="11.0.000" expanded="true" height="82" name="Performance (21)" width="90" x="179" y="34">
+                    <parameter key="main_criterion" value="first"/>
+                    <parameter key="accuracy" value="true"/>
+                    <parameter key="classification_error" value="false"/>
+                    <parameter key="kappa" value="false"/>
+                    <parameter key="weighted_mean_recall" value="false"/>
+                    <parameter key="weighted_mean_precision" value="false"/>
+                    <parameter key="spearman_rho" value="false"/>
+                    <parameter key="kendall_tau" value="false"/>
+                    <parameter key="absolute_error" value="false"/>
+                    <parameter key="relative_error" value="false"/>
+                    <parameter key="relative_error_lenient" value="false"/>
+                    <parameter key="relative_error_strict" value="false"/>
+                    <parameter key="normalized_absolute_error" value="true"/>
+                    <parameter key="root_mean_squared_error" value="true"/>
+                    <parameter key="root_relative_squared_error" value="true"/>
+                    <parameter key="squared_error" value="false"/>
+                    <parameter key="correlation" value="false"/>
+                    <parameter key="squared_correlation" value="false"/>
+                    <parameter key="cross-entropy" value="false"/>
+                    <parameter key="margin" value="false"/>
+                    <parameter key="soft_margin_loss" value="false"/>
+                    <parameter key="logistic_loss" value="false"/>
+                    <parameter key="skip_undefined_labels" value="true"/>
+                    <parameter key="use_example_weights" value="true"/>
+                    <list key="class_weights"/>
+                  </operator>
+                  <connect from_port="model" to_op="Apply Model (19)" to_port="model"/>
+                  <connect from_port="test set" to_op="Apply Model (19)" to_port="unlabelled data"/>
+                  <connect from_op="Apply Model (19)" from_port="labelled data" to_op="Performance (21)" to_port="labelled data"/>
+                  <connect from_op="Performance (21)" from_port="performance" to_port="performance 1"/>
+                  <portSpacing port="source_model" spacing="0"/>
+                  <portSpacing port="source_test set" spacing="0"/>
+                  <portSpacing port="source_through 1" spacing="0"/>
+                  <portSpacing port="sink_test set results" spacing="0"/>
+                  <portSpacing port="sink_performance 1" spacing="0"/>
+                  <portSpacing port="sink_performance 2" spacing="0"/>
+                </process>
+              </operator>
+              <connect from_port="input 1" to_op="DL CV" to_port="example set"/>
+              <connect from_op="DL CV" from_port="model" to_port="output 1"/>
+              <connect from_op="DL CV" from_port="example set" to_port="output 2"/>
+              <connect from_op="DL CV" from_port="performance 1" to_port="output 3"/>
+              <portSpacing port="source_input 1" spacing="0"/>
+              <portSpacing port="source_input 2" spacing="0"/>
+              <portSpacing port="source_input 3" spacing="0"/>
+              <portSpacing port="sink_output 1" spacing="0"/>
+              <portSpacing port="sink_output 2" spacing="0"/>
+              <portSpacing port="sink_output 3" spacing="0"/>
+              <portSpacing port="sink_output 4" spacing="0"/>
+            </process>
+            <process expanded="true">
+              <operator activated="true" class="concurrency:cross_validation" compatibility="11.0.000" expanded="true" height="145" name="Rule Ind CV" width="90" x="45" y="34">
+                <parameter key="split_on_batch_attribute" value="false"/>
+                <parameter key="leave_one_out" value="false"/>
+                <parameter key="number_of_folds" value="10"/>
+                <parameter key="sampling_type" value="automatic"/>
+                <parameter key="use_local_random_seed" value="false"/>
+                <parameter key="local_random_seed" value="1992"/>
+                <parameter key="enable_parallel_execution" value="true"/>
+                <process expanded="true">
+                  <operator activated="true" class="rule_induction" compatibility="11.0.000" expanded="true" height="82" name="Rule Induction (2)" width="90" x="45" y="34">
+                    <parameter key="criterion" value="information_gain"/>
+                    <parameter key="sample_ratio" value="0.9"/>
+                    <parameter key="pureness" value="0.9"/>
+                    <parameter key="minimal_prune_benefit" value="0.25"/>
+                    <parameter key="use_local_random_seed" value="false"/>
+                    <parameter key="local_random_seed" value="1992"/>
+                  </operator>
+                  <connect from_port="training set" to_op="Rule Induction (2)" to_port="training set"/>
+                  <connect from_op="Rule Induction (2)" from_port="model" to_port="model"/>
+                  <portSpacing port="source_training set" spacing="0"/>
+                  <portSpacing port="sink_model" spacing="0"/>
+                  <portSpacing port="sink_through 1" spacing="0"/>
+                </process>
+                <process expanded="true">
+                  <operator activated="true" class="apply_model" compatibility="11.0.000" expanded="true" height="82" name="Apply Model (20)" width="90" x="45" y="34">
+                    <list key="application_parameters"/>
+                  </operator>
+                  <operator activated="true" class="performance_classification" compatibility="11.0.000" expanded="true" height="82" name="Performance (22)" width="90" x="179" y="34">
+                    <parameter key="main_criterion" value="first"/>
+                    <parameter key="accuracy" value="true"/>
+                    <parameter key="classification_error" value="false"/>
+                    <parameter key="kappa" value="false"/>
+                    <parameter key="weighted_mean_recall" value="false"/>
+                    <parameter key="weighted_mean_precision" value="false"/>
+                    <parameter key="spearman_rho" value="false"/>
+                    <parameter key="kendall_tau" value="false"/>
+                    <parameter key="absolute_error" value="false"/>
+                    <parameter key="relative_error" value="false"/>
+                    <parameter key="relative_error_lenient" value="false"/>
+                    <parameter key="relative_error_strict" value="false"/>
+                    <parameter key="normalized_absolute_error" value="true"/>
+                    <parameter key="root_mean_squared_error" value="true"/>
+                    <parameter key="root_relative_squared_error" value="true"/>
+                    <parameter key="squared_error" value="false"/>
+                    <parameter key="correlation" value="false"/>
+                    <parameter key="squared_correlation" value="false"/>
+                    <parameter key="cross-entropy" value="false"/>
+                    <parameter key="margin" value="false"/>
+                    <parameter key="soft_margin_loss" value="false"/>
+                    <parameter key="logistic_loss" value="false"/>
+                    <parameter key="skip_undefined_labels" value="true"/>
+                    <parameter key="use_example_weights" value="true"/>
+                    <list key="class_weights"/>
+                  </operator>
+                  <connect from_port="model" to_op="Apply Model (20)" to_port="model"/>
+                  <connect from_port="test set" to_op="Apply Model (20)" to_port="unlabelled data"/>
+                  <connect from_op="Apply Model (20)" from_port="labelled data" to_op="Performance (22)" to_port="labelled data"/>
+                  <connect from_op="Performance (22)" from_port="performance" to_port="performance 1"/>
+                  <portSpacing port="source_model" spacing="0"/>
+                  <portSpacing port="source_test set" spacing="0"/>
+                  <portSpacing port="source_through 1" spacing="0"/>
+                  <portSpacing port="sink_test set results" spacing="0"/>
+                  <portSpacing port="sink_performance 1" spacing="0"/>
+                  <portSpacing port="sink_performance 2" spacing="0"/>
+                </process>
+              </operator>
+              <connect from_port="input 1" to_op="Rule Ind CV" to_port="example set"/>
+              <connect from_op="Rule Ind CV" from_port="model" to_port="output 1"/>
+              <connect from_op="Rule Ind CV" from_port="example set" to_port="output 2"/>
+              <connect from_op="Rule Ind CV" from_port="performance 1" to_port="output 3"/>
+              <portSpacing port="source_input 1" spacing="0"/>
+              <portSpacing port="source_input 2" spacing="0"/>
+              <portSpacing port="source_input 3" spacing="0"/>
+              <portSpacing port="sink_output 1" spacing="0"/>
+              <portSpacing port="sink_output 2" spacing="0"/>
+              <portSpacing port="sink_output 3" spacing="0"/>
+              <portSpacing port="sink_output 4" spacing="0"/>
+            </process>
+            <process expanded="true">
+              <operator activated="true" class="concurrency:cross_validation" compatibility="11.0.000" expanded="true" height="145" name="AutoMLP CV" width="90" x="45" y="34">
+                <parameter key="split_on_batch_attribute" value="false"/>
+                <parameter key="leave_one_out" value="false"/>
+                <parameter key="number_of_folds" value="10"/>
+                <parameter key="sampling_type" value="automatic"/>
+                <parameter key="use_local_random_seed" value="false"/>
+                <parameter key="local_random_seed" value="1992"/>
+                <parameter key="enable_parallel_execution" value="true"/>
+                <process expanded="true">
+                  <operator activated="true" class="nominal_to_numerical" compatibility="11.0.000" expanded="true" height="103" name="Nominal to Numerical (2)" width="90" x="45" y="34">
+                    <parameter key="return_preprocessing_model" value="false"/>
+                    <parameter key="attribute_filter_type" value="all"/>
+                    <parameter key="attribute" value=""/>
+                    <parameter key="attributes" value=""/>
+                    <parameter key="use_except_expression" value="false"/>
+                    <parameter key="value_type" value="nominal"/>
+                    <parameter key="use_value_type_exception" value="false"/>
+                    <parameter key="except_value_type" value="file_path"/>
+                    <parameter key="block_type" value="single_value"/>
+                    <parameter key="use_block_type_exception" value="false"/>
+                    <parameter key="except_block_type" value="single_value"/>
+                    <parameter key="invert_selection" value="false"/>
+                    <parameter key="include_special_attributes" value="false"/>
+                    <parameter key="coding_type" value="dummy coding"/>
+                    <parameter key="use_comparison_groups" value="false"/>
+                    <list key="comparison_groups"/>
+                    <parameter key="unexpected_value_handling" value="all 0 and warning"/>
+                    <parameter key="use_underscore_in_name" value="false"/>
+                  </operator>
+                  <operator activated="true" class="auto_mlp" compatibility="11.0.000" expanded="true" height="82" name="AutoMLP (2)" width="90" x="179" y="34">
+                    <parameter key="training_cycles" value="10"/>
+                    <parameter key="number_of_generations" value="10"/>
+                    <parameter key="number_of_esemble_mlps" value="3"/>
+                  </operator>
+                  <connect from_port="training set" to_op="Nominal to Numerical (2)" to_port="example set input"/>
+                  <connect from_op="Nominal to Numerical (2)" from_port="example set output" to_op="AutoMLP (2)" to_port="training set"/>
+                  <connect from_op="AutoMLP (2)" from_port="model" to_port="model"/>
+                  <portSpacing port="source_training set" spacing="0"/>
+                  <portSpacing port="sink_model" spacing="0"/>
+                  <portSpacing port="sink_through 1" spacing="0"/>
+                </process>
+                <process expanded="true">
+                  <operator activated="true" class="nominal_to_numerical" compatibility="11.0.000" expanded="true" height="103" name="Nominal to Numerical (4)" width="90" x="45" y="34">
+                    <parameter key="return_preprocessing_model" value="false"/>
+                    <parameter key="attribute_filter_type" value="all"/>
+                    <parameter key="attribute" value=""/>
+                    <parameter key="attributes" value=""/>
+                    <parameter key="use_except_expression" value="false"/>
+                    <parameter key="value_type" value="nominal"/>
+                    <parameter key="use_value_type_exception" value="false"/>
+                    <parameter key="except_value_type" value="file_path"/>
+                    <parameter key="block_type" value="single_value"/>
+                    <parameter key="use_block_type_exception" value="false"/>
+                    <parameter key="except_block_type" value="single_value"/>
+                    <parameter key="invert_selection" value="false"/>
+                    <parameter key="include_special_attributes" value="false"/>
+                    <parameter key="coding_type" value="dummy coding"/>
+                    <parameter key="use_comparison_groups" value="false"/>
+                    <list key="comparison_groups"/>
+                    <parameter key="unexpected_value_handling" value="all 0 and warning"/>
+                    <parameter key="use_underscore_in_name" value="false"/>
+                  </operator>
+                  <operator activated="true" class="apply_model" compatibility="11.0.000" expanded="true" height="82" name="Apply Model (21)" width="90" x="246" y="34">
+                    <list key="application_parameters"/>
+                  </operator>
+                  <operator activated="true" class="performance_classification" compatibility="11.0.000" expanded="true" height="82" name="Performance (23)" width="90" x="380" y="34">
+                    <parameter key="main_criterion" value="first"/>
+                    <parameter key="accuracy" value="true"/>
+                    <parameter key="classification_error" value="false"/>
+                    <parameter key="kappa" value="false"/>
+                    <parameter key="weighted_mean_recall" value="false"/>
+                    <parameter key="weighted_mean_precision" value="false"/>
+                    <parameter key="spearman_rho" value="false"/>
+                    <parameter key="kendall_tau" value="false"/>
+                    <parameter key="absolute_error" value="false"/>
+                    <parameter key="relative_error" value="false"/>
+                    <parameter key="relative_error_lenient" value="false"/>
+                    <parameter key="relative_error_strict" value="false"/>
+                    <parameter key="normalized_absolute_error" value="true"/>
+                    <parameter key="root_mean_squared_error" value="true"/>
+                    <parameter key="root_relative_squared_error" value="true"/>
+                    <parameter key="squared_error" value="false"/>
+                    <parameter key="correlation" value="false"/>
+                    <parameter key="squared_correlation" value="false"/>
+                    <parameter key="cross-entropy" value="false"/>
+                    <parameter key="margin" value="false"/>
+                    <parameter key="soft_margin_loss" value="false"/>
+                    <parameter key="logistic_loss" value="false"/>
+                    <parameter key="skip_undefined_labels" value="true"/>
+                    <parameter key="use_example_weights" value="true"/>
+                    <list key="class_weights"/>
+                  </operator>
+                  <connect from_port="model" to_op="Apply Model (21)" to_port="model"/>
+                  <connect from_port="test set" to_op="Nominal to Numerical (4)" to_port="example set input"/>
+                  <connect from_op="Nominal to Numerical (4)" from_port="example set output" to_op="Apply Model (21)" to_port="unlabelled data"/>
+                  <connect from_op="Apply Model (21)" from_port="labelled data" to_op="Performance (23)" to_port="labelled data"/>
+                  <connect from_op="Performance (23)" from_port="performance" to_port="performance 1"/>
+                  <portSpacing port="source_model" spacing="0"/>
+                  <portSpacing port="source_test set" spacing="0"/>
+                  <portSpacing port="source_through 1" spacing="0"/>
+                  <portSpacing port="sink_test set results" spacing="0"/>
+                  <portSpacing port="sink_performance 1" spacing="0"/>
+                  <portSpacing port="sink_performance 2" spacing="0"/>
+                </process>
+              </operator>
+              <connect from_port="input 1" to_op="AutoMLP CV" to_port="example set"/>
+              <connect from_op="AutoMLP CV" from_port="model" to_port="output 1"/>
+              <connect from_op="AutoMLP CV" from_port="example set" to_port="output 2"/>
+              <connect from_op="AutoMLP CV" from_port="performance 1" to_port="output 3"/>
+              <portSpacing port="source_input 1" spacing="0"/>
+              <portSpacing port="source_input 2" spacing="0"/>
+              <portSpacing port="source_input 3" spacing="0"/>
+              <portSpacing port="sink_output 1" spacing="0"/>
+              <portSpacing port="sink_output 2" spacing="0"/>
+              <portSpacing port="sink_output 3" spacing="0"/>
+              <portSpacing port="sink_output 4" spacing="0"/>
+            </process>
+          </operator>
+          <connect from_port="input 1" to_op="Select Subprocess (2)" to_port="input 1"/>
+          <connect from_port="input 2" to_op="Select Subprocess (2)" to_port="input 2"/>
+          <connect from_op="Select Subprocess (2)" from_port="output 1" to_port="output 1"/>
+          <connect from_op="Select Subprocess (2)" from_port="output 2" to_port="output 2"/>
+          <connect from_op="Select Subprocess (2)" from_port="output 3" to_port="output 3"/>
+          <portSpacing port="source_input 1" spacing="0"/>
+          <portSpacing port="source_input 2" spacing="0"/>
+          <portSpacing port="source_input 3" spacing="0"/>
+          <portSpacing port="sink_performance" spacing="0"/>
+          <portSpacing port="sink_output 1" spacing="0"/>
+          <portSpacing port="sink_output 2" spacing="0"/>
+          <portSpacing port="sink_output 3" spacing="0"/>
+          <portSpacing port="sink_output 4" spacing="0"/>
+        </process>
+        <description align="center" color="orange" colored="true" width="126">Select Subprocess</description>
+      </operator>
+      <operator activated="true" class="blending:split_data" compatibility="11.0.000" expanded="true" height="103" name="Split Data" width="90" x="1184" y="34">
+        <enumeration key="partitions">
+          <parameter key="ratio" value="0.7"/>
+          <parameter key="ratio" value="0.3"/>
+        </enumeration>
+        <parameter key="sampling_type" value="automatic"/>
+        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="local_random_seed" value="1992"/>
+        <description align="center" color="orange" colored="true" width="126">Training: 70%&lt;br/&gt;Testing: 30%</description>
+      </operator>
+      <operator activated="true" class="concurrency:loop_parameters" compatibility="11.0.000" expanded="true" height="124" name="Loop-Hold_out" width="90" x="1323" y="34">
+        <list key="parameters">
+          <parameter key="Select Subprocess.select_which" value="[1.0;9;9;linear]"/>
+        </list>
+        <parameter key="error_handling" value="fail on error"/>
+        <parameter key="log_performance" value="true"/>
+        <parameter key="log_all_criteria" value="false"/>
+        <parameter key="synchronize" value="false"/>
+        <parameter key="enable_parallel_execution" value="true"/>
+        <process expanded="true">
+          <operator activated="true" class="select_subprocess" compatibility="11.0.000" expanded="true" height="124" name="Select Subprocess" width="90" x="45" y="34">
+            <parameter key="select_which" value="1"/>
+            <process expanded="true">
+              <operator activated="true" class="naive_bayes" compatibility="11.0.000" expanded="true" height="82" name="Naive Bayes" width="90" x="45" y="34">
+                <parameter key="laplace_correction" value="true"/>
+              </operator>
+              <operator activated="true" class="apply_model" compatibility="11.0.000" expanded="true" height="82" name="Apply Model (7)" width="90" x="179" y="34">
+                <list key="application_parameters"/>
+              </operator>
+              <operator activated="true" class="performance_classification" compatibility="11.0.000" expanded="true" height="82" name="Performance (6)" width="90" x="313" y="34">
+                <parameter key="main_criterion" value="first"/>
+                <parameter key="accuracy" value="true"/>
+                <parameter key="classification_error" value="false"/>
+                <parameter key="kappa" value="false"/>
+                <parameter key="weighted_mean_recall" value="false"/>
+                <parameter key="weighted_mean_precision" value="false"/>
+                <parameter key="spearman_rho" value="false"/>
+                <parameter key="kendall_tau" value="false"/>
+                <parameter key="absolute_error" value="false"/>
+                <parameter key="relative_error" value="false"/>
+                <parameter key="relative_error_lenient" value="false"/>
+                <parameter key="relative_error_strict" value="false"/>
+                <parameter key="normalized_absolute_error" value="true"/>
+                <parameter key="root_mean_squared_error" value="true"/>
+                <parameter key="root_relative_squared_error" value="true"/>
+                <parameter key="squared_error" value="false"/>
+                <parameter key="correlation" value="false"/>
+                <parameter key="squared_correlation" value="false"/>
+                <parameter key="cross-entropy" value="false"/>
+                <parameter key="margin" value="false"/>
+                <parameter key="soft_margin_loss" value="false"/>
+                <parameter key="logistic_loss" value="false"/>
+                <parameter key="skip_undefined_labels" value="true"/>
+                <parameter key="use_example_weights" value="true"/>
+                <list key="class_weights"/>
+              </operator>
+              <connect from_port="input 1" to_op="Naive Bayes" to_port="training set"/>
+              <connect from_port="input 2" to_op="Apply Model (7)" to_port="unlabelled data"/>
+              <connect from_op="Naive Bayes" from_port="model" to_op="Apply Model (7)" to_port="model"/>
+              <connect from_op="Apply Model (7)" from_port="labelled data" to_op="Performance (6)" to_port="labelled data"/>
+              <connect from_op="Apply Model (7)" from_port="model" to_port="output 1"/>
+              <connect from_op="Performance (6)" from_port="performance" to_port="output 3"/>
+              <connect from_op="Performance (6)" from_port="example set" to_port="output 2"/>
+              <portSpacing port="source_input 1" spacing="0"/>
+              <portSpacing port="source_input 2" spacing="0"/>
+              <portSpacing port="source_input 3" spacing="0"/>
+              <portSpacing port="sink_output 1" spacing="0"/>
+              <portSpacing port="sink_output 2" spacing="0"/>
+              <portSpacing port="sink_output 3" spacing="0"/>
+              <portSpacing port="sink_output 4" spacing="0"/>
+            </process>
+            <process expanded="true">
+              <operator activated="true" class="k_nn" compatibility="11.0.000" expanded="true" height="82" name="KNN_Hold_out" width="90" x="45" y="34">
+                <parameter key="k" value="6"/>
+                <parameter key="weighted_vote" value="true"/>
+                <parameter key="measure_types" value="MixedMeasures"/>
+                <parameter key="mixed_measure" value="MixedEuclideanDistance"/>
+                <parameter key="nominal_measure" value="NominalDistance"/>
+                <parameter key="numerical_measure" value="EuclideanDistance"/>
+                <parameter key="divergence" value="GeneralizedIDivergence"/>
+                <parameter key="kernel_type" value="radial"/>
+                <parameter key="kernel_gamma" value="1.0"/>
+                <parameter key="kernel_sigma1" value="1.0"/>
+                <parameter key="kernel_sigma2" value="0.0"/>
+                <parameter key="kernel_sigma3" value="2.0"/>
+                <parameter key="kernel_degree" value="3.0"/>
+                <parameter key="kernel_shift" value="1.0"/>
+                <parameter key="kernel_a" value="1.0"/>
+                <parameter key="kernel_b" value="0.0"/>
+              </operator>
+              <operator activated="true" class="apply_model" compatibility="11.0.000" expanded="true" height="82" name="Apply Model (4)" width="90" x="179" y="34">
+                <list key="application_parameters"/>
+              </operator>
+              <operator activated="true" class="performance_classification" compatibility="11.0.000" expanded="true" height="82" name="Performance (3)" width="90" x="313" y="34">
+                <parameter key="main_criterion" value="first"/>
+                <parameter key="accuracy" value="true"/>
+                <parameter key="classification_error" value="false"/>
+                <parameter key="kappa" value="false"/>
+                <parameter key="weighted_mean_recall" value="false"/>
+                <parameter key="weighted_mean_precision" value="false"/>
+                <parameter key="spearman_rho" value="false"/>
+                <parameter key="kendall_tau" value="false"/>
+                <parameter key="absolute_error" value="false"/>
+                <parameter key="relative_error" value="false"/>
+                <parameter key="relative_error_lenient" value="false"/>
+                <parameter key="relative_error_strict" value="false"/>
+                <parameter key="normalized_absolute_error" value="true"/>
+                <parameter key="root_mean_squared_error" value="true"/>
+                <parameter key="root_relative_squared_error" value="true"/>
+                <parameter key="squared_error" value="false"/>
+                <parameter key="correlation" value="false"/>
+                <parameter key="squared_correlation" value="false"/>
+                <parameter key="cross-entropy" value="false"/>
+                <parameter key="margin" value="false"/>
+                <parameter key="soft_margin_loss" value="false"/>
+                <parameter key="logistic_loss" value="false"/>
+                <parameter key="skip_undefined_labels" value="true"/>
+                <parameter key="use_example_weights" value="true"/>
+                <list key="class_weights"/>
+              </operator>
+              <connect from_port="input 1" to_op="KNN_Hold_out" to_port="training set"/>
+              <connect from_port="input 2" to_op="Apply Model (4)" to_port="unlabelled data"/>
+              <connect from_op="KNN_Hold_out" from_port="model" to_op="Apply Model (4)" to_port="model"/>
+              <connect from_op="Apply Model (4)" from_port="labelled data" to_op="Performance (3)" to_port="labelled data"/>
+              <connect from_op="Apply Model (4)" from_port="model" to_port="output 1"/>
+              <connect from_op="Performance (3)" from_port="performance" to_port="output 3"/>
+              <connect from_op="Performance (3)" from_port="example set" to_port="output 2"/>
+              <portSpacing port="source_input 1" spacing="0"/>
+              <portSpacing port="source_input 2" spacing="0"/>
+              <portSpacing port="source_input 3" spacing="0"/>
+              <portSpacing port="sink_output 1" spacing="0"/>
+              <portSpacing port="sink_output 2" spacing="0"/>
+              <portSpacing port="sink_output 3" spacing="0"/>
+              <portSpacing port="sink_output 4" spacing="0"/>
+            </process>
+            <process expanded="true">
+              <operator activated="true" class="concurrency:parallel_decision_tree" compatibility="11.0.000" expanded="true" height="103" name="DT_Hold_out" width="90" x="45" y="34">
+                <parameter key="criterion" value="gain_ratio"/>
+                <parameter key="maximal_depth" value="10"/>
+                <parameter key="apply_pruning" value="true"/>
+                <parameter key="confidence" value="0.1"/>
+                <parameter key="apply_prepruning" value="true"/>
+                <parameter key="minimal_gain" value="0.01"/>
+                <parameter key="minimal_leaf_size" value="2"/>
+                <parameter key="minimal_size_for_split" value="4"/>
+                <parameter key="number_of_prepruning_alternatives" value="3"/>
+              </operator>
+              <operator activated="true" class="apply_model" compatibility="11.0.000" expanded="true" height="82" name="Apply Model (5)" width="90" x="179" y="34">
+                <list key="application_parameters"/>
+              </operator>
+              <operator activated="true" class="performance_classification" compatibility="11.0.000" expanded="true" height="82" name="Performance (4)" width="90" x="313" y="34">
+                <parameter key="main_criterion" value="first"/>
+                <parameter key="accuracy" value="true"/>
+                <parameter key="classification_error" value="false"/>
+                <parameter key="kappa" value="false"/>
+                <parameter key="weighted_mean_recall" value="false"/>
+                <parameter key="weighted_mean_precision" value="false"/>
+                <parameter key="spearman_rho" value="false"/>
+                <parameter key="kendall_tau" value="false"/>
+                <parameter key="absolute_error" value="false"/>
+                <parameter key="relative_error" value="false"/>
+                <parameter key="relative_error_lenient" value="false"/>
+                <parameter key="relative_error_strict" value="false"/>
+                <parameter key="normalized_absolute_error" value="true"/>
+                <parameter key="root_mean_squared_error" value="true"/>
+                <parameter key="root_relative_squared_error" value="true"/>
+                <parameter key="squared_error" value="false"/>
+                <parameter key="correlation" value="false"/>
+                <parameter key="squared_correlation" value="false"/>
+                <parameter key="cross-entropy" value="false"/>
+                <parameter key="margin" value="false"/>
+                <parameter key="soft_margin_loss" value="false"/>
+                <parameter key="logistic_loss" value="false"/>
+                <parameter key="skip_undefined_labels" value="true"/>
+                <parameter key="use_example_weights" value="true"/>
+                <list key="class_weights"/>
+              </operator>
+              <connect from_port="input 1" to_op="DT_Hold_out" to_port="training set"/>
+              <connect from_port="input 2" to_op="Apply Model (5)" to_port="unlabelled data"/>
+              <connect from_op="DT_Hold_out" from_port="model" to_op="Apply Model (5)" to_port="model"/>
+              <connect from_op="Apply Model (5)" from_port="labelled data" to_op="Performance (4)" to_port="labelled data"/>
+              <connect from_op="Apply Model (5)" from_port="model" to_port="output 1"/>
+              <connect from_op="Performance (4)" from_port="performance" to_port="output 3"/>
+              <connect from_op="Performance (4)" from_port="example set" to_port="output 2"/>
+              <portSpacing port="source_input 1" spacing="0"/>
+              <portSpacing port="source_input 2" spacing="0"/>
+              <portSpacing port="source_input 3" spacing="0"/>
+              <portSpacing port="sink_output 1" spacing="0"/>
+              <portSpacing port="sink_output 2" spacing="0"/>
+              <portSpacing port="sink_output 3" spacing="0"/>
+              <portSpacing port="sink_output 4" spacing="0"/>
+            </process>
+            <process expanded="true">
+              <operator activated="true" class="concurrency:parallel_random_forest" compatibility="11.0.000" expanded="true" height="103" name="RF_Hold_out" width="90" x="45" y="34">
+                <parameter key="number_of_trees" value="100"/>
+                <parameter key="criterion" value="gain_ratio"/>
+                <parameter key="maximal_depth" value="10"/>
+                <parameter key="apply_pruning" value="false"/>
+                <parameter key="confidence" value="0.1"/>
+                <parameter key="apply_prepruning" value="false"/>
+                <parameter key="minimal_gain" value="0.01"/>
+                <parameter key="minimal_leaf_size" value="2"/>
+                <parameter key="minimal_size_for_split" value="4"/>
+                <parameter key="number_of_prepruning_alternatives" value="3"/>
+                <parameter key="random_splits" value="false"/>
+                <parameter key="guess_subset_ratio" value="true"/>
+                <parameter key="subset_ratio" value="0.2"/>
+                <parameter key="voting_strategy" value="confidence vote"/>
+                <parameter key="use_local_random_seed" value="false"/>
+                <parameter key="local_random_seed" value="1992"/>
+                <parameter key="enable_parallel_execution" value="true"/>
+              </operator>
+              <operator activated="true" class="apply_model" compatibility="11.0.000" expanded="true" height="82" name="Apply Model (6)" width="90" x="179" y="34">
+                <list key="application_parameters"/>
+              </operator>
+              <operator activated="true" class="performance_classification" compatibility="11.0.000" expanded="true" height="82" name="Performance (5)" width="90" x="321" y="34">
+                <parameter key="main_criterion" value="first"/>
+                <parameter key="accuracy" value="true"/>
+                <parameter key="classification_error" value="false"/>
+                <parameter key="kappa" value="false"/>
+                <parameter key="weighted_mean_recall" value="false"/>
+                <parameter key="weighted_mean_precision" value="false"/>
+                <parameter key="spearman_rho" value="false"/>
+                <parameter key="kendall_tau" value="false"/>
+                <parameter key="absolute_error" value="false"/>
+                <parameter key="relative_error" value="false"/>
+                <parameter key="relative_error_lenient" value="false"/>
+                <parameter key="relative_error_strict" value="false"/>
+                <parameter key="normalized_absolute_error" value="true"/>
+                <parameter key="root_mean_squared_error" value="true"/>
+                <parameter key="root_relative_squared_error" value="true"/>
+                <parameter key="squared_error" value="false"/>
+                <parameter key="correlation" value="false"/>
+                <parameter key="squared_correlation" value="false"/>
+                <parameter key="cross-entropy" value="false"/>
+                <parameter key="margin" value="false"/>
+                <parameter key="soft_margin_loss" value="false"/>
+                <parameter key="logistic_loss" value="false"/>
+                <parameter key="skip_undefined_labels" value="true"/>
+                <parameter key="use_example_weights" value="true"/>
+                <list key="class_weights"/>
+              </operator>
+              <connect from_port="input 1" to_op="RF_Hold_out" to_port="training set"/>
+              <connect from_port="input 2" to_op="Apply Model (6)" to_port="unlabelled data"/>
+              <connect from_op="RF_Hold_out" from_port="model" to_op="Apply Model (6)" to_port="model"/>
+              <connect from_op="Apply Model (6)" from_port="labelled data" to_op="Performance (5)" to_port="labelled data"/>
+              <connect from_op="Apply Model (6)" from_port="model" to_port="output 1"/>
+              <connect from_op="Performance (5)" from_port="performance" to_port="output 3"/>
+              <connect from_op="Performance (5)" from_port="example set" to_port="output 2"/>
+              <portSpacing port="source_input 1" spacing="0"/>
+              <portSpacing port="source_input 2" spacing="0"/>
+              <portSpacing port="source_input 3" spacing="0"/>
+              <portSpacing port="sink_output 1" spacing="0"/>
+              <portSpacing port="sink_output 2" spacing="0"/>
+              <portSpacing port="sink_output 3" spacing="0"/>
+              <portSpacing port="sink_output 4" spacing="0"/>
+            </process>
+            <process expanded="true">
+              <operator activated="true" class="nominal_to_numerical" compatibility="11.0.000" expanded="true" height="103" name="Nom to Num Train" width="90" x="45" y="34">
+                <parameter key="return_preprocessing_model" value="false"/>
+                <parameter key="attribute_filter_type" value="single"/>
+                <parameter key="attribute" value="Sex(M/F)"/>
+                <parameter key="attributes" value=""/>
+                <parameter key="use_except_expression" value="false"/>
+                <parameter key="value_type" value="nominal"/>
+                <parameter key="use_value_type_exception" value="false"/>
+                <parameter key="except_value_type" value="file_path"/>
+                <parameter key="block_type" value="single_value"/>
+                <parameter key="use_block_type_exception" value="false"/>
+                <parameter key="except_block_type" value="single_value"/>
+                <parameter key="invert_selection" value="false"/>
+                <parameter key="include_special_attributes" value="false"/>
+                <parameter key="coding_type" value="dummy coding"/>
+                <parameter key="use_comparison_groups" value="false"/>
+                <list key="comparison_groups"/>
+                <parameter key="unexpected_value_handling" value="all 0 and warning"/>
+                <parameter key="use_underscore_in_name" value="false"/>
+                <description align="left" color="orange" colored="true" width="126">Neural Net cannot handle binomial attributes.&lt;br&gt;&lt;br&gt;</description>
+              </operator>
+              <operator activated="true" class="neural_net" compatibility="11.0.000" expanded="true" height="82" name="Neural Net" width="90" x="179" y="34">
+                <list key="hidden_layers">
+                  <parameter key="first" value="10"/>
+                </list>
+                <parameter key="training_cycles" value="200"/>
+                <parameter key="learning_rate" value="0.01"/>
+                <parameter key="momentum" value="0.9"/>
+                <parameter key="decay" value="false"/>
+                <parameter key="shuffle" value="true"/>
+                <parameter key="normalize" value="true"/>
+                <parameter key="error_epsilon" value="1.0E-4"/>
+                <parameter key="use_local_random_seed" value="false"/>
+                <parameter key="local_random_seed" value="1992"/>
+              </operator>
+              <operator activated="true" class="nominal_to_numerical" compatibility="11.0.000" expanded="true" height="103" name="Nom to Num Test" width="90" x="179" y="136">
+                <parameter key="return_preprocessing_model" value="false"/>
+                <parameter key="attribute_filter_type" value="single"/>
+                <parameter key="attribute" value="Sex(M/F)"/>
+                <parameter key="attributes" value=""/>
+                <parameter key="use_except_expression" value="false"/>
+                <parameter key="value_type" value="nominal"/>
+                <parameter key="use_value_type_exception" value="false"/>
+                <parameter key="except_value_type" value="file_path"/>
+                <parameter key="block_type" value="single_value"/>
+                <parameter key="use_block_type_exception" value="false"/>
+                <parameter key="except_block_type" value="single_value"/>
+                <parameter key="invert_selection" value="false"/>
+                <parameter key="include_special_attributes" value="false"/>
+                <parameter key="coding_type" value="dummy coding"/>
+                <parameter key="use_comparison_groups" value="false"/>
+                <list key="comparison_groups"/>
+                <parameter key="unexpected_value_handling" value="all 0 and warning"/>
+                <parameter key="use_underscore_in_name" value="false"/>
+                <description align="left" color="orange" colored="true" width="126">Neural Net cannot handle binomial attributes.&lt;br&gt;&lt;br&gt;</description>
+              </operator>
+              <operator activated="true" class="apply_model" compatibility="11.0.000" expanded="true" height="82" name="Apply Model (9)" width="90" x="313" y="85">
+                <list key="application_parameters"/>
+              </operator>
+              <operator activated="true" class="performance_classification" compatibility="11.0.000" expanded="true" height="82" name="Performance (8)" width="90" x="447" y="85">
+                <parameter key="main_criterion" value="first"/>
+                <parameter key="accuracy" value="true"/>
+                <parameter key="classification_error" value="false"/>
+                <parameter key="kappa" value="false"/>
+                <parameter key="weighted_mean_recall" value="false"/>
+                <parameter key="weighted_mean_precision" value="false"/>
+                <parameter key="spearman_rho" value="false"/>
+                <parameter key="kendall_tau" value="false"/>
+                <parameter key="absolute_error" value="false"/>
+                <parameter key="relative_error" value="false"/>
+                <parameter key="relative_error_lenient" value="false"/>
+                <parameter key="relative_error_strict" value="false"/>
+                <parameter key="normalized_absolute_error" value="true"/>
+                <parameter key="root_mean_squared_error" value="true"/>
+                <parameter key="root_relative_squared_error" value="true"/>
+                <parameter key="squared_error" value="false"/>
+                <parameter key="correlation" value="false"/>
+                <parameter key="squared_correlation" value="false"/>
+                <parameter key="cross-entropy" value="false"/>
+                <parameter key="margin" value="false"/>
+                <parameter key="soft_margin_loss" value="false"/>
+                <parameter key="logistic_loss" value="false"/>
+                <parameter key="skip_undefined_labels" value="true"/>
+                <parameter key="use_example_weights" value="true"/>
+                <list key="class_weights"/>
+              </operator>
+              <connect from_port="input 1" to_op="Nom to Num Train" to_port="example set input"/>
+              <connect from_port="input 2" to_op="Nom to Num Test" to_port="example set input"/>
+              <connect from_op="Nom to Num Train" from_port="example set output" to_op="Neural Net" to_port="training set"/>
+              <connect from_op="Neural Net" from_port="model" to_op="Apply Model (9)" to_port="model"/>
+              <connect from_op="Nom to Num Test" from_port="example set output" to_op="Apply Model (9)" to_port="unlabelled data"/>
+              <connect from_op="Apply Model (9)" from_port="labelled data" to_op="Performance (8)" to_port="labelled data"/>
+              <connect from_op="Apply Model (9)" from_port="model" to_port="output 1"/>
+              <connect from_op="Performance (8)" from_port="performance" to_port="output 3"/>
+              <connect from_op="Performance (8)" from_port="example set" to_port="output 2"/>
+              <portSpacing port="source_input 1" spacing="0"/>
+              <portSpacing port="source_input 2" spacing="0"/>
+              <portSpacing port="source_input 3" spacing="0"/>
+              <portSpacing port="sink_output 1" spacing="0"/>
+              <portSpacing port="sink_output 2" spacing="0"/>
+              <portSpacing port="sink_output 3" spacing="0"/>
+              <portSpacing port="sink_output 4" spacing="0"/>
+            </process>
+            <process expanded="true">
+              <operator activated="true" class="h2o:gradient_boosted_trees" compatibility="11.0.000" expanded="true" height="103" name="GBT" width="90" x="45" y="34">
+                <parameter key="number_of_trees" value="50"/>
+                <parameter key="reproducible" value="false"/>
+                <parameter key="maximum_number_of_threads" value="4"/>
+                <parameter key="use_local_random_seed" value="false"/>
+                <parameter key="local_random_seed" value="1992"/>
+                <parameter key="maximal_depth" value="5"/>
+                <parameter key="min_rows" value="10.0"/>
+                <parameter key="min_split_improvement" value="1.0E-5"/>
+                <parameter key="number_of_bins" value="20"/>
+                <parameter key="learning_rate" value="0.01"/>
+                <parameter key="sample_rate" value="1.0"/>
+                <parameter key="distribution" value="AUTO"/>
+                <parameter key="early_stopping" value="false"/>
+                <parameter key="stopping_rounds" value="1"/>
+                <parameter key="stopping_metric" value="AUTO"/>
+                <parameter key="stopping_tolerance" value="0.001"/>
+                <list key="monotone_constraints"/>
+                <parameter key="max_runtime_seconds" value="0"/>
+                <list key="expert_parameters"/>
+              </operator>
+              <operator activated="true" class="apply_model" compatibility="11.0.000" expanded="true" height="82" name="Apply Model (8)" width="90" x="179" y="34">
+                <list key="application_parameters"/>
+              </operator>
+              <operator activated="true" class="performance_classification" compatibility="11.0.000" expanded="true" height="82" name="Performance (7)" width="90" x="313" y="34">
+                <parameter key="main_criterion" value="first"/>
+                <parameter key="accuracy" value="true"/>
+                <parameter key="classification_error" value="false"/>
+                <parameter key="kappa" value="false"/>
+                <parameter key="weighted_mean_recall" value="false"/>
+                <parameter key="weighted_mean_precision" value="false"/>
+                <parameter key="spearman_rho" value="false"/>
+                <parameter key="kendall_tau" value="false"/>
+                <parameter key="absolute_error" value="false"/>
+                <parameter key="relative_error" value="false"/>
+                <parameter key="relative_error_lenient" value="false"/>
+                <parameter key="relative_error_strict" value="false"/>
+                <parameter key="normalized_absolute_error" value="true"/>
+                <parameter key="root_mean_squared_error" value="true"/>
+                <parameter key="root_relative_squared_error" value="true"/>
+                <parameter key="squared_error" value="false"/>
+                <parameter key="correlation" value="false"/>
+                <parameter key="squared_correlation" value="false"/>
+                <parameter key="cross-entropy" value="false"/>
+                <parameter key="margin" value="false"/>
+                <parameter key="soft_margin_loss" value="false"/>
+                <parameter key="logistic_loss" value="false"/>
+                <parameter key="skip_undefined_labels" value="true"/>
+                <parameter key="use_example_weights" value="true"/>
+                <list key="class_weights"/>
+              </operator>
+              <connect from_port="input 1" to_op="GBT" to_port="training set"/>
+              <connect from_port="input 2" to_op="Apply Model (8)" to_port="unlabelled data"/>
+              <connect from_op="GBT" from_port="model" to_op="Apply Model (8)" to_port="model"/>
+              <connect from_op="Apply Model (8)" from_port="labelled data" to_op="Performance (7)" to_port="labelled data"/>
+              <connect from_op="Apply Model (8)" from_port="model" to_port="output 1"/>
+              <connect from_op="Performance (7)" from_port="performance" to_port="output 3"/>
+              <connect from_op="Performance (7)" from_port="example set" to_port="output 2"/>
+              <portSpacing port="source_input 1" spacing="0"/>
+              <portSpacing port="source_input 2" spacing="0"/>
+              <portSpacing port="source_input 3" spacing="0"/>
+              <portSpacing port="sink_output 1" spacing="0"/>
+              <portSpacing port="sink_output 2" spacing="0"/>
+              <portSpacing port="sink_output 3" spacing="0"/>
+              <portSpacing port="sink_output 4" spacing="0"/>
+            </process>
+            <process expanded="true">
+              <operator activated="true" class="h2o:deep_learning" compatibility="11.0.000" expanded="true" height="103" name="Deep Learning" width="90" x="45" y="34">
+                <parameter key="activation" value="Rectifier"/>
+                <enumeration key="hidden_layer_sizes">
+                  <parameter key="hidden_layer_sizes" value="50"/>
+                  <parameter key="hidden_layer_sizes" value="30"/>
+                </enumeration>
+                <enumeration key="hidden_dropout_ratios"/>
+                <parameter key="reproducible_(uses_1_thread)" value="false"/>
+                <parameter key="use_local_random_seed" value="false"/>
+                <parameter key="local_random_seed" value="1992"/>
+                <parameter key="epochs" value="10.0"/>
+                <parameter key="compute_variable_importances" value="false"/>
+                <parameter key="train_samples_per_iteration" value="-2"/>
+                <parameter key="adaptive_rate" value="true"/>
+                <parameter key="epsilon" value="1.0E-8"/>
+                <parameter key="rho" value="0.99"/>
+                <parameter key="learning_rate" value="0.005"/>
+                <parameter key="learning_rate_annealing" value="1.0E-6"/>
+                <parameter key="learning_rate_decay" value="1.0"/>
+                <parameter key="momentum_start" value="0.0"/>
+                <parameter key="momentum_ramp" value="1000000.0"/>
+                <parameter key="momentum_stable" value="0.0"/>
+                <parameter key="nesterov_accelerated_gradient" value="true"/>
+                <parameter key="standardize" value="true"/>
+                <parameter key="L1" value="1.0E-5"/>
+                <parameter key="L2" value="0.0"/>
+                <parameter key="max_w2" value="10.0"/>
+                <parameter key="loss_function" value="Automatic"/>
+                <parameter key="distribution_function" value="AUTO"/>
+                <parameter key="early_stopping" value="false"/>
+                <parameter key="stopping_rounds" value="1"/>
+                <parameter key="stopping_metric" value="AUTO"/>
+                <parameter key="stopping_tolerance" value="0.001"/>
+                <parameter key="missing_values_handling" value="MeanImputation"/>
+                <parameter key="max_runtime_seconds" value="0"/>
+                <list key="expert_parameters"/>
+                <list key="expert_parameters_"/>
+              </operator>
+              <operator activated="true" class="apply_model" compatibility="11.0.000" expanded="true" height="82" name="Apply Model" width="90" x="179" y="34">
+                <list key="application_parameters"/>
+              </operator>
+              <operator activated="true" class="performance_classification" compatibility="11.0.000" expanded="true" height="82" name="Performance" width="90" x="313" y="34">
+                <parameter key="main_criterion" value="first"/>
+                <parameter key="accuracy" value="true"/>
+                <parameter key="classification_error" value="false"/>
+                <parameter key="kappa" value="false"/>
+                <parameter key="weighted_mean_recall" value="false"/>
+                <parameter key="weighted_mean_precision" value="false"/>
+                <parameter key="spearman_rho" value="false"/>
+                <parameter key="kendall_tau" value="false"/>
+                <parameter key="absolute_error" value="false"/>
+                <parameter key="relative_error" value="false"/>
+                <parameter key="relative_error_lenient" value="false"/>
+                <parameter key="relative_error_strict" value="false"/>
+                <parameter key="normalized_absolute_error" value="true"/>
+                <parameter key="root_mean_squared_error" value="true"/>
+                <parameter key="root_relative_squared_error" value="true"/>
+                <parameter key="squared_error" value="false"/>
+                <parameter key="correlation" value="false"/>
+                <parameter key="squared_correlation" value="false"/>
+                <parameter key="cross-entropy" value="false"/>
+                <parameter key="margin" value="false"/>
+                <parameter key="soft_margin_loss" value="false"/>
+                <parameter key="logistic_loss" value="false"/>
+                <parameter key="skip_undefined_labels" value="true"/>
+                <parameter key="use_example_weights" value="true"/>
+                <list key="class_weights"/>
+              </operator>
+              <connect from_port="input 1" to_op="Deep Learning" to_port="training set"/>
+              <connect from_port="input 2" to_op="Apply Model" to_port="unlabelled data"/>
+              <connect from_op="Deep Learning" from_port="model" to_op="Apply Model" to_port="model"/>
+              <connect from_op="Apply Model" from_port="labelled data" to_op="Performance" to_port="labelled data"/>
+              <connect from_op="Apply Model" from_port="model" to_port="output 1"/>
+              <connect from_op="Performance" from_port="performance" to_port="output 3"/>
+              <connect from_op="Performance" from_port="example set" to_port="output 2"/>
+              <portSpacing port="source_input 1" spacing="0"/>
+              <portSpacing port="source_input 2" spacing="0"/>
+              <portSpacing port="source_input 3" spacing="0"/>
+              <portSpacing port="sink_output 1" spacing="0"/>
+              <portSpacing port="sink_output 2" spacing="0"/>
+              <portSpacing port="sink_output 3" spacing="0"/>
+              <portSpacing port="sink_output 4" spacing="0"/>
+            </process>
+            <process expanded="true">
+              <operator activated="true" class="rule_induction" compatibility="11.0.000" expanded="true" height="82" name="Rule Induction" width="90" x="45" y="34">
+                <parameter key="criterion" value="information_gain"/>
+                <parameter key="sample_ratio" value="0.9"/>
+                <parameter key="pureness" value="0.9"/>
+                <parameter key="minimal_prune_benefit" value="0.25"/>
+                <parameter key="use_local_random_seed" value="false"/>
+                <parameter key="local_random_seed" value="1992"/>
+              </operator>
+              <operator activated="true" class="apply_model" compatibility="11.0.000" expanded="true" height="82" name="Apply Model (2)" width="90" x="179" y="34">
+                <list key="application_parameters"/>
+              </operator>
+              <operator activated="true" class="performance_classification" compatibility="11.0.000" expanded="true" height="82" name="Performance (2)" width="90" x="313" y="34">
+                <parameter key="main_criterion" value="first"/>
+                <parameter key="accuracy" value="true"/>
+                <parameter key="classification_error" value="false"/>
+                <parameter key="kappa" value="false"/>
+                <parameter key="weighted_mean_recall" value="false"/>
+                <parameter key="weighted_mean_precision" value="false"/>
+                <parameter key="spearman_rho" value="false"/>
+                <parameter key="kendall_tau" value="false"/>
+                <parameter key="absolute_error" value="false"/>
+                <parameter key="relative_error" value="false"/>
+                <parameter key="relative_error_lenient" value="false"/>
+                <parameter key="relative_error_strict" value="false"/>
+                <parameter key="normalized_absolute_error" value="true"/>
+                <parameter key="root_mean_squared_error" value="true"/>
+                <parameter key="root_relative_squared_error" value="true"/>
+                <parameter key="squared_error" value="false"/>
+                <parameter key="correlation" value="false"/>
+                <parameter key="squared_correlation" value="false"/>
+                <parameter key="cross-entropy" value="false"/>
+                <parameter key="margin" value="false"/>
+                <parameter key="soft_margin_loss" value="false"/>
+                <parameter key="logistic_loss" value="false"/>
+                <parameter key="skip_undefined_labels" value="true"/>
+                <parameter key="use_example_weights" value="true"/>
+                <list key="class_weights"/>
+              </operator>
+              <connect from_port="input 1" to_op="Rule Induction" to_port="training set"/>
+              <connect from_port="input 2" to_op="Apply Model (2)" to_port="unlabelled data"/>
+              <connect from_op="Rule Induction" from_port="model" to_op="Apply Model (2)" to_port="model"/>
+              <connect from_op="Apply Model (2)" from_port="labelled data" to_op="Performance (2)" to_port="labelled data"/>
+              <connect from_op="Apply Model (2)" from_port="model" to_port="output 1"/>
+              <connect from_op="Performance (2)" from_port="performance" to_port="output 3"/>
+              <connect from_op="Performance (2)" from_port="example set" to_port="output 2"/>
+              <portSpacing port="source_input 1" spacing="0"/>
+              <portSpacing port="source_input 2" spacing="0"/>
+              <portSpacing port="source_input 3" spacing="0"/>
+              <portSpacing port="sink_output 1" spacing="0"/>
+              <portSpacing port="sink_output 2" spacing="0"/>
+              <portSpacing port="sink_output 3" spacing="0"/>
+              <portSpacing port="sink_output 4" spacing="0"/>
+            </process>
+            <process expanded="true">
+              <operator activated="true" class="nominal_to_numerical" compatibility="11.0.000" expanded="true" height="103" name="Nom to Num Train (2)" width="90" x="45" y="34">
+                <parameter key="return_preprocessing_model" value="false"/>
+                <parameter key="attribute_filter_type" value="single"/>
+                <parameter key="attribute" value="Sex(M/F)"/>
+                <parameter key="attributes" value=""/>
+                <parameter key="use_except_expression" value="false"/>
+                <parameter key="value_type" value="nominal"/>
+                <parameter key="use_value_type_exception" value="false"/>
+                <parameter key="except_value_type" value="file_path"/>
+                <parameter key="block_type" value="single_value"/>
+                <parameter key="use_block_type_exception" value="false"/>
+                <parameter key="except_block_type" value="single_value"/>
+                <parameter key="invert_selection" value="false"/>
+                <parameter key="include_special_attributes" value="false"/>
+                <parameter key="coding_type" value="dummy coding"/>
+                <parameter key="use_comparison_groups" value="false"/>
+                <list key="comparison_groups"/>
+                <parameter key="unexpected_value_handling" value="all 0 and warning"/>
+                <parameter key="use_underscore_in_name" value="false"/>
+                <description align="left" color="orange" colored="true" width="126">AutoMLP cannot handle binomial attributes.</description>
+              </operator>
+              <operator activated="true" class="auto_mlp" compatibility="11.0.000" expanded="true" height="82" name="AutoMLP" width="90" x="246" y="34">
+                <parameter key="training_cycles" value="10"/>
+                <parameter key="number_of_generations" value="10"/>
+                <parameter key="number_of_esemble_mlps" value="3"/>
+              </operator>
+              <operator activated="true" class="nominal_to_numerical" compatibility="11.0.000" expanded="true" height="103" name="Nom to Num Test (2)" width="90" x="246" y="136">
+                <parameter key="return_preprocessing_model" value="false"/>
+                <parameter key="attribute_filter_type" value="single"/>
+                <parameter key="attribute" value="Sex(M/F)"/>
+                <parameter key="attributes" value=""/>
+                <parameter key="use_except_expression" value="false"/>
+                <parameter key="value_type" value="nominal"/>
+                <parameter key="use_value_type_exception" value="false"/>
+                <parameter key="except_value_type" value="file_path"/>
+                <parameter key="block_type" value="single_value"/>
+                <parameter key="use_block_type_exception" value="false"/>
+                <parameter key="except_block_type" value="single_value"/>
+                <parameter key="invert_selection" value="false"/>
+                <parameter key="include_special_attributes" value="false"/>
+                <parameter key="coding_type" value="dummy coding"/>
+                <parameter key="use_comparison_groups" value="false"/>
+                <list key="comparison_groups"/>
+                <parameter key="unexpected_value_handling" value="all 0 and warning"/>
+                <parameter key="use_underscore_in_name" value="false"/>
+                <description align="left" color="orange" colored="true" width="126">AutoMLP cannot handle binomial attributes.</description>
+              </operator>
+              <operator activated="true" class="apply_model" compatibility="11.0.000" expanded="true" height="82" name="Apply Model (10)" width="90" x="380" y="85">
+                <list key="application_parameters"/>
+              </operator>
+              <operator activated="true" class="performance_classification" compatibility="11.0.000" expanded="true" height="82" name="Performance (9)" width="90" x="514" y="85">
+                <parameter key="main_criterion" value="first"/>
+                <parameter key="accuracy" value="true"/>
+                <parameter key="classification_error" value="false"/>
+                <parameter key="kappa" value="false"/>
+                <parameter key="weighted_mean_recall" value="false"/>
+                <parameter key="weighted_mean_precision" value="false"/>
+                <parameter key="spearman_rho" value="false"/>
+                <parameter key="kendall_tau" value="false"/>
+                <parameter key="absolute_error" value="false"/>
+                <parameter key="relative_error" value="false"/>
+                <parameter key="relative_error_lenient" value="false"/>
+                <parameter key="relative_error_strict" value="false"/>
+                <parameter key="normalized_absolute_error" value="true"/>
+                <parameter key="root_mean_squared_error" value="true"/>
+                <parameter key="root_relative_squared_error" value="true"/>
+                <parameter key="squared_error" value="false"/>
+                <parameter key="correlation" value="false"/>
+                <parameter key="squared_correlation" value="false"/>
+                <parameter key="cross-entropy" value="false"/>
+                <parameter key="margin" value="false"/>
+                <parameter key="soft_margin_loss" value="false"/>
+                <parameter key="logistic_loss" value="false"/>
+                <parameter key="skip_undefined_labels" value="true"/>
+                <parameter key="use_example_weights" value="true"/>
+                <list key="class_weights"/>
+              </operator>
+              <connect from_port="input 1" to_op="Nom to Num Train (2)" to_port="example set input"/>
+              <connect from_port="input 2" to_op="Nom to Num Test (2)" to_port="example set input"/>
+              <connect from_op="Nom to Num Train (2)" from_port="example set output" to_op="AutoMLP" to_port="training set"/>
+              <connect from_op="AutoMLP" from_port="model" to_op="Apply Model (10)" to_port="model"/>
+              <connect from_op="Nom to Num Test (2)" from_port="example set output" to_op="Apply Model (10)" to_port="unlabelled data"/>
+              <connect from_op="Apply Model (10)" from_port="labelled data" to_op="Performance (9)" to_port="labelled data"/>
+              <connect from_op="Apply Model (10)" from_port="model" to_port="output 1"/>
+              <connect from_op="Performance (9)" from_port="performance" to_port="output 3"/>
+              <connect from_op="Performance (9)" from_port="example set" to_port="output 2"/>
+              <portSpacing port="source_input 1" spacing="0"/>
+              <portSpacing port="source_input 2" spacing="0"/>
+              <portSpacing port="source_input 3" spacing="0"/>
+              <portSpacing port="sink_output 1" spacing="0"/>
+              <portSpacing port="sink_output 2" spacing="0"/>
+              <portSpacing port="sink_output 3" spacing="0"/>
+              <portSpacing port="sink_output 4" spacing="0"/>
+            </process>
+          </operator>
+          <connect from_port="input 1" to_op="Select Subprocess" to_port="input 1"/>
+          <connect from_port="input 2" to_op="Select Subprocess" to_port="input 2"/>
+          <connect from_op="Select Subprocess" from_port="output 1" to_port="output 1"/>
+          <connect from_op="Select Subprocess" from_port="output 2" to_port="output 2"/>
+          <connect from_op="Select Subprocess" from_port="output 3" to_port="output 3"/>
+          <portSpacing port="source_input 1" spacing="0"/>
+          <portSpacing port="source_input 2" spacing="0"/>
+          <portSpacing port="source_input 3" spacing="0"/>
+          <portSpacing port="sink_performance" spacing="0"/>
+          <portSpacing port="sink_output 1" spacing="0"/>
+          <portSpacing port="sink_output 2" spacing="0"/>
+          <portSpacing port="sink_output 3" spacing="0"/>
+          <portSpacing port="sink_output 4" spacing="0"/>
+        </process>
+        <description align="center" color="orange" colored="true" width="126">Select Subprocess</description>
+      </operator>
+      <operator activated="true" class="retrieve" compatibility="11.0.000" expanded="true" height="68" name="Retrieve" width="90" x="45" y="340">
+        <parameter key="repository_entry" value="model/asm_model"/>
+      </operator>
+      <operator activated="true" class="read_csv" compatibility="11.0.000" expanded="true" height="68" name="PPG-BP_predict" width="90" x="45" y="442">
+        <parameter key="csv_file" value="/Users/dongyi-guo/Documents/AltairRapidMiner/AI Studio/Local Repository/data/asm/PPG-BP_predict.csv"/>
+        <parameter key="column_separators" value=","/>
+        <parameter key="trim_lines" value="false"/>
+        <parameter key="multiline_text" value="false"/>
+        <parameter key="use_quotes" value="true"/>
+        <parameter key="quotes_character" value="&quot;"/>
+        <parameter key="escape_character" value="\"/>
+        <parameter key="skip_comments" value="true"/>
+        <parameter key="comment_characters" value="#"/>
+        <parameter key="starting_row" value="1"/>
+        <parameter key="parse_numbers" value="true"/>
+        <parameter key="decimal_character" value="."/>
+        <parameter key="grouped_digits" value="false"/>
+        <parameter key="grouping_character" value=","/>
+        <parameter key="infinity_representation" value=""/>
+        <parameter key="date_format" value=""/>
+        <parameter key="use_header_row" value="true"/>
+        <parameter key="header_row" value="1"/>
+        <parameter key="first_row_as_names" value="true"/>
+        <list key="annotations"/>
+        <parameter key="time_zone" value="Australia/Hobart"/>
+        <parameter key="locale" value="English (United States)"/>
+        <parameter key="encoding" value="UTF-8"/>
+        <parameter key="read_all_values_as_polynominal" value="false"/>
+        <list key="data_set_meta_data_information">
+          <parameter key="0" value="id.true.integer.attribute"/>
+          <parameter key="1" value="Sex(M/F).true.polynominal.attribute"/>
+          <parameter key="2" value="Age(year).true.integer.attribute"/>
+          <parameter key="3" value="Height(cm).true.integer.attribute"/>
+          <parameter key="4" value="Weight(kg).true.integer.attribute"/>
+          <parameter key="5" value="Diastolic Blood Pressure(mmHg).true.integer.attribute"/>
+          <parameter key="6" value="Heart Rate(b/m).true.integer.attribute"/>
+          <parameter key="7" value="BMI(kg/m^2).true.real.attribute"/>
+        </list>
+        <parameter key="read_not_matching_values_as_missings" value="false"/>
+      </operator>
+      <operator activated="true" class="nominal_to_numerical" compatibility="11.0.000" expanded="true" height="103" name="Nom to Num Sex" width="90" x="179" y="442">
+        <parameter key="return_preprocessing_model" value="false"/>
+        <parameter key="attribute_filter_type" value="single"/>
+        <parameter key="attribute" value="Sex(M/F)"/>
+        <parameter key="attributes" value=""/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="nominal"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="file_path"/>
+        <parameter key="block_type" value="single_value"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="single_value"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="false"/>
+        <parameter key="coding_type" value="dummy coding"/>
+        <parameter key="use_comparison_groups" value="false"/>
+        <list key="comparison_groups"/>
+        <parameter key="unexpected_value_handling" value="all 0 and warning"/>
+        <parameter key="use_underscore_in_name" value="false"/>
+        <description align="center" color="orange" colored="true" width="126">Neural Net needs numerical inputs on Sex attribute.</description>
+      </operator>
+      <operator activated="true" class="apply_model" compatibility="11.0.000" expanded="true" height="82" name="Apply Model (13)" width="90" x="313" y="391">
+        <list key="application_parameters"/>
+      </operator>
+      <operator activated="true" class="write_csv" compatibility="11.0.000" expanded="true" height="82" name="Write CSV" width="90" x="447" y="391">
+        <parameter key="csv_file" value="/Users/dongyi-guo/Desktop/final_res.csv"/>
+        <parameter key="column_separator" value=","/>
+        <parameter key="write_attribute_names" value="true"/>
+        <parameter key="quote_nominal_values" value="true"/>
+        <parameter key="format_date_attributes" value="true"/>
+        <parameter key="date_format" value="yyyy-MM-dd HH:mm:ss"/>
+        <parameter key="append_to_file" value="false"/>
+        <parameter key="encoding" value="SYSTEM"/>
+        <description align="left" color="orange" colored="true" width="126">This operator unfortunately only use absolute path, please change the csv file path on your local machine.</description>
+      </operator>
+      <connect from_op="labels_record" from_port="output" to_op="Inner Join" to_port="left"/>
+      <connect from_op="PPG-BP_record" from_port="output" to_op="Inner Join" to_port="right"/>
+      <connect from_op="Inner Join" from_port="join" to_op="Missing Vals" to_port="example set input"/>
+      <connect from_op="Missing Vals" from_port="example set output" to_op="Filter by Boundaries" to_port="example set input"/>
+      <connect from_op="Filter by Boundaries" from_port="example set output" to_op="Parse to Num" to_port="example set input"/>
+      <connect from_op="Parse to Num" from_port="example set output" to_op="Set Role" to_port="example set input"/>
+      <connect from_op="Set Role" from_port="example set output" to_op="Nominal to Binominal" to_port="example set input"/>
+      <connect from_op="Nominal to Binominal" from_port="example set output" to_op="Multiply" to_port="input"/>
+      <connect from_op="Multiply" from_port="output 1" to_op="Split Data" to_port="example set"/>
+      <connect from_op="Multiply" from_port="output 2" to_op="Loop-Cross_Valid" to_port="input 1"/>
+      <connect from_op="Loop-Cross_Valid" from_port="output 3" to_port="result 2"/>
+      <connect from_op="Split Data" from_port="partition 1" to_op="Loop-Hold_out" to_port="input 1"/>
+      <connect from_op="Split Data" from_port="partition 2" to_op="Loop-Hold_out" to_port="input 2"/>
+      <connect from_op="Loop-Hold_out" from_port="output 3" to_port="result 1"/>
+      <connect from_op="Retrieve" from_port="output" to_op="Apply Model (13)" to_port="model"/>
+      <connect from_op="PPG-BP_predict" from_port="output" to_op="Nom to Num Sex" to_port="example set input"/>
+      <connect from_op="Nom to Num Sex" from_port="example set output" to_op="Apply Model (13)" to_port="unlabelled data"/>
+      <connect from_op="Apply Model (13)" from_port="labelled data" to_op="Write CSV" to_port="input"/>
+      <portSpacing port="source_input 1" spacing="0"/>
+      <portSpacing port="sink_result 1" spacing="0"/>
+      <portSpacing port="sink_result 2" spacing="0"/>
+      <portSpacing port="sink_result 3" spacing="0"/>
+      <description align="left" color="orange" colored="true" height="70" resized="true" width="257" x="27" y="272">Reads &amp;quot;asm_model&amp;quot; from folder &amp;quot;Model&amp;quot; in the project repository.&lt;br&gt;Generated from previous processes.</description>
+    </process>
+  </operator>
+</process>
